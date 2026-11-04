@@ -4,11 +4,13 @@
 
 ภาษาที่มี: German (de-DE), French (fr-FR), Japanese (ja-JP), Korean (ko-KR), Chinese Simplified (zh-CN), Chinese Traditional (zh-TW)
 
+มีหน้า **ชุดทดสอบอักขระ** (`#testdata`) สำหรับข้อความทดสอบหลายภาษา พร้อมจำนวน grapheme, code point, หน่วย UTF-16 และ byte ของ UTF-8 / GB18030 (surrogate pair, GB18030, Cyrillic, full-width / half-width, อักขระประกอบ, อักขระที่มองไม่เห็น, ทดสอบความยาว) และตัวนับ byte สำหรับวางข้อความเอง
+
 ## วิธีใช้
 
 เปิด `index.html` ใน browser ได้เลย ไฟล์นี้เป็นไฟล์เดียวที่มีทุกอย่างอยู่ในตัว (ฟอนต์โหลดจาก Google Fonts)
 
-- **ตารางเทียบทุกภาษา** และ **ดูทีละภาษา** สลับได้จากแท็บด้านบน (ลิงก์ตรงได้ด้วย `#compare`, `#de`, `#fr`, `#ja`, `#ko`, `#zh-hans`, `#zh-hant`)
+- **ตารางเทียบทุกภาษา**, **ดูทีละภาษา** และ **ชุดทดสอบอักขระ** สลับได้จากแท็บด้านบน (ลิงก์ตรงได้ด้วย `#compare`, `#de`, `#fr`, `#ja`, `#ko`, `#zh-hans`, `#zh-hant`, `#testdata`)
 - คลิกค่าตัวอย่างเพื่อคัดลอกพร้อมอักขระจริง รวมถึง NBSP และ narrow NBSP
 - สวิตช์ "แสดงช่องว่างพิเศษ" ใช้ไฮไลต์ช่องว่างที่มองไม่เห็น
 - กด `/` เพื่อค้นหา
@@ -28,10 +30,13 @@ index.html            เว็บที่ build แล้ว (เปิดไ�
 src/template.html     HTML / CSS / JS ของหน้าเว็บ
 src/content.js        ข้อมูลที่เขียนเอง: รายการ หมายเหตุ เช็คลิสต์ QA อักขระพิเศษ (ภาษาไทยเป็นต้นฉบับ)
 src/i18n-en.js        คำแปลภาษาอังกฤษของข้อความใน content.js (ใช้ข้อความภาษาไทยเป็น key)
+src/testdata.js       ข้อความทดสอบของหน้าชุดทดสอบอักขระ (คำอธิบายไทย/อังกฤษอยู่ในไฟล์นี้)
 data/cldr.json        ค่าที่สร้างจาก CLDR (วันที่ เวลา ตัวเลข สกุลเงิน หน่วย ฯลฯ)
 data/sort.json        ผลการเรียงลำดับตาม collation ของแต่ละภาษา
+data/testdata.json    จำนวนตัวอักษรและ byte ของข้อความทดสอบ (UTF-8, UTF-16, GB18030-2022)
 scripts/gen-cldr.js   สร้าง data/cldr.json
 scripts/gen-sort.js   สร้าง data/sort.json
+scripts/gen-testdata.js  สร้าง data/testdata.json (ตรวจ round-trip ของ GB18030 ทุกข้อความ)
 scripts/build.js      รวมทุกอย่างเป็น index.html
 ```
 
@@ -44,6 +49,7 @@ scripts/build.js      รวมทุกอย่างเป็น index.html
 ```sh
 node scripts/gen-cldr.js   # สร้างข้อมูล CLDR ใหม่ (ไม่ต้องรันถ้าไม่ได้อัปเดต Node/CLDR)
 node scripts/gen-sort.js   # สร้างผลการเรียงลำดับใหม่
+node scripts/gen-testdata.js  # คำนวณจำนวน byte ของข้อความทดสอบ (รันทุกครั้งที่แก้ src/testdata.js)
 node scripts/build.js      # build index.html
 ```
 

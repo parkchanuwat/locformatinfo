@@ -1,5 +1,5 @@
 // Curated content. CLDR-derived values come from C (generated), the rest are from style guides.
-const NB = " ", NN = " ";
+const NB = "\u00A0", NN = "\u202F";
 // EN holds Thai → English translations (filled here via tr() and in i18n-en.js)
 const EN = {};
 const tr = (th, en) => { EN[th] = en; return th; };

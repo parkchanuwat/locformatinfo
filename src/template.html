@@ -252,6 +252,57 @@ body:not(.show-inv) .legend { display: none; }
 .sd-qa li::marker { font: 600 12px var(--f-mono); color: var(--accent); }
 @media (max-width: 960px) { .sd-bottom { grid-template-columns: minmax(0, 1fr); } }
 
+/* Character test data */
+.td-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; }
+.td-h { font: 600 26px/1.2 var(--f-display); margin: 0 0 6px; }
+.lead { color: var(--muted); margin: 0; max-width: 70ch; }
+.gloss { display: grid; gap: 6px; margin: 0; }
+.gloss div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 10px; font-size: 13.5px; }
+.gloss dt { font: 500 12.5px/1.6 var(--f-mono); color: var(--accent); }
+.gloss dd { margin: 0; color: var(--muted); }
+.counter-card { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); padding: 18px 20px; display: grid; gap: 14px; }
+.counter-card textarea { width: 100%; min-height: 84px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--specimen); color: var(--ink); font: 16px/1.6 var(--f-sample); }
+.counter-card textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+#tdResult { display: grid; gap: 12px; }
+.metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.metric { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--specimen); display: grid; gap: 2px; }
+.metric .k { font: 500 12px var(--f-mono); color: var(--muted); }
+.metric .v { font: 600 26px/1.15 var(--f-mono); font-variant-numeric: tabular-nums; }
+.flags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.flags .k { font-size: 12px; color: var(--muted); margin-right: 4px; }
+.flag { font-size: 12.5px; padding: 3px 9px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+.flag.bad { background: var(--bad-soft); color: var(--bad); }
+.flag.ok { background: var(--specimen); color: var(--muted); border: 1px solid var(--line); }
+.bd summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+.bd-wrap { margin-top: 8px; max-height: 340px; overflow: auto; border: 1px solid var(--line); border-radius: 10px; }
+.bd-t { border-collapse: collapse; width: 100%; font-size: 13px; }
+.bd-t th, .bd-t td { padding: 5px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+.bd-t thead th { position: sticky; top: 0; background: var(--surface); color: var(--muted); font-weight: 500; font-size: 12px; }
+.bd-t tr.bad td { background: var(--bad-soft); color: var(--bad); }
+.bd-t .glyph { font: 18px/1.3 var(--f-sample); }
+.num { text-align: right !important; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--f-mono); }
+.ipill { display: inline-block; font: 600 10px/1 var(--f-mono); padding: 3px 4px; margin: 0 1px; border-radius: 4px; background: var(--mark-nb); color: var(--ink); vertical-align: middle; }
+.sec-lead { margin: -4px 0 12px; color: var(--muted); max-width: 90ch; font-size: 14px; }
+.sec-note { margin: 10px 0 0; color: var(--muted); font-size: 13px; max-width: 90ch; }
+table.td { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1060px; table-layout: fixed; }
+table.td col.c-s { width: 210px; } table.td col.c-w { width: 260px; } table.td col.c-c { width: auto; } table.td col.c-n { width: 82px; }
+table.td th, table.td td { text-align: left; vertical-align: top; padding: 11px 12px; border-bottom: 1px solid var(--line); }
+table.td tr:last-child > * { border-bottom: 0; }
+table.td thead th { font-size: 12px; font-weight: 500; color: var(--muted); background: var(--surface); }
+table.td thead th.num { font-family: var(--f-body); }
+table.td td.num { font-size: 15px; padding-top: 16px; }
+table.td td.diff { color: var(--accent); font-weight: 600; }
+table.td tbody tr:hover > td { background: var(--specimen); }
+table.td tbody tr:hover .val { background: var(--surface); }
+.td-val { font-size: 18px; }
+.small { font-size: 11.5px; line-height: 1.55; color: var(--muted); overflow-wrap: anywhere; }
+.hexl { display: block; margin-top: 4px; }
+.hexl b { font-weight: 500; color: var(--ink); margin-right: 4px; }
+@media (max-width: 960px) { .td-hero { grid-template-columns: minmax(0, 1fr); } .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .gloss div { grid-template-columns: 90px minmax(0, 1fr); } }
+
 .empty-state { padding: 48px 24px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
 
 footer { border-top: 1px solid var(--line); padding: 20px 0 40px; color: var(--muted); font-size: 13px; }
@@ -344,6 +395,8 @@ const C = __C__;
 const SORT = __SORT__;
 __CONTENT__
 __I18N__
+__TESTDATA__
+const TDSTATS = __TDSTATS__;
 
 // ---------- UI language ----------
 const UI = {
@@ -420,9 +473,9 @@ function setUI(l) {
 }
 
 // ---------- helpers ----------
-const INV = { " ": ["nb", "U+00A0 NO-BREAK SPACE"], " ": ["nn", "U+202F NARROW NO-BREAK SPACE"], " ": ["th", "U+2009 THIN SPACE"] };
+const INV = { "\u00A0": ["nb", "U+00A0 NO-BREAK SPACE"], "\u202F": ["nn", "U+202F NARROW NO-BREAK SPACE"], "\u2009": ["th", "U+2009 THIN SPACE"] };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const fmt = s => esc(s).replace(/[   ]/g, ch => `<span class="inv inv-${INV[ch][0]}" title="${INV[ch][1]}">${ch}</span>`);
+const fmt = s => esc(s).replace(/[\u00A0\u202F\u2009]/g, ch => `<span class="inv inv-${INV[ch][0]}" title="${INV[ch][1]}">${ch}</span>`);
 const pick = (x, id) => x == null ? "" : (typeof x === "string" ? x : (x[id] || ""));
 const THAI = /[฀-๿]/;
 const DESC = new Set(["overview"]);
@@ -500,7 +553,7 @@ function sortBlock(ids) {
 }
 
 // ---------- special letters ----------
-const MARKS = { "̀": "grave", "́": "acute", "̂": "circumflex", "̈": "diaeresis", "̧": "cedilla" };
+const MARKS = { "\u0300": "grave", "\u0301": "acute", "\u0302": "circumflex", "\u0308": "diaeresis", "\u0327": "cedilla" };
 const cpOf = ch => [...ch].map(c => "U+" + c.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")).join(" ");
 let dec1252 = null; try { dec1252 = new TextDecoder("windows-1252"); } catch (e) {}
 const moji = ch => { try { return dec1252 ? dec1252.decode(new TextEncoder().encode(ch)) : ""; } catch (e) { return ""; } };
@@ -561,11 +614,12 @@ function matches(item, locs) {
 
 function renderTabs() {
   document.getElementById("tabs").innerHTML = `<button class="tab" role="tab" data-view="compare" aria-selected="${view === "compare"}">${u("tabCompare")}</button><span class="tab-sep" aria-hidden="true"></span>` +
-    LOCS.map(l => `<button class="tab" role="tab" data-view="${l.id}" aria-selected="${view === l.id}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button>`).join("");
+    LOCS.map(l => `<button class="tab" role="tab" data-view="${l.id}" aria-selected="${view === l.id}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button>`).join("") +
+    `<span class="tab-sep" aria-hidden="true"></span><button class="tab" role="tab" data-view="testdata" aria-selected="${view === "testdata"}"><span class="code">UTF</span>${u("tabTD")}</button>`;
 }
-function renderRail(counts) {
-  document.getElementById("rail").innerHTML = `<div class="rail-h">${u("railHead")}</div>` + CATS.filter(c => c.id in counts).map(c =>
-    `<button type="button" data-cat="${c.id}" class="${counts[c.id] ? "" : "empty"}"><span>${esc(catName(c))}</span><span class="cnt">${counts[c.id] || 0}</span></button>`).join("");
+function renderRail(list) {
+  document.getElementById("rail").innerHTML = `<div class="rail-h">${u("railHead")}</div>` + list.map(c =>
+    `<button type="button" data-cat="${c.id}" class="${c.n === 0 ? "empty" : ""}"><span>${esc(c.name)}</span><span class="cnt">${c.n}</span></button>`).join("");
 }
 
 function renderCompare() {
@@ -606,13 +660,184 @@ function renderLang(loc) {
   return { html, counts };
 }
 
+// ---------- character test data ----------
+Object.assign(UI.th, {
+  tabTD: "ชุดทดสอบอักขระ", tdTitle: "ชุดทดสอบอักขระ",
+  tdLead: "ข้อความทดสอบสำหรับภาษาและ encoding ต่างๆ พร้อมจำนวนตัวอักษรและ byte ในแต่ละหน่วย คลิกตัวอย่างเพื่อคัดลอกข้อความจริง",
+  gloss: [["Grapheme", "ตัวอักษรที่ผู้ใช้เห็นเป็น 1 ตัว"], ["Code point", "จำนวนตัวอักษร Unicode (len() ของ Python)"], ["UTF-16", "หน่วยที่ JavaScript, Java, C# นับ (.length)"], ["UTF-8", "byte ในไฟล์และฐานข้อมูลส่วนใหญ่"], ["GB18030", "byte เมื่อบันทึกเป็น GB18030-2022"]],
+  colSample: "ตัวอย่าง", colWhat: "คืออะไร / ทดสอบอะไร", colCps: "Code point และ byte",
+  counter: "ตัวนับ byte", counterLead: "วางข้อความเพื่อนับจำนวนตัวอักษรและ byte คำนวณใน browser ของคุณ",
+  counterPh: "วางข้อความที่นี่", counterLabel: "ข้อความที่ต้องการนับ",
+  found: "สิ่งที่พบ", nothing: "ไม่พบอักขระพิเศษ",
+  flags: { supp: "ตัวอักษร 4 byte (surrogate pair)", mark: "เครื่องหมายประกอบ", inv: "อักขระที่มองไม่เห็น", fw: "อักษรเต็มความกว้าง", hw: "คาตาคานะครึ่งความกว้าง", lone: "surrogate ครึ่งตัว (ข้อมูลเสีย)", nfc: "ไม่ใช่ NFC (มีตัวที่แยกส่วน)" },
+  bdTitle: "แยกทีละ code point", bdMore: n => `และอีก ${n} ตัว`, bdChar: "ตัวอักษร", bdType: "ประเภท",
+  types: { latin: "ละติน", cyr: "Cyrillic", greek: "กรีก", han: "อักษรฮั่น", kana: "คานะ", hangul: "ฮันกึล", thai: "ไทย", arabic: "อาหรับ", hebrew: "ฮีบรู", deva: "เทวนาครี", mark: "เครื่องหมายประกอบ", fmt: "อักขระควบคุมรูปแบบ", space: "ช่องว่าง", emoji: "อีโมจิ", digit: "ตัวเลข", punct: "เครื่องหมาย", other: "อื่นๆ", lone: "surrogate ครึ่งตัว" },
+  tdQA: "จุดที่ต้องเช็ค", noGB: "browser นี้ไม่รองรับการคำนวณ GB18030"
+});
+Object.assign(UI.en, {
+  tabTD: "Character test data", tdTitle: "Character test data",
+  tdLead: "Test strings for different scripts and encodings, with character and byte counts in each unit. Click a sample to copy the exact string.",
+  gloss: [["Grapheme", "What the user sees as one character"], ["Code point", "Unicode characters (Python len())"], ["UTF-16", "Units counted by JavaScript, Java, C# (.length)"], ["UTF-8", "Bytes in most files and databases"], ["GB18030", "Bytes when saved as GB18030-2022"]],
+  colSample: "Sample", colWhat: "What it is / what it tests", colCps: "Code points and bytes",
+  counter: "Byte counter", counterLead: "Paste text to count its characters and bytes. Everything is calculated in your browser.",
+  counterPh: "Paste text here", counterLabel: "Text to count",
+  found: "Found", nothing: "No special characters found",
+  flags: { supp: "4-byte characters (surrogate pairs)", mark: "Combining marks", inv: "Invisible characters", fw: "Full-width forms", hw: "Half-width katakana", lone: "Lone surrogates (broken data)", nfc: "Not NFC (has decomposed characters)" },
+  bdTitle: "Code point breakdown", bdMore: n => `and ${n} more`, bdChar: "Character", bdType: "Type",
+  types: { latin: "Latin", cyr: "Cyrillic", greek: "Greek", han: "Han", kana: "Kana", hangul: "Hangul", thai: "Thai", arabic: "Arabic", hebrew: "Hebrew", deva: "Devanagari", mark: "Combining mark", fmt: "Format character", space: "Space", emoji: "Emoji", digit: "Digit", punct: "Punctuation", other: "Other", lone: "Lone surrogate" },
+  tdQA: "What to check", noGB: "This browser can't calculate GB18030"
+});
+const tdName = g => uiLang === "en" ? g.en : g.th;
+const L2 = o => o ? (uiLang === "en" ? o.en : o.th) : "";
+
+const INV_NAMES = { "\u200B": "ZWSP", "\uFEFF": "BOM", "\u00A0": "NBSP", "\u00AD": "SHY", "\u200C": "ZWNJ", "\u200D": "ZWJ", "\u200E": "LRM", "\u200F": "RLM", "\u2028": "LSEP", "\u2029": "PSEP", "\u3000": "IDSP", "\u202F": "NNBSP", "\u2009": "THSP", "\u2060": "WJ", "\u180E": "MVS" };
+const fmtInv = s => [...s].map(ch => INV_NAMES[ch] ? `<span class="ipill" title="${cpOf(ch)}">${INV_NAMES[ch]}</span>` : esc(ch)).join("");
+function sampleLang(s, g, it) {
+  if (it.lang) return it.lang;
+  if (/[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(s)) return "ja";
+  if (/\p{Script=Hangul}/u.test(s)) return "ko";
+  if (/\p{Script=Han}/u.test(s)) return g.id === "gb18030" ? "zh-Hans" : "ja";
+  return "";
+}
+function tdMatches(g, it, st) {
+  if (!query) return true;
+  const q = query.toLowerCase();
+  return [it.s, it.d, it.t.th, it.t.en, it.n.th, it.n.en, g.th, g.en, st.cps.join(" ")].join(" ").toLowerCase().includes(q);
+}
+
+// GB18030 byte length in the browser: 2-byte set built from the platform decoder
+let GB2 = undefined;
+function gbTwo() {
+  if (GB2 !== undefined) return GB2;
+  try {
+    const d = new TextDecoder("gb18030"), set = new Set();
+    for (let a = 0x81; a <= 0xfe; a++) for (let b = 0x40; b <= 0xfe; b++) {
+      if (b === 0x7f) continue;
+      const ch = d.decode(new Uint8Array([a, b]));
+      if (ch.length === 1 && ch !== "\uFFFD") set.add(ch);
+    }
+    GB2 = set;
+  } catch (e) { GB2 = null; }
+  return GB2;
+}
+function gbLen(ch) {
+  const cp = ch.codePointAt(0);
+  if (cp >= 0xd800 && cp <= 0xdfff) return null;
+  if (cp < 0x80) return 1;
+  if (cp >= 0x10000) return 4;
+  const set = gbTwo();
+  return set ? (set.has(ch) ? 2 : 4) : null;
+}
+const U8 = new TextEncoder();
+function charType(ch) {
+  const cp = ch.codePointAt(0);
+  if (cp >= 0xd800 && cp <= 0xdfff) return "lone";
+  const tests = [["mark", /\p{M}/u], ["fmt", /\p{Cf}/u], ["space", /[\p{Zs}\u2028\u2029]/u], ["emoji", /\p{Extended_Pictographic}/u], ["digit", /\p{Nd}/u], ["latin", /\p{Script=Latin}/u], ["cyr", /\p{Script=Cyrillic}/u], ["greek", /\p{Script=Greek}/u], ["han", /\p{Script=Han}/u], ["kana", /[\p{Script=Hiragana}\p{Script=Katakana}]/u], ["hangul", /\p{Script=Hangul}/u], ["thai", /\p{Script=Thai}/u], ["arabic", /\p{Script=Arabic}/u], ["hebrew", /\p{Script=Hebrew}/u], ["deva", /\p{Script=Devanagari}/u], ["punct", /[\p{P}\p{S}]/u]];
+  const f = tests.find(t => t[1].test(ch));
+  return f ? f[0] : "other";
+}
+function analyse(s) {
+  const cps = [...s];
+  let seg = null; try { seg = [...new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(s)].length; } catch (e) {}
+  let gb = 0;
+  const rows = cps.map(ch => {
+    const g = gbLen(ch); if (gb !== null) gb = g === null ? null : gb + g;
+    return { ch, cp: cpOf(ch), type: charType(ch), u8: U8.encode(ch).length, u16: ch.length, gb: g };
+  });
+  const flags = {
+    supp: cps.filter(c => c.codePointAt(0) >= 0x10000).length,
+    mark: rows.filter(r => r.type === "mark").length,
+    inv: rows.filter(r => r.type === "fmt" || (r.type === "space" && r.ch !== " ")).length,
+    fw: cps.filter(c => /[\u3000！-｠￠-￦]/.test(c)).length,
+    hw: cps.filter(c => /[｡-ﾟ]/.test(c)).length,
+    lone: rows.filter(r => r.type === "lone").length,
+    nfc: s !== s.normalize("NFC") ? 1 : 0
+  };
+  return { graphemes: seg, codepoints: cps.length, utf16: s.length, utf8: U8.encode(s).length, gb18030: gb, rows, flags };
+}
+const COUNTER_SAMPLE = "𠮷野家 \u{1F468}\u200D\u{1F469}\u200D\u{1F467}\u200D\u{1F466} ＡＢＣ ｶﾞ e\u0301\u200B!";
+let counterText = COUNTER_SAMPLE;
+function counterResultHTML() {
+  const a = analyse(counterText), na = v => v === null ? "—" : v;
+  const metrics = [["Grapheme", na(a.graphemes)], ["Code point", a.codepoints], ["UTF-16", a.utf16], ["UTF-8", a.utf8], ["GB18030", na(a.gb18030)]];
+  const fl = u("flags"), found = Object.entries(a.flags).filter(([, n]) => n);
+  const max = 200, rows = a.rows.slice(0, max), ty = u("types");
+  return `<div class="metrics">${metrics.map(([k, v]) => `<div class="metric"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("")}</div>
+    ${a.gb18030 === null && gbTwo() === null ? `<p class="note">${u("noGB")}</p>` : ""}
+    <div class="flags"><span class="k">${u("found")}</span>${found.length ? found.map(([k, n]) => `<span class="flag ${k === "lone" ? "bad" : ""}">${fl[k]}${k === "nfc" ? "" : ` · ${n}`}</span>`).join("") : `<span class="flag ok">${u("nothing")}</span>`}</div>
+    ${a.rows.length ? `<details class="bd" ${a.rows.length <= 40 ? "open" : ""}><summary>${u("bdTitle")} (${a.rows.length})</summary>
+      <div class="bd-wrap"><table class="bd-t"><thead><tr><th>#</th><th>${u("bdChar")}</th><th>Code point</th><th>${u("bdType")}</th><th class="num">UTF-8</th><th class="num">UTF-16</th><th class="num">GB18030</th></tr></thead>
+      <tbody>${rows.map((r, i) => `<tr class="${r.type === "lone" ? "bad" : ""}"><td class="num">${i + 1}</td><td class="glyph">${r.type === "lone" ? "\uFFFD" : (INV_NAMES[r.ch] || r.type === "fmt" || r.type === "mark" ? (INV_NAMES[r.ch] ? fmtInv(r.ch) : (r.type === "mark" ? "◌" + esc(r.ch) : `<span class="ipill">${r.cp}</span>`)) : esc(r.ch))}</td><td class="mono">${r.cp}</td><td>${ty[r.type]}</td><td class="num">${r.u8}</td><td class="num">${r.u16}</td><td class="num">${na(r.gb)}</td></tr>`).join("")}</tbody></table>
+      ${a.rows.length > max ? `<p class="note">${u("bdMore")(a.rows.length - max)}</p>` : ""}</div></details>` : ""}`;
+}
+
+function renderTestData() {
+  const rail = []; let html = "";
+  if (!query) {
+    html += `<section class="hero td-hero" aria-label="${u("heroAria")}">
+      <div><h2 class="td-h">${u("tdTitle")}</h2><p class="lead">${u("tdLead")}</p></div>
+      <dl class="gloss">${u("gloss").map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></section>
+      <section class="sec counter" id="sec-td-counter" data-cat="td-counter">
+        <div class="sec-h"><h2>${u("counter")}</h2></div>
+        <div class="counter-card">
+          <p class="lead">${u("counterLead")}</p>
+          <label class="sr" for="tdInput">${u("counterLabel")}</label>
+          <textarea id="tdInput" rows="3" spellcheck="false" placeholder="${esc(u("counterPh"))}">${esc(counterText)}</textarea>
+          <div id="tdResult">${counterResultHTML()}</div>
+        </div>
+      </section>`;
+    rail.push({ id: "td-counter", name: u("counter"), n: "" });
+  }
+  for (const g of TESTDATA) {
+    const st = TDSTATS.stats[g.id];
+    const items = g.items.map((it, i) => ({ it, st: st[i] })).filter(x => tdMatches(g, x.it, x.st));
+    rail.push({ id: "td-" + g.id, name: tdName(g), n: items.length });
+    if (!items.length) continue;
+    html += `<section class="sec" id="sec-td-${g.id}" data-cat="td-${g.id}">
+      <div class="sec-h"><h2>${esc(tdName(g))}</h2></div>
+      <p class="sec-lead">${esc(L2(g.intro))}</p>
+      <div class="tbl-wrap"><table class="td"><colgroup><col class="c-s"><col class="c-w"><col class="c-c"><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-n"></colgroup>
+      <thead><tr><th scope="col">${u("colSample")}</th><th scope="col">${u("colWhat")}</th><th scope="col">${u("colCps")}</th><th scope="col" class="num">Grapheme</th><th scope="col" class="num">Code point</th><th scope="col" class="num">UTF-16</th><th scope="col" class="num">UTF-8</th><th scope="col" class="num">GB18030</th></tr></thead>
+      <tbody>${items.map(({ it, st }) => {
+        const lang = sampleLang(it.s, g, it);
+        const shownS = it.d ? esc(it.d) : (it.inv ? fmtInv(it.s) : esc(it.s));
+        const cps = st.cps.length > 8 ? st.cps.slice(0, 8).join(" ") + " …" : st.cps.join(" ");
+        return `<tr>
+          <td><button class="val td-val" type="button" ${lang ? `lang="${lang}"` : ""} data-copy="${esc(it.s)}" aria-label="${u("copy")} ${esc(it.d || it.s)}">${shownS}</button></td>
+          <td><div class="rlabel">${esc(L2(it.t))}</div>${L2(it.n) ? `<span class="note">${esc(L2(it.n))}</span>` : ""}</td>
+          <td class="mono small">${cps}<span class="hexl"><b>UTF-8</b> ${st.utf8hex}</span><span class="hexl"><b>GB18030</b> ${st.gbhex}</span></td>
+          <td class="num ${st.graphemes < st.codepoints ? "diff" : ""}">${st.graphemes}</td>
+          <td class="num">${st.codepoints}</td>
+          <td class="num ${st.utf16 > st.codepoints ? "diff" : ""}">${st.utf16}</td>
+          <td class="num">${st.utf8}</td>
+          <td class="num">${st.gb18030}</td></tr>`;
+      }).join("")}</tbody></table></div>
+      ${g.notes ? `<p class="sec-note">${esc(L2(g.notes))}</p>` : ""}</section>`;
+  }
+  if (!query) {
+    html += `<section class="sec checks" id="sec-td-qa" data-cat="td-qa"><h2>${u("tdQA")}</h2><ol>${TD_QA[uiLang].map(x => `<li>${esc(x)}</li>`).join("")}</ol></section>`;
+    rail.push({ id: "td-qa", name: u("tdQA"), n: "" });
+  }
+  return { html, rail };
+}
+document.addEventListener("input", e => {
+  if (e.target.id !== "tdInput") return;
+  counterText = e.target.value;
+  document.getElementById("tdResult").innerHTML = counterResultHTML();
+});
+
 let observer;
 function render() {
   renderTabs();
   const loc = LOCS.find(l => l.id === view);
-  const { html, counts } = loc ? renderLang(loc) : renderCompare();
-  document.getElementById("main").innerHTML = html.includes('class="sec"') ? html : html + `<div class="empty-state">${esc(u("empty")(query))}</div>`;
-  renderRail(counts);
+  let html, list;
+  if (view === "testdata") ({ html, rail: list } = renderTestData());
+  else {
+    const r = loc ? renderLang(loc) : renderCompare();
+    html = r.html; list = CATS.filter(c => c.id in r.counts).map(c => ({ id: c.id, name: catName(c), n: r.counts[c.id] || 0 }));
+  }
+  document.getElementById("main").innerHTML = html.includes('class="sec') ? html : html + `<div class="empty-state">${esc(u("empty")(query))}</div>`;
+  renderRail(list);
   spy();
 }
 
@@ -629,8 +854,9 @@ function spy() {
   document.querySelectorAll("#main .sec").forEach(s => observer.observe(s));
 }
 
+const validView = v => v === "compare" || v === "testdata" || LOCS.some(l => l.id === v);
 function setView(v, push = true) {
-  if (v !== "compare" && !LOCS.some(l => l.id === v)) v = "compare";
+  if (!validView(v)) v = "compare";
   view = v;
   if (push && location.hash.slice(1) !== v) { try { history.replaceState(null, "", "#" + v); } catch (e) { location.hash = v; } }
   render();
@@ -647,7 +873,7 @@ async function copy(text) {
   try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
     try { const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove(); } catch (e2) { ok = false; }
   }
-  const special = /[   ]/.test(text) ? u("special") : "";
+  const special = /[\u00A0\u202F\u2009]/.test(text) ? u("special") : "";
   toast(ok ? `${u("copied")} ${text.split("\n")[0]}${text.includes("\n") ? " …" : ""}${special}` : u("copyFail"));
 }
 
@@ -660,18 +886,18 @@ document.addEventListener("click", e => {
 document.getElementById("q").addEventListener("input", e => { query = e.target.value.trim(); render(); });
 document.getElementById("inv").addEventListener("change", e => document.body.classList.toggle("show-inv", e.target.checked));
 document.addEventListener("keydown", e => {
-  if (e.key === "/" && document.activeElement.tagName !== "INPUT") { e.preventDefault(); document.getElementById("q").focus(); }
+  if (e.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) { e.preventDefault(); document.getElementById("q").focus(); }
   if (e.key === "Escape" && document.activeElement.id === "q") { e.target.value = ""; query = ""; render(); }
 });
 document.getElementById("tabs").addEventListener("keydown", e => {
   if (!["ArrowRight", "ArrowLeft"].includes(e.key)) return;
-  const ids = ["compare", ...LOCS.map(l => l.id)]; let i = ids.indexOf(view);
+  const ids = ["compare", ...LOCS.map(l => l.id), "testdata"]; let i = ids.indexOf(view);
   i = (i + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length; setView(ids[i]);
   document.querySelector(`.tab[data-view="${ids[i]}"]`).focus();
 });
 window.addEventListener("hashchange", () => setView(location.hash.slice(1) || "compare", false));
 view = location.hash.slice(1) || "compare";
-if (view !== "compare" && !LOCS.some(l => l.id === view)) view = "compare";
+if (!validView(view)) view = "compare";
 applyStatic();
 render();
 </script>
