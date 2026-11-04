@@ -73,6 +73,10 @@ a { color: var(--accent); }
 .search input::placeholder { color: var(--muted); }
 .search svg { position: absolute; left: 12px; top: 12px; width: 16px; height: 16px; color: var(--muted); }
 .search kbd { position: absolute; right: 10px; top: 9px; font: 500 12px/20px var(--f-mono); padding: 0 6px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); }
+.langsw { display: inline-flex; height: 40px; padding: 3px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); gap: 2px; }
+.langsw button { border: 0; background: none; border-radius: 7px; padding: 0 12px; cursor: pointer; color: var(--muted); font-weight: 500; min-width: 44px; }
+.langsw button:hover { color: var(--ink); }
+.langsw button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
 .toggle { display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); cursor: pointer; user-select: none; }
 .toggle input { position: absolute; opacity: 0; pointer-events: none; }
 .switch { width: 30px; height: 18px; border-radius: 99px; background: var(--line); position: relative; transition: background .15s; flex: none; }
@@ -286,46 +290,50 @@ footer ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; }
     <div class="title-row">
       <div class="brand">
         <h1>Locale Format Reference</h1>
-        <p>รูปแบบมาตรฐานของวันที่ เวลา ตัวเลข สกุลเงิน และข้อความ ใน 6 ภาษา สำหรับใช้ตรวจงาน localization คลิกที่ค่าตัวอย่างเพื่อคัดลอกพร้อมอักขระจริง</p>
+        <p id="subtitle"></p>
       </div>
       <div class="tools">
+        <div class="langsw" role="group" id="langsw">
+          <button type="button" data-ui="th" lang="th">ไทย</button>
+          <button type="button" data-ui="en" lang="en">EN</button>
+        </div>
         <label class="search" for="q">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>
-          <input id="q" type="search" placeholder="ค้นหา เช่น currency, 12 ชม., «" autocomplete="off" aria-label="ค้นหารายการ">
+          <input id="q" type="search" autocomplete="off">
           <kbd aria-hidden="true">/</kbd>
         </label>
         <label class="toggle" for="inv">
           <input id="inv" type="checkbox" checked>
           <span class="switch" aria-hidden="true"></span>
-          <span>แสดงช่องว่างพิเศษ</span>
+          <span id="invLabel"></span>
         </label>
       </div>
     </div>
     <div class="meta">
-      <span>ค่าตัวอย่าง: <span class="sample">Mon 2026-03-09 14:05:30</span> · <span class="sample">1234567.891</span> · <span class="sample">1234.50</span></span>
-      <span>ข้อมูล: <b>Unicode CLDR 48</b> และ style guide ของแต่ละภาษา</span>
-      <span class="legend" aria-label="คำอธิบายสี">
+      <span><span id="metaSample"></span> <span class="sample">Mon 2026-03-09 14:05:30</span> · <span class="sample">1234567.891</span> · <span class="sample">1234.50</span></span>
+      <span id="metaData"></span>
+      <span class="legend" id="legend">
         <span><i style="background:var(--mark-nb)"></i>NBSP U+00A0</span>
         <span><i style="background:var(--mark-nn)"></i>Narrow NBSP U+202F</span>
         <span><i style="background:var(--mark-th)"></i>Thin space U+2009</span>
       </span>
     </div>
-    <nav class="tabs" role="tablist" aria-label="มุมมอง" id="tabs"></nav>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
   </header>
 
   <div class="layout">
-    <nav class="rail" id="rail" aria-label="หมวดหมู่"></nav>
+    <nav class="rail" id="rail"></nav>
     <main id="main"></main>
   </div>
 
   <footer>
-    <div>ค่าที่มีป้าย <b>CLDR</b> สร้างจากข้อมูล Unicode CLDR 48 (ICU 78) ระบบปฏิบัติการหรือ browser ที่ใช้ CLDR เวอร์ชันเก่าอาจให้ผลต่างเล็กน้อย เช่น ชนิดของช่องว่าง ค่าที่มีป้าย <b>Style</b> มาจาก style guide และมาตรฐานการเขียนของแต่ละภาษา ถ้าผลิตภัณฑ์มี style guide ของตัวเอง ให้ยึดของผลิตภัณฑ์ก่อน</div>
+    <div id="footNote"></div>
     <ul>
       <li><a href="https://cldr.unicode.org/">Unicode CLDR</a></li>
       <li><a href="https://www.w3.org/TR/jlreq/">W3C: Requirements for Japanese Text Layout</a></li>
       <li><a href="https://www.w3.org/TR/klreq/">W3C: Requirements for Hangul Text Layout and Typography</a></li>
       <li><a href="https://www.w3.org/TR/clreq/">W3C: Requirements for Chinese Text Layout</a></li>
-      <li>DIN 5008 (เยอรมัน) · Lexique des règles typographiques en usage à l'Imprimerie nationale (ฝรั่งเศส) · 한글 맞춤법 문장 부호 (เกาหลี) · GB/T 15834 标点符号用法 (จีนตัวย่อ) · 教育部《重訂標點符號手冊》 (จีนตัวเต็ม)</li>
+      <li id="footStd"></li>
     </ul>
   </footer>
 </div>
@@ -335,11 +343,88 @@ footer ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; }
 const C = __C__;
 const SORT = __SORT__;
 __CONTENT__
+__I18N__
 
+// ---------- UI language ----------
+const UI = {
+  th: {
+    subtitle: "รูปแบบมาตรฐานของวันที่ เวลา ตัวเลข สกุลเงิน และข้อความ ใน 6 ภาษา สำหรับใช้ตรวจงาน localization คลิกที่ค่าตัวอย่างเพื่อคัดลอกพร้อมอักขระจริง",
+    searchPh: "ค้นหา เช่น currency, 12 ชม., «", searchAria: "ค้นหารายการ", inv: "แสดงช่องว่างพิเศษ", langAria: "ภาษาของหน้าเว็บ",
+    sample: "ค่าตัวอย่าง:", data: "ข้อมูล: <b>Unicode CLDR 48</b> และ style guide ของแต่ละภาษา", legendAria: "คำอธิบายสี",
+    tabsAria: "มุมมอง", railAria: "หมวดหมู่", railHead: "หมวดหมู่", tabCompare: "ตารางเทียบทุกภาษา", colItem: "รายการ",
+    viewAll: l => `ดูภาษา${l.th}ทั้งหมด`, heroSub: l => `${l.en} · ภาษา${l.th}`, heroAria: "สรุป", checks: "จุดที่มักพบปัญหาตอนตรวจ",
+    empty: q => `ไม่พบรายการที่ตรงกับ “${q}” ลองใช้คำอื่น หรือล้างช่องค้นหา`,
+    copied: "คัดลอกแล้ว:", special: " (มีช่องว่างพิเศษ)", copyFail: "คัดลอกไม่สำเร็จ ลองเลือกข้อความแล้วกด Ctrl+C", copy: "คัดลอก", copyOrder: "คัดลอกลำดับ",
+    charsCount: n => `${n} ชุด`, charsQA: "จุดที่ต้องเช็ค", moji: "encoding ผิดจะเห็น",
+    charsFoot: "ภาษาญี่ปุ่น เกาหลี และจีนไม่ใช้อักษรละตินที่มีเครื่องหมายกำกับ จึงมีแค่ DE กับ FR ในหมวดนี้",
+    sortTitle: "ตัวอย่าง: ชื่อไฟล์ผสมละตินกับ CJK เรียง A–Z",
+    sortLead: n => `ไฟล์ ${n} ไฟล์ชุดเดียวกัน เรียงด้วย collation ของแต่ละภาษา (เปิด natural sort แบบตัวจัดการไฟล์) แถบสีบอกระบบตัวเขียนของตัวอักษรแรก`,
+    before: "ก่อนเรียง", cpTitle: "เรียงตาม code point", cpSub: "บั๊กที่พบบ่อย ไม่ใช่ลำดับ A–Z ของภาษาไหนเลย",
+    cpFlow: "ตัวเลข → ตัวใหญ่ → _ → ตัวเล็ก → ตัวมีสำเนียง → คานะ → ฮั่น → ฮันกึล",
+    sameEn: "เรียงเหมือนภาษาอังกฤษ", defRef: "ค่าเริ่มต้น (อ้างอิง)", thisLang: "ลำดับของภาษานี้",
+    natTitle: "ชื่อไฟล์ที่มีตัวเลข", natPlain: "Collation มาตรฐาน", natNote: "ผลเหมือนกันทุกภาษา ตัวจัดการไฟล์ของ Windows และ macOS ใช้แบบ natural sort",
+    sortQA: "จุดที่ต้องเช็คเรื่องการเรียง",
+    scripts: { "s-oth": "สัญลักษณ์ / ตัวเลข", "s-lat": "ละติน", "s-hang": "ฮันกึล", "s-kana": "คานะ (ญี่ปุ่น)", "s-han": "อักษรฮั่น (จีน/คันจิ/ฮันจา)" },
+    footNote: "ค่าที่มีป้าย <b>CLDR</b> สร้างจากข้อมูล Unicode CLDR 48 (ICU 78) ระบบปฏิบัติการหรือ browser ที่ใช้ CLDR เวอร์ชันเก่าอาจให้ผลต่างเล็กน้อย เช่น ชนิดของช่องว่าง ค่าที่มีป้าย <b>Style</b> มาจาก style guide และมาตรฐานการเขียนของแต่ละภาษา ถ้าผลิตภัณฑ์มี style guide ของตัวเอง ให้ยึดของผลิตภัณฑ์ก่อน",
+    footStd: "DIN 5008 (เยอรมัน) · Lexique des règles typographiques en usage à l'Imprimerie nationale (ฝรั่งเศส) · 한글 맞춤법 문장 부호 (เกาหลี) · GB/T 15834 标点符号用法 (จีนตัวย่อ) · 教育部《重訂標點符號手冊》 (จีนตัวเต็ม)"
+  },
+  en: {
+    subtitle: "Standard formats for dates, times, numbers, currency and text in 6 languages, for localization QA. Click any sample to copy it with its exact characters.",
+    searchPh: "Search, e.g. currency, «", searchAria: "Search items", inv: "Show special spaces", langAria: "Page language",
+    sample: "Sample values:", data: "Data: <b>Unicode CLDR 48</b> and each language's style guides", legendAria: "Color key",
+    tabsAria: "Views", railAria: "Categories", railHead: "Categories", tabCompare: "Compare all languages", colItem: "Item",
+    viewAll: l => `View all of ${l.en}`, heroSub: l => l.en, heroAria: "Summary", checks: "Common issues to check",
+    empty: q => `Nothing matches “${q}”. Try another term or clear the search.`,
+    copied: "Copied:", special: " (includes special spaces)", copyFail: "Couldn't copy. Select the text and press Ctrl+C.", copy: "Copy", copyOrder: "Copy order",
+    charsCount: n => `${n} ${n === 1 ? "set" : "sets"}`, charsQA: "What to check", moji: "Wrong encoding shows",
+    charsFoot: "Japanese, Korean and Chinese don't use accented Latin letters, so this category covers only DE and FR.",
+    sortTitle: "Example: mixed Latin and CJK file names sorted A–Z",
+    sortLead: n => `The same ${n} files, sorted with each language's collation (natural sort on, like a file manager). The color bar shows the script of the first character.`,
+    before: "Before sorting", cpTitle: "Sorted by code point", cpSub: "A common bug; not A–Z order in any language",
+    cpFlow: "Digits → capitals → _ → lowercase → accented → kana → Han → Hangul",
+    sameEn: "Same order as English", defRef: "Default (reference)", thisLang: "This language's order",
+    natTitle: "File names with numbers", natPlain: "Standard collation", natNote: "Same result in every language. Windows and macOS file managers use natural sort.",
+    sortQA: "What to check when sorting",
+    scripts: { "s-oth": "Symbols / digits", "s-lat": "Latin", "s-hang": "Hangul", "s-kana": "Kana (Japanese)", "s-han": "Han (Chinese / kanji / hanja)" },
+    footNote: "Values tagged <b>CLDR</b> are generated from Unicode CLDR 48 (ICU 78). Operating systems or browsers on older CLDR versions may differ slightly, for example in the type of space. Values tagged <b>Style</b> come from each language's style guides and writing standards. If the product has its own style guide, follow it first.",
+    footStd: "DIN 5008 (German) · Lexique des règles typographiques en usage à l'Imprimerie nationale (French) · 한글 맞춤법 문장 부호 (Korean) · GB/T 15834 标点符号用法 (Chinese Simplified) · 教育部《重訂標點符號手冊》 (Chinese Traditional)"
+  }
+};
+let uiLang = "th";
+try { const s = localStorage.getItem("lfr-ui-lang"); if (s === "en" || s === "th") uiLang = s; } catch (e) {}
+const u = k => UI[uiLang][k];
+function T(s) { return uiLang === "en" && typeof s === "string" && Object.prototype.hasOwnProperty.call(EN, s) ? EN[s] : s; }
+const catName = c => uiLang === "en" ? c.en : c.th;
+const itemName = it => uiLang === "en" ? it.en : it.label;
+
+function applyStatic() {
+  document.documentElement.lang = uiLang;
+  document.getElementById("subtitle").textContent = u("subtitle");
+  const q = document.getElementById("q"); q.placeholder = u("searchPh"); q.setAttribute("aria-label", u("searchAria"));
+  document.getElementById("invLabel").textContent = u("inv");
+  document.getElementById("metaSample").textContent = u("sample");
+  document.getElementById("metaData").innerHTML = u("data");
+  document.getElementById("legend").setAttribute("aria-label", u("legendAria"));
+  document.getElementById("tabs").setAttribute("aria-label", u("tabsAria"));
+  document.getElementById("rail").setAttribute("aria-label", u("railAria"));
+  document.getElementById("footNote").innerHTML = u("footNote");
+  document.getElementById("footStd").textContent = u("footStd");
+  const sw = document.getElementById("langsw"); sw.setAttribute("aria-label", u("langAria"));
+  sw.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.ui === uiLang)));
+}
+function setUI(l) {
+  if (l === uiLang) return;
+  uiLang = l;
+  try { localStorage.setItem("lfr-ui-lang", l); } catch (e) {}
+  applyStatic(); render();
+}
+
+// ---------- helpers ----------
 const INV = { " ": ["nb", "U+00A0 NO-BREAK SPACE"], " ": ["nn", "U+202F NARROW NO-BREAK SPACE"], " ": ["th", "U+2009 THIN SPACE"] };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const fmt = s => esc(s).replace(/[   ]/g, ch => `<span class="inv inv-${INV[ch][0]}" title="${INV[ch][1]}">${ch}</span>`);
 const pick = (x, id) => x == null ? "" : (typeof x === "string" ? x : (x[id] || ""));
+const THAI = /[฀-๿]/;
 const DESC = new Set(["overview"]);
 const DESC_ITEMS = new Set(["Word spacing", "Capitalization", "Line breaking", "Text expansion vs. English", "Collation basis", "Script order", "Measurement system", "Currency decimals", "Symbol code point", "Postal code", "First day of week", "Title marks", "Paper size"]);
 ITEMS.forEach((it, i) => { it.id = "i" + i; it.desc = DESC.has(it.cat) || DESC_ITEMS.has(it.en); });
@@ -350,28 +435,32 @@ function get(item, loc) {
   if (typeof v === "string") return v.split(".").reduce((o, k) => o[k], c);
   return v[loc.id];
 }
+function shown(item, loc) { const raw = get(item, loc); return Array.isArray(raw) ? raw : T(raw); }
 function valueHTML(item, loc) {
-  const v = get(item, loc);
-  if (item.desc) return `<div class="desc" lang="${/[฀-๿]/.test(v) ? "th" : loc.lang}">${fmt(v)}</div>`;
-  if (Array.isArray(v) && item.ordered) return `<button class="val list ord" type="button" lang="${loc.lang}" data-copy="${esc(v.join("\n"))}" aria-label="คัดลอกลำดับ ${loc.en}">${v.map((x, i) => `<span class="chip"><i>${i + 1}</i>${fmt(x)}</span>`).join("")}</button>`;
-  if (Array.isArray(v)) return `<button class="val list" type="button" lang="${loc.lang}" data-copy="${esc(v.join("\n"))}" aria-label="คัดลอก ${esc(item.en)} ${loc.en}">${v.map(x => `<span class="chip">${fmt(x)}</span>`).join("")}</button>`;
-  return `<button class="val" type="button" lang="${loc.lang}" data-copy="${esc(v)}" aria-label="คัดลอก ${esc(v)}">${fmt(v)}</button>`;
+  const raw = get(item, loc), v = shown(item, loc);
+  if (item.desc) return `<div class="desc" lang="${THAI.test(v) ? "th" : (v !== raw ? "en" : loc.lang)}">${fmt(v)}</div>`;
+  if (Array.isArray(v) && item.ordered) return `<button class="val list ord" type="button" lang="${loc.lang}" data-copy="${esc(v.join("\n"))}" aria-label="${u("copyOrder")} ${loc.en}">${v.map((x, i) => `<span class="chip"><i>${i + 1}</i>${fmt(x)}</span>`).join("")}</button>`;
+  if (Array.isArray(v)) return `<button class="val list" type="button" lang="${loc.lang}" data-copy="${esc(v.join("\n"))}" aria-label="${u("copy")} ${esc(item.en)} ${loc.en}">${v.map(x => `<span class="chip">${fmt(x)}</span>`).join("")}</button>`;
+  return `<button class="val" type="button" lang="${loc.lang}" data-copy="${esc(v)}" aria-label="${u("copy")} ${esc(v)}">${fmt(v)}</button>`;
 }
 function detailHTML(item, loc) {
   const p = typeof item.pat === "object" ? pick(item.pat, loc.id) : "";
-  const n = typeof item.note === "object" ? pick(item.note, loc.id) : "";
+  const n = typeof item.note === "object" ? T(pick(item.note, loc.id)) : "";
   return (p ? `<code class="pat" title="CLDR pattern">${fmt(p)}</code>` : "") + (n ? `<span class="note">${esc(n)}</span>` : "");
 }
 function labelHTML(item) {
-  const common = typeof item.note === "string" ? `<span class="common">${esc(item.note)}</span>` : "";
+  const common = typeof item.note === "string" ? `<span class="common">${esc(T(item.note))}</span>` : "";
   const cp = typeof item.pat === "string" ? `<code class="pat">${fmt(item.pat)}</code>` : "";
-  return `<div class="rlabel">${esc(item.label)}</div><span class="ren">${esc(item.en)}</span><span class="src ${item.src === "CLDR" ? "cldr" : "style"}">${item.src === "CLDR" ? "CLDR" : "Style"}</span>${cp ? "<br>" + cp : ""}${common}`;
+  const sub = uiLang === "en" ? "" : `<span class="ren">${esc(item.en)}</span>`;
+  return `<div class="rlabel">${esc(itemName(item))}</div>${sub}<span class="src ${item.src === "CLDR" ? "cldr" : "style"}">${item.src === "CLDR" ? "CLDR" : "Style"}</span>${cp ? "<br>" + cp : ""}${common}`;
 }
+const secHead = cat => `<div class="sec-h"><h2>${esc(catName(cat))}</h2>${uiLang === "en" ? "" : `<span class="en">${esc(cat.en)}</span>`}</div>`;
 
 let view = "compare", query = "";
 
-const SCRIPT = [["s-lat", "ละติน", /\p{Script=Latin}/u], ["s-hang", "ฮันกึล", /\p{Script=Hangul}/u], ["s-kana", "คานะ (ญี่ปุ่น)", /[\p{Script=Hiragana}\p{Script=Katakana}]/u], ["s-han", "อักษรฮั่น (จีน/คันจิ/ฮันจา)", /\p{Script=Han}/u]];
-const scriptOf = name => { const ch = [...name][0]; const f = SCRIPT.find(s => s[2].test(ch)); return f ? f[0] : "s-oth"; };
+// ---------- sorting demo ----------
+const SCRIPT = [["s-lat", /\p{Script=Latin}/u], ["s-hang", /\p{Script=Hangul}/u], ["s-kana", /[\p{Script=Hiragana}\p{Script=Katakana}]/u], ["s-han", /\p{Script=Han}/u]];
+const scriptOf = name => { const ch = [...name][0]; const f = SCRIPT.find(s => s[1].test(ch)); return f ? f[0] : "s-oth"; };
 const fnChip = name => `<span class="fn ${scriptOf(name)}">${esc(name)}</span>`;
 const LBL = { en: "EN", de: "DE", fr: "FR", ja: "JA", ko: "KO", "zh-hans": "简 zh-CN", "zh-hant": "繁 zh-TW" };
 function sortMatches() {
@@ -381,40 +470,37 @@ function sortMatches() {
 }
 function sortBlock(ids) {
   if (!sortMatches()) return "";
-  const keys = ["en", ...ids];
   const groups = [];
-  for (const k of keys) {
+  for (const k of ["en", ...ids]) {
     const g = groups.find(g => JSON.stringify(SORT.mixed[g.keys[0]]) === JSON.stringify(SORT.mixed[k]));
     if (g) g.keys.push(k); else groups.push({ keys: [k] });
   }
-  const flow = k => SORT.scripts[k].filter(x => x !== "สัญลักษณ์" && x !== "ตัวเลข").join(" → ");
+  const flow = k => SORT.scripts[k].filter(x => x !== "สัญลักษณ์" && x !== "ตัวเลข").map(T).join(" → ");
   const col = (title, sub, list, cls = "", flowTxt = "") => `<div class="sd-col ${cls}">
-      <div class="sd-col-h"><b>${title}<span class="sub">${sub}</span></b><button class="sd-copy" type="button" data-copy="${esc(list.join("\n"))}">คัดลอก</button></div>
+      <div class="sd-col-h"><b>${title}<span class="sub">${sub}</span></b><button class="sd-copy" type="button" data-copy="${esc(list.join("\n"))}">${u("copy")}</button></div>
       ${flowTxt ? `<div class="sd-flow">${flowTxt}</div>` : ""}
       <ol>${list.map(f => `<li>${fnChip(f)}</li>`).join("")}</ol></div>`;
-  const cols = [col("เรียงตาม code point", "บั๊กที่พบบ่อย ไม่ใช่ลำดับ A–Z ของภาษาไหนเลย", SORT.codepoint, "bad", "ตัวเลข → ตัวใหญ่ → _ → ตัวเล็ก → ตัวมีสำเนียง → คานะ → ฮั่น → ฮันกึล")]
+  const cols = [col(u("cpTitle"), u("cpSub"), SORT.codepoint, "bad", u("cpFlow"))]
     .concat(groups.map(g => {
-      const title = g.keys.map(k => LBL[k]).join(" · ");
-      const sub = g.keys.includes("en") ? (g.keys.length > 1 ? "เรียงเหมือนภาษาอังกฤษ" : "ค่าเริ่มต้น (อ้างอิง)") : "ลำดับของภาษานี้";
-      return col(title, sub, SORT.mixed[g.keys[0]], "", flow(g.keys[0]));
+      const sub = g.keys.includes("en") ? (g.keys.length > 1 ? u("sameEn") : u("defRef")) : u("thisLang");
+      return col(g.keys.map(k => LBL[k]).join(" · "), sub, SORT.mixed[g.keys[0]], "", flow(g.keys[0]));
     }));
-  const nat = SORT.natural.en;
+  const nat = SORT.natural.en, sc = u("scripts");
   return `<div class="sortdemo">
-    <div><h3>ตัวอย่าง: ชื่อไฟล์ผสมละตินกับ CJK เรียง A–Z</h3>
-      <p class="lead">ไฟล์ ${SORT.files.length} ไฟล์ชุดเดียวกัน เรียงด้วย collation ของแต่ละภาษา (เปิด natural sort แบบตัวจัดการไฟล์) แถบสีบอกระบบตัวเขียนของตัวอักษรแรก</p></div>
-    <div class="sd-input"><span class="k">ก่อนเรียง</span>${SORT.files.map(fnChip).join("")}</div>
-    <div class="sd-legend">${[["s-oth", "สัญลักษณ์ / ตัวเลข"], ...SCRIPT].map(s => `<span class="${s[0]}"><i></i>${s[1]}</span>`).join("")}</div>
+    <div><h3>${u("sortTitle")}</h3><p class="lead">${u("sortLead")(SORT.files.length)}</p></div>
+    <div class="sd-input"><span class="k">${u("before")}</span>${SORT.files.map(fnChip).join("")}</div>
+    <div class="sd-legend">${["s-oth", "s-lat", "s-hang", "s-kana", "s-han"].map(k => `<span class="${k}"><i></i>${sc[k]}</span>`).join("")}</div>
     <div class="sd-cols-wrap"><div class="sd-cols">${cols.join("")}</div></div>
     <div class="sd-bottom">
-      <div class="sd-nat"><h4>ชื่อไฟล์ที่มีตัวเลข</h4>
-        <div class="pair"><div><span class="k">Collation มาตรฐาน</span>${nat.plain.map(fnChip).join("")}</div><div><span class="k">Natural sort (numeric)</span>${nat.num.map(fnChip).join("")}</div></div>
-        <span class="note">ผลเหมือนกันทุกภาษา ตัวจัดการไฟล์ของ Windows และ macOS ใช้แบบ natural sort</span></div>
-      <div class="sd-qa"><h4>จุดที่ต้องเช็คเรื่องการเรียง</h4><ol>${SORT_QA.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>
+      <div class="sd-nat"><h4>${u("natTitle")}</h4>
+        <div class="pair"><div><span class="k">${u("natPlain")}</span>${nat.plain.map(fnChip).join("")}</div><div><span class="k">Natural sort (numeric)</span>${nat.num.map(fnChip).join("")}</div></div>
+        <span class="note">${u("natNote")}</span></div>
+      <div class="sd-qa"><h4>${u("sortQA")}</h4><ol>${SORT_QA.map(x => `<li>${esc(T(x))}</li>`).join("")}</ol></div>
     </div></div>`;
 }
 
-
-const MARKS = { "\u0300": "grave", "\u0301": "acute", "\u0302": "circumflex", "\u0308": "diaeresis", "\u0327": "cedilla" };
+// ---------- special letters ----------
+const MARKS = { "̀": "grave", "́": "acute", "̂": "circumflex", "̈": "diaeresis", "̧": "cedilla" };
 const cpOf = ch => [...ch].map(c => "U+" + c.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")).join(" ");
 let dec1252 = null; try { dec1252 = new TextDecoder("windows-1252"); } catch (e) {}
 const moji = ch => { try { return dec1252 ? dec1252.decode(new TextEncoder().encode(ch)) : ""; } catch (e) { return ""; } };
@@ -426,7 +512,7 @@ function nfd(ch) {
 function charMatches(ch, grp) {
   if (!query) return true;
   const q = query.toLowerCase();
-  return [ch.g.join(" "), ch.g.map(cpOf).join(" "), ch.ex, ch.note, grp.name, grp.th, "special letters อักขระพิเศษ"].join(" ").toLowerCase().includes(q);
+  return [ch.g.join(" "), ch.g.map(cpOf).join(" "), ch.ex, ch.note, T(ch.note), grp.name, T(grp.name), grp.th, T(grp.th), "special letters อักขระพิเศษ"].join(" ").toLowerCase().includes(q);
 }
 function charsPanel(id) {
   const loc = LOCS.find(l => l.id === id), data = CHARS[id];
@@ -435,51 +521,51 @@ function charsPanel(id) {
     const list = grp.chars.filter(ch => charMatches(ch, grp));
     n += list.length;
     if (!list.length) return "";
-    return `<div class="cgroup"><div class="cgroup-h"><h3>${esc(grp.name)}</h3><span>${esc(grp.th)}</span></div><div class="tiles">${list.map(ch => {
+    return `<div class="cgroup"><div class="cgroup-h"><h3>${esc(T(grp.name))}</h3><span>${esc(T(grp.th))}</span></div><div class="tiles">${list.map(ch => {
       const d = ch.g.map(nfd).filter(Boolean)[ch.g.length > 1 ? 1 : 0] || ch.g.map(nfd).filter(Boolean)[0] || "";
       const lower = ch.g[ch.g.length - 1];
       const m = moji(lower);
       return `<div class="tile">
-        <div class="glyphs">${ch.g.map(g => `<button class="gl" type="button" lang="${loc.lang}" data-copy="${esc(g)}" aria-label="คัดลอก ${esc(g)} ${cpOf(g)}">${esc(g)}</button>`).join("")}</div>
+        <div class="glyphs">${ch.g.map(g => `<button class="gl" type="button" lang="${loc.lang}" data-copy="${esc(g)}" aria-label="${u("copy")} ${esc(g)} ${cpOf(g)}">${esc(g)}</button>`).join("")}</div>
         <div class="cp">${ch.g.map(cpOf).join(" · ")}${d ? `<br>NFD ${esc(lower)} = ${esc(d)}` : ""}</div>
         <div class="ex" lang="${loc.lang}">${esc(ch.ex)}</div>
-        ${m ? `<div class="moj">encoding ผิดจะเห็น <b>${fmt(m)}</b></div>` : ""}
-        ${ch.note ? `<span class="note">${esc(ch.note)}</span>` : ""}
+        ${m ? `<div class="moj">${u("moji")} <b>${fmt(m)}</b></div>` : ""}
+        ${ch.note ? `<span class="note">${esc(T(ch.note))}</span>` : ""}
       </div>`;
     }).join("")}</div></div>`;
   }).join("");
   if (!n) return { html: "", n };
-  const samples = query ? "" : `<div class="samples">${data.samples.map(s => `<div><div class="k">${esc(s.label)}</div><button class="val" type="button" lang="${loc.lang}" data-copy="${esc(s.text)}">${esc(s.text)}</button></div>`).join("")}</div>`;
-  const qa = query ? "" : `<div class="cqa"><h3>จุดที่ต้องเช็ค</h3><ol>${data.qa.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>`;
-  return { n, html: `<div class="cpanel"><div class="cpanel-h"><span class="code">${loc.short}</span><span class="nat" lang="${loc.lang}">${loc.native}</span><span class="cnt">${n} ชุด</span></div>${samples}${groups}${qa}</div>` };
+  const samples = query ? "" : `<div class="samples">${data.samples.map(s => `<div><div class="k">${esc(T(s.label))}</div><button class="val" type="button" lang="${loc.lang}" data-copy="${esc(s.text)}">${esc(s.text)}</button></div>`).join("")}</div>`;
+  const qa = query ? "" : `<div class="cqa"><h3>${u("charsQA")}</h3><ol>${data.qa.map(x => `<li>${esc(T(x))}</li>`).join("")}</ol></div>`;
+  return { n, html: `<div class="cpanel"><div class="cpanel-h"><span class="code">${loc.short}</span><span class="nat" lang="${loc.lang}">${loc.native}</span><span class="cnt">${u("charsCount")(n)}</span></div>${samples}${groups}${qa}</div>` };
 }
 function charsSection(ids, cat) {
   const panels = ids.map(charsPanel);
   const n = panels.reduce((a, p) => a + p.n, 0);
   if (!n) return { html: "", n };
-  const foot = ids.length > 1 ? `<p class="chars-foot">ภาษาญี่ปุ่น เกาหลี และจีนไม่ใช้อักษรละตินที่มีเครื่องหมายกำกับ จึงมีแค่ DE กับ FR ในหมวดนี้</p>` : "";
-  return { n, html: `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}"><div class="sec-h"><h2>${cat.th}</h2><span class="en">${cat.en}</span></div><div class="chars-grid">${panels.map(p => p.html).join("")}</div>${foot}</section>` };
+  const foot = ids.length > 1 ? `<p class="chars-foot">${u("charsFoot")}</p>` : "";
+  return { n, html: `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">${secHead(cat)}<div class="chars-grid">${panels.map(p => p.html).join("")}</div>${foot}</section>` };
 }
 
+// ---------- views ----------
 function matches(item, locs) {
   if (!query) return true;
   const q = query.toLowerCase();
-  const hay = [item.label, item.en, typeof item.note === "string" ? item.note : ""];
+  const hay = [item.label, item.en, typeof item.note === "string" ? item.note + " " + T(item.note) : ""];
   for (const loc of locs) {
-    const v = get(item, loc); hay.push(Array.isArray(v) ? v.join(" ") : v, pick(item.note, loc.id), pick(item.pat, loc.id));
+    const raw = get(item, loc), v = shown(item, loc), n = pick(item.note, loc.id);
+    hay.push(Array.isArray(raw) ? raw.join(" ") : raw + " " + v, n, T(n), pick(item.pat, loc.id));
   }
   return hay.join(" ").toLowerCase().includes(q);
 }
 
 function renderTabs() {
-  const t = document.getElementById("tabs");
-  t.innerHTML = `<button class="tab" role="tab" data-view="compare" aria-selected="${view === "compare"}">ตารางเทียบทุกภาษา</button><span class="tab-sep" aria-hidden="true"></span>` +
+  document.getElementById("tabs").innerHTML = `<button class="tab" role="tab" data-view="compare" aria-selected="${view === "compare"}">${u("tabCompare")}</button><span class="tab-sep" aria-hidden="true"></span>` +
     LOCS.map(l => `<button class="tab" role="tab" data-view="${l.id}" aria-selected="${view === l.id}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button>`).join("");
 }
-
 function renderRail(counts) {
-  document.getElementById("rail").innerHTML = `<div class="rail-h">หมวดหมู่</div>` + CATS.filter(c => c.id in counts).map(c =>
-    `<button type="button" data-cat="${c.id}" class="${counts[c.id] ? "" : "empty"}"><span>${c.th}</span><span class="cnt">${counts[c.id] || 0}</span></button>`).join("");
+  document.getElementById("rail").innerHTML = `<div class="rail-h">${u("railHead")}</div>` + CATS.filter(c => c.id in counts).map(c =>
+    `<button type="button" data-cat="${c.id}" class="${counts[c.id] ? "" : "empty"}"><span>${esc(catName(c))}</span><span class="cnt">${counts[c.id] || 0}</span></button>`).join("");
 }
 
 function renderCompare() {
@@ -490,10 +576,9 @@ function renderCompare() {
     const extra = cat.id === "sort" ? sortBlock(LOCS.map(l => l.id)) : "";
     counts[cat.id] = rows.length + (extra ? 1 : 0);
     if (!rows.length && !extra) continue;
-    html += `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">
-      <div class="sec-h"><h2>${cat.th}</h2><span class="en">${cat.en}</span></div>
+    html += `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">${secHead(cat)}
       ${rows.length ? `<div class="tbl-wrap"><table class="cmp"><colgroup><col class="c-label">${LOCS.map(() => "<col>").join("")}</colgroup>
-      <thead><tr><th scope="col">รายการ</th>${LOCS.map(l => `<th scope="col"><button type="button" data-view="${l.id}" title="ดูภาษา${l.th}ทั้งหมด"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button></th>`).join("")}</tr></thead>
+      <thead><tr><th scope="col">${u("colItem")}</th>${LOCS.map(l => `<th scope="col"><button type="button" data-view="${l.id}" title="${esc(u("viewAll")(l))}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button></th>`).join("")}</tr></thead>
       <tbody>${rows.map(it => `<tr><th scope="row">${labelHTML(it)}</th>${LOCS.map(l => `<td>${valueHTML(it, l)}${detailHTML(it, l)}</td>`).join("")}</tr>`).join("")}</tbody>
       </table></div>` : ""}${extra}</section>`;
   }
@@ -502,11 +587,11 @@ function renderCompare() {
 
 function renderLang(loc) {
   const counts = {};
-  const facts = ITEMS.filter(i => i.cat === "overview").map(i => `<div class="fact"><div class="k">${esc(i.label)}</div><div class="v">${fmt(get(i, loc))}</div></div>`).join("");
-  let html = query ? "" : `<section class="hero" aria-label="สรุป">
-      <div class="hero-top"><span class="big" lang="${loc.lang}">${loc.native}</span><span class="tag">${loc.tag}</span><span class="sub">${loc.en} · ภาษา${loc.th} · <span lang="${loc.lang}">${loc.region}</span></span></div>
+  const facts = ITEMS.filter(i => i.cat === "overview").map(i => `<div class="fact"><div class="k">${esc(itemName(i))}</div><div class="v">${fmt(shown(i, loc))}</div></div>`).join("");
+  let html = query ? "" : `<section class="hero" aria-label="${u("heroAria")}">
+      <div class="hero-top"><span class="big" lang="${loc.lang}">${loc.native}</span><span class="tag">${loc.tag}</span><span class="sub">${esc(u("heroSub")(loc))} · <span lang="${loc.lang}">${loc.region}</span></span></div>
       <div class="facts">${facts}</div></section>
-    <section class="checks"><h2>จุดที่มักพบปัญหาตอนตรวจ</h2><ol>${CHECKS[loc.id].map(c => `<li>${esc(c)}</li>`).join("")}</ol></section>`;
+    <section class="checks"><h2>${u("checks")}</h2><ol>${CHECKS[loc.id].map(c => `<li>${esc(T(c))}</li>`).join("")}</ol></section>`;
   for (const cat of CATS) {
     if (cat.id === "overview") continue;
     if (cat.only && !cat.only.includes(loc.id)) continue;
@@ -515,8 +600,7 @@ function renderLang(loc) {
     const extra = cat.id === "sort" ? sortBlock([loc.id]) : "";
     counts[cat.id] = rows.length + (extra ? 1 : 0);
     if (!rows.length && !extra) continue;
-    html += `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">
-      <div class="sec-h"><h2>${cat.th}</h2><span class="en">${cat.en}</span></div>
+    html += `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">${secHead(cat)}
       ${rows.length ? `<div class="rows">${rows.map(it => `<div class="row"><div>${labelHTML(it)}</div><div>${valueHTML(it, loc)}</div><div class="detail">${detailHTML(it, loc)}</div></div>`).join("")}</div>` : ""}${extra}</section>`;
   }
   return { html, counts };
@@ -527,8 +611,7 @@ function render() {
   renderTabs();
   const loc = LOCS.find(l => l.id === view);
   const { html, counts } = loc ? renderLang(loc) : renderCompare();
-  const main = document.getElementById("main");
-  main.innerHTML = html.includes('class="sec"') ? html : html + `<div class="empty-state">ไม่พบรายการที่ตรงกับ “${esc(query)}” ลองใช้คำอื่น หรือล้างช่องค้นหา</div>`;
+  document.getElementById("main").innerHTML = html.includes('class="sec"') ? html : html + `<div class="empty-state">${esc(u("empty")(query))}</div>`;
   renderRail(counts);
   spy();
 }
@@ -564,11 +647,12 @@ async function copy(text) {
   try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
     try { const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove(); } catch (e2) { ok = false; }
   }
-  const special = /[   ]/.test(text) ? " (มีช่องว่างพิเศษ)" : "";
-  toast(ok ? `คัดลอกแล้ว: ${text.split("\n")[0]}${text.includes("\n") ? " …" : ""}${special}` : "คัดลอกไม่สำเร็จ ลองเลือกข้อความแล้วกด Ctrl+C");
+  const special = /[   ]/.test(text) ? u("special") : "";
+  toast(ok ? `${u("copied")} ${text.split("\n")[0]}${text.includes("\n") ? " …" : ""}${special}` : u("copyFail"));
 }
 
 document.addEventListener("click", e => {
+  const ui = e.target.closest("[data-ui]"); if (ui) { setUI(ui.dataset.ui); return; }
   const v = e.target.closest("[data-view]"); if (v) { setView(v.dataset.view); return; }
   const c = e.target.closest("[data-copy]"); if (c) { copy(c.dataset.copy); return; }
   const r = e.target.closest("#rail button"); if (r) { const s = document.getElementById("sec-" + r.dataset.cat); if (s) s.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" }); }
@@ -588,6 +672,7 @@ document.getElementById("tabs").addEventListener("keydown", e => {
 window.addEventListener("hashchange", () => setView(location.hash.slice(1) || "compare", false));
 view = location.hash.slice(1) || "compare";
 if (view !== "compare" && !LOCS.some(l => l.id === view)) view = "compare";
+applyStatic();
 render();
 </script>
 </body>

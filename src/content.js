@@ -1,5 +1,8 @@
 // Curated content. CLDR-derived values come from C (generated), the rest are from style guides.
 const NB = " ", NN = " ";
+// EN holds Thai → English translations (filled here via tr() and in i18n-en.js)
+const EN = {};
+const tr = (th, en) => { EN[th] = en; return th; };
 const LOCS = [
   { id: "de", tag: "de-DE", lang: "de", short: "DE", en: "German", th: "เยอรมัน", native: "Deutsch", region: "Deutschland" },
   { id: "fr", tag: "fr-FR", lang: "fr", short: "FR", en: "French", th: "ฝรั่งเศส", native: "Français", region: "France" },
@@ -134,7 +137,7 @@ const ITEMS = [
   { cat: "currency", label: "เยนญี่ปุ่น (JPY)", en: "Japanese yen", src: "CLDR", v: "jpy",
     note: K("", "ใช้รหัส JPY", "￥ เต็มความกว้าง (U+FFE5)", "JP¥", "JP¥ เพราะ ¥ คือหยวน", "¥ ครึ่งความกว้าง") },
   { cat: "currency", label: "ทศนิยมของสกุลเงินท้องถิ่น", en: "Currency decimals", src: "CLDR",
-    v: (c) => c.curDigits + " ตำแหน่ง (" + c.curCode + ")",
+    v: (c) => T("{n} ตำแหน่ง").replace("{n}", c.curDigits) + " (" + c.curCode + ")",
     note: K("", "", "", "", "", "ทางการ 2 ตำแหน่ง แต่เงินสด/ราคาทั่วไปไม่มีทศนิยม") },
   { cat: "currency", label: "รหัสอักขระของสัญลักษณ์", en: "Symbol code point", src: "CLDR",
     v: K("€ U+20AC", "€ U+20AC", "￥ U+FFE5", "₩ U+20A9", "¥ U+00A5", "$ U+0024"),
@@ -210,17 +213,23 @@ const ITEMS = [
     v: K("ä ö ü เรียงต่อจาก a o u\n(Apfel < Äpfel)", "สำเนียงมีผลเป็นลำดับรอง\n(cote < coté < côte < côté)", "ตามเสียงอ่าน あいうえお\nคันจิตามลำดับ JIS", "ตามลำดับ 가나다\nฮันจาแทรกปนกับฮันกึลตามเสียงอ่าน", "ตามพินอิน (拼音)", "ตามจำนวนขีด (筆畫)"),
     note: K("ตัวพิมพ์ใหญ่-เล็กไม่ใช่ลำดับหลัก", "", "ฮิรางานะกับคาตาคานะถือว่าเท่ากันในลำดับหลัก", "ㄲ ㄸ ㅃ ㅆ ㅉ มาหลังพยัญชนะเดี่ยวของมัน", "", "จำนวนขีดเท่ากันจะเรียงตามรากศัพท์ (部首)") },
   { cat: "sort", label: "ลำดับระบบตัวเขียน", en: "Script order", src: "CLDR",
-    v: (c, x, id) => SORT.scripts[id].join(" → "),
-    note: "ค่าเริ่มต้น (อังกฤษ): " + SORT.scripts.en.join(" → ") },
+    v: (c, x, id) => SORT.scripts[id].map(T).join(" → "),
+    note: tr("ค่าเริ่มต้น (อังกฤษ): " + SORT.scripts.en.join(" → "), "Default (English): Symbols → Digits → Latin → Hangul → Hiragana → Katakana → Han") },
   { cat: "sort", label: "ตัวอย่างเฉพาะภาษา", en: "Language-specific example", src: "CLDR", ordered: true,
     v: (c, x, id) => SORT.spec[id].sorted,
     note: {
-      de: "ก่อนเรียง: " + SORT.spec.de.input.join(", ") + "\nStrasse มาก่อน Straße และ Apfel มาก่อน Äpfel",
-      fr: "ก่อนเรียง: " + SORT.spec.fr.input.join(", ") + "\ncoeur กับ cœur เท่ากันในลำดับหลัก ตัดสินที่ลำดับรอง",
-      ja: "ก่อนเรียง: " + SORT.spec.ja.input.join("、") + "\nかこう → かっこう → がっこう: ตัวธรรมดามาก่อนตัวเล็ก (っ) และตัวที่มี dakuten",
-      ko: "ก่อนเรียง: " + SORT.spec.ko.input.join(", ") + "\n까치 (ㄲ) มาหลัง ㄱ ทั้งหมด; 學校 (학교) แทรกตามเสียง 학; ละตินอยู่ท้าย",
-      "zh-hans": "ก่อนเรียง: " + SORT.spec["zh-hans"].input.join("、") + "\n长城 ถูกเรียงด้วยเสียง zhǎng (ไม่ใช่ cháng) จึงไปอยู่หลัง 重庆; Beijing อยู่หลังอักษรจีนทั้งหมด",
-      "zh-hant": "ก่อนเรียง: " + SORT.spec["zh-hant"].input.join("、") + "\n一 (1 ขีด) · 十 (2) · 大 (3) · 中 日 月 水 (4) · 國 (11)"
+      de: tr("ก่อนเรียง: " + SORT.spec.de.input.join(", ") + "\nStrasse มาก่อน Straße และ Apfel มาก่อน Äpfel",
+             "Before: " + SORT.spec.de.input.join(", ") + "\nStrasse comes before Straße, and Apfel before Äpfel"),
+      fr: tr("ก่อนเรียง: " + SORT.spec.fr.input.join(", ") + "\ncoeur กับ cœur เท่ากันในลำดับหลัก ตัดสินที่ลำดับรอง",
+             "Before: " + SORT.spec.fr.input.join(", ") + "\ncoeur and cœur are equal at the primary level; the secondary level decides"),
+      ja: tr("ก่อนเรียง: " + SORT.spec.ja.input.join("、") + "\nかこう → かっこう → がっこう: ตัวธรรมดามาก่อนตัวเล็ก (っ) และตัวที่มี dakuten",
+             "Before: " + SORT.spec.ja.input.join("、") + "\nかこう → かっこう → がっこう: plain kana come before small kana (っ) and kana with dakuten"),
+      ko: tr("ก่อนเรียง: " + SORT.spec.ko.input.join(", ") + "\n까치 (ㄲ) มาหลัง ㄱ ทั้งหมด; 學校 (학교) แทรกตามเสียง 학; ละตินอยู่ท้าย",
+             "Before: " + SORT.spec.ko.input.join(", ") + "\n까치 (ㄲ) comes after every ㄱ word; 學校 (학교) is placed by its reading 학; Latin goes last"),
+      "zh-hans": tr("ก่อนเรียง: " + SORT.spec["zh-hans"].input.join("、") + "\n长城 ถูกเรียงด้วยเสียง zhǎng (ไม่ใช่ cháng) จึงไปอยู่หลัง 重庆; Beijing อยู่หลังอักษรจีนทั้งหมด",
+             "Before: " + SORT.spec["zh-hans"].input.join("、") + "\n长城 sorts by the reading zhǎng (not cháng), so it lands after 重庆; Beijing comes after all Chinese characters"),
+      "zh-hant": tr("ก่อนเรียง: " + SORT.spec["zh-hant"].input.join("、") + "\n一 (1 ขีด) · 十 (2) · 大 (3) · 中 日 月 水 (4) · 國 (11)",
+             "Before: " + SORT.spec["zh-hant"].input.join("、") + "\n一 (1 stroke) · 十 (2) · 大 (3) · 中 日 月 水 (4) · 國 (11)")
     } },
   { cat: "sort", label: "Collation ทางเลือก", en: "Alternate collation", src: "CLDR", ordered: true,
     v: (c, x, id) => ({ de: SORT.spec.de.phonebook, fr: "—", ja: SORT.spec.ja.en, ko: "—", "zh-hans": SORT.spec["zh-hans"].stroke, "zh-hant": SORT.spec["zh-hant"].zhuyin })[id],
