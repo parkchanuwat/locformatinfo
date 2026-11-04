@@ -1,0 +1,520 @@
+{
+ "files": [
+  "Zebra.png",
+  "intro.mp4",
+  "Intro.mp4",
+  "Übersicht.prproj",
+  "École.mov",
+  "clip10.mov",
+  "clip2.mov",
+  "_backup.prproj",
+  "2026 Final.mp4",
+  "あいさつ.mp4",
+  "カット.mov",
+  "東京.mp4",
+  "北京.mp4",
+  "上海.mov",
+  "台北.mp4",
+  "音乐.wav",
+  "서울.mp4",
+  "한국어 자막.srt"
+ ],
+ "mixed": {
+  "en": [
+   "_backup.prproj",
+   "2026 Final.mp4",
+   "clip2.mov",
+   "clip10.mov",
+   "École.mov",
+   "intro.mp4",
+   "Intro.mp4",
+   "Übersicht.prproj",
+   "Zebra.png",
+   "서울.mp4",
+   "한국어 자막.srt",
+   "あいさつ.mp4",
+   "カット.mov",
+   "上海.mov",
+   "北京.mp4",
+   "台北.mp4",
+   "東京.mp4",
+   "音乐.wav"
+  ],
+  "de": [
+   "_backup.prproj",
+   "2026 Final.mp4",
+   "clip2.mov",
+   "clip10.mov",
+   "École.mov",
+   "intro.mp4",
+   "Intro.mp4",
+   "Übersicht.prproj",
+   "Zebra.png",
+   "서울.mp4",
+   "한국어 자막.srt",
+   "あいさつ.mp4",
+   "カット.mov",
+   "上海.mov",
+   "北京.mp4",
+   "台北.mp4",
+   "東京.mp4",
+   "音乐.wav"
+  ],
+  "fr": [
+   "_backup.prproj",
+   "2026 Final.mp4",
+   "clip2.mov",
+   "clip10.mov",
+   "École.mov",
+   "intro.mp4",
+   "Intro.mp4",
+   "Übersicht.prproj",
+   "Zebra.png",
+   "서울.mp4",
+   "한국어 자막.srt",
+   "あいさつ.mp4",
+   "カット.mov",
+   "上海.mov",
+   "北京.mp4",
+   "台北.mp4",
+   "東京.mp4",
+   "音乐.wav"
+  ],
+  "ja": [
+   "_backup.prproj",
+   "2026 Final.mp4",
+   "clip2.mov",
+   "clip10.mov",
+   "École.mov",
+   "intro.mp4",
+   "Intro.mp4",
+   "Übersicht.prproj",
+   "Zebra.png",
+   "あいさつ.mp4",
+   "カット.mov",
+   "音乐.wav",
+   "上海.mov",
+   "台北.mp4",
+   "東京.mp4",
+   "北京.mp4",
+   "서울.mp4",
+   "한국어 자막.srt"
+  ],
+  "ko": [
+   "_backup.prproj",
+   "2026 Final.mp4",
+   "東京.mp4",
+   "北京.mp4",
+   "上海.mov",
+   "서울.mp4",
+   "音乐.wav",
+   "台北.mp4",
+   "한국어 자막.srt",
+   "clip2.mov",
+   "clip10.mov",
+   "École.mov",
+   "intro.mp4",
+   "Intro.mp4",
+   "Übersicht.prproj",
+   "Zebra.png",
+   "あいさつ.mp4",
+   "カット.mov"
+  ],
+  "zh-hans": [
+   "_backup.prproj",
+   "2026 Final.mp4",
+   "北京.mp4",
+   "東京.mp4",
+   "上海.mov",
+   "台北.mp4",
+   "音乐.wav",
+   "clip2.mov",
+   "clip10.mov",
+   "École.mov",
+   "intro.mp4",
+   "Intro.mp4",
+   "Übersicht.prproj",
+   "Zebra.png",
+   "서울.mp4",
+   "한국어 자막.srt",
+   "あいさつ.mp4",
+   "カット.mov"
+  ],
+  "zh-hant": [
+   "_backup.prproj",
+   "2026 Final.mp4",
+   "上海.mov",
+   "北京.mp4",
+   "台北.mp4",
+   "東京.mp4",
+   "音乐.wav",
+   "clip2.mov",
+   "clip10.mov",
+   "École.mov",
+   "intro.mp4",
+   "Intro.mp4",
+   "Übersicht.prproj",
+   "Zebra.png",
+   "서울.mp4",
+   "한국어 자막.srt",
+   "あいさつ.mp4",
+   "カット.mov"
+  ]
+ },
+ "scripts": {
+  "en": [
+   "สัญลักษณ์",
+   "ตัวเลข",
+   "ละติน",
+   "ฮันกึล",
+   "ฮิรางานะ",
+   "คาตาคานะ",
+   "อักษรฮั่น"
+  ],
+  "de": [
+   "สัญลักษณ์",
+   "ตัวเลข",
+   "ละติน",
+   "ฮันกึล",
+   "ฮิรางานะ",
+   "คาตาคานะ",
+   "อักษรฮั่น"
+  ],
+  "fr": [
+   "สัญลักษณ์",
+   "ตัวเลข",
+   "ละติน",
+   "ฮันกึล",
+   "ฮิรางานะ",
+   "คาตาคานะ",
+   "อักษรฮั่น"
+  ],
+  "ja": [
+   "สัญลักษณ์",
+   "ตัวเลข",
+   "ละติน",
+   "ฮิรางานะ",
+   "คาตาคานะ",
+   "อักษรฮั่น",
+   "ฮันกึล"
+  ],
+  "ko": [
+   "สัญลักษณ์",
+   "ตัวเลข",
+   "ฮันกึล",
+   "อักษรฮั่น",
+   "ละติน",
+   "ฮิรางานะ",
+   "คาตาคานะ"
+  ],
+  "zh-hans": [
+   "สัญลักษณ์",
+   "ตัวเลข",
+   "อักษรฮั่น",
+   "ละติน",
+   "ฮันกึล",
+   "ฮิรางานะ",
+   "คาตาคานะ"
+  ],
+  "zh-hant": [
+   "สัญลักษณ์",
+   "ตัวเลข",
+   "อักษรฮั่น",
+   "ละติน",
+   "ฮันกึล",
+   "ฮิรางานะ",
+   "คาตาคานะ"
+  ]
+ },
+ "spec": {
+  "de": {
+   "input": [
+    "Zucker",
+    "Apfel",
+    "Äpfel",
+    "Affe",
+    "Öl",
+    "Ofen",
+    "Straße",
+    "Strasse",
+    "Adler"
+   ],
+   "sorted": [
+    "Adler",
+    "Affe",
+    "Apfel",
+    "Äpfel",
+    "Ofen",
+    "Öl",
+    "Strasse",
+    "Straße",
+    "Zucker"
+   ],
+   "phonebook": [
+    "Adler",
+    "Äpfel",
+    "Affe",
+    "Apfel",
+    "Öl",
+    "Ofen",
+    "Strasse",
+    "Straße",
+    "Zucker"
+   ]
+  },
+  "fr": {
+   "input": [
+    "côté",
+    "cote",
+    "côte",
+    "coté",
+    "Cote",
+    "cœur",
+    "coeur",
+    "Zoé",
+    "école"
+   ],
+   "sorted": [
+    "coeur",
+    "cœur",
+    "cote",
+    "Cote",
+    "coté",
+    "côte",
+    "côté",
+    "école",
+    "Zoé"
+   ]
+  },
+  "ja": {
+   "input": [
+    "学校",
+    "カード",
+    "かーど",
+    "がっこう",
+    "かっこう",
+    "かこう",
+    "カコウ",
+    "花火",
+    "apple"
+   ],
+   "sorted": [
+    "apple",
+    "カード",
+    "かーど",
+    "かこう",
+    "カコウ",
+    "かっこう",
+    "がっこう",
+    "花火",
+    "学校"
+   ],
+   "en": [
+    "apple",
+    "かーど",
+    "カード",
+    "かこう",
+    "カコウ",
+    "かっこう",
+    "がっこう",
+    "学校",
+    "花火"
+   ]
+  },
+  "ko": {
+   "input": [
+    "하늘",
+    "가방",
+    "나무",
+    "까치",
+    "갈비",
+    "각도",
+    "學校",
+    "apple"
+   ],
+   "sorted": [
+    "가방",
+    "각도",
+    "갈비",
+    "까치",
+    "나무",
+    "하늘",
+    "學校",
+    "apple"
+   ]
+  },
+  "zh-hans": {
+   "input": [
+    "中国",
+    "北京",
+    "长城",
+    "重庆",
+    "爱",
+    "阿姨",
+    "八",
+    "Beijing"
+   ],
+   "sorted": [
+    "阿姨",
+    "爱",
+    "八",
+    "北京",
+    "重庆",
+    "长城",
+    "中国",
+    "Beijing"
+   ],
+   "stroke": [
+    "八",
+    "中国",
+    "北京",
+    "长城",
+    "阿姨",
+    "重庆",
+    "爱",
+    "Beijing"
+   ]
+  },
+  "zh-hant": {
+   "input": [
+    "國",
+    "一",
+    "水",
+    "十",
+    "大",
+    "中",
+    "日",
+    "月",
+    "Apple"
+   ],
+   "sorted": [
+    "一",
+    "十",
+    "大",
+    "中",
+    "日",
+    "月",
+    "水",
+    "國",
+    "Apple"
+   ],
+   "zhuyin": [
+    "大",
+    "國",
+    "中",
+    "十",
+    "水",
+    "日",
+    "一",
+    "月",
+    "Apple"
+   ]
+  }
+ },
+ "natural": {
+  "en": {
+   "plain": [
+    "clip1.mov",
+    "clip10.mov",
+    "clip2.mov"
+   ],
+   "num": [
+    "clip1.mov",
+    "clip2.mov",
+    "clip10.mov"
+   ]
+  },
+  "de": {
+   "plain": [
+    "clip1.mov",
+    "clip10.mov",
+    "clip2.mov"
+   ],
+   "num": [
+    "clip1.mov",
+    "clip2.mov",
+    "clip10.mov"
+   ]
+  },
+  "fr": {
+   "plain": [
+    "clip1.mov",
+    "clip10.mov",
+    "clip2.mov"
+   ],
+   "num": [
+    "clip1.mov",
+    "clip2.mov",
+    "clip10.mov"
+   ]
+  },
+  "ja": {
+   "plain": [
+    "clip1.mov",
+    "clip10.mov",
+    "clip2.mov"
+   ],
+   "num": [
+    "clip1.mov",
+    "clip2.mov",
+    "clip10.mov"
+   ]
+  },
+  "ko": {
+   "plain": [
+    "clip1.mov",
+    "clip10.mov",
+    "clip2.mov"
+   ],
+   "num": [
+    "clip1.mov",
+    "clip2.mov",
+    "clip10.mov"
+   ]
+  },
+  "zh-hans": {
+   "plain": [
+    "clip1.mov",
+    "clip10.mov",
+    "clip2.mov"
+   ],
+   "num": [
+    "clip1.mov",
+    "clip2.mov",
+    "clip10.mov"
+   ]
+  },
+  "zh-hant": {
+   "plain": [
+    "clip1.mov",
+    "clip10.mov",
+    "clip2.mov"
+   ],
+   "num": [
+    "clip1.mov",
+    "clip2.mov",
+    "clip10.mov"
+   ]
+  }
+ },
+ "codepoint": [
+  "2026 Final.mp4",
+  "Intro.mp4",
+  "Zebra.png",
+  "_backup.prproj",
+  "clip10.mov",
+  "clip2.mov",
+  "intro.mp4",
+  "École.mov",
+  "Übersicht.prproj",
+  "あいさつ.mp4",
+  "カット.mov",
+  "上海.mov",
+  "北京.mp4",
+  "台北.mp4",
+  "東京.mp4",
+  "音乐.wav",
+  "서울.mp4",
+  "한국어 자막.srt"
+ ]
+}

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Locale Format Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+KR:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout idea: a QA reference tool. Tabs on top (compare all / one language), sticky category rail on the left,
+     sample values as copyable "specimen" buttons, invisible spaces made visible with coloured marks. */
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --ink: #15212d;
+  --muted: #5b6876;
+  --line: #dce2e8;
+  --accent: #0e6870;
+  --accent-ink: #ffffff;
+  --accent-soft: #e0eff0;
+  --specimen: #f7f9fa;
+  --mark-nb: #f4cf63;
+  --mark-nn: #c3b0f3;
+  --mark-th: #9fd9bd;
+  --shadow: 0 1px 2px rgba(21,33,45,.06), 0 4px 16px rgba(21,33,45,.05);
+  --s-oth: #8b97a3; --s-lat: #2c6cd1; --s-hang: #c23f78; --s-kana: #d27a1f; --s-han: #6a4cc7; --bad: #b4382f; --bad-soft: #fbeceb;
+  --f-display: "Anuphan", "IBM Plex Sans Thai", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans Thai", "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --f-sample: "IBM Plex Sans", "IBM Plex Sans Thai", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e151b; --surface: #151f28; --ink: #e4ebf1; --muted: #93a1ae; --line: #253240;
+    --accent: #5cc0c6; --accent-ink: #082024; --accent-soft: #16343a; --specimen: #1a2631;
+    --mark-nb: rgba(244,207,99,.45); --mark-nn: rgba(170,145,240,.5); --mark-th: rgba(110,200,160,.45);
+    --shadow: 0 1px 2px rgba(0,0,0,.3); --s-oth: #7d8995; --s-lat: #6fa2f0; --s-hang: #ec79a9; --s-kana: #f0a659; --s-han: #a58ef0; --bad: #f08a80; --bad-soft: #3a2020; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e151b; --surface: #151f28; --ink: #e4ebf1; --muted: #93a1ae; --line: #253240;
+  --accent: #5cc0c6; --accent-ink: #082024; --accent-soft: #16343a; --specimen: #1a2631;
+  --mark-nb: rgba(244,207,99,.45); --mark-nn: rgba(170,145,240,.5); --mark-th: rgba(110,200,160,.45);
+  --shadow: 0 1px 2px rgba(0,0,0,.3); --s-oth: #7d8995; --s-lat: #6fa2f0; --s-hang: #ec79a9; --s-kana: #f0a659; --s-han: #a58ef0; --bad: #f08a80; --bad-soft: #3a2020; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--f-body); -webkit-font-smoothing: antialiased; }
+:lang(ja) { --f-sample: "IBM Plex Sans", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "IBM Plex Sans Thai", sans-serif; }
+:lang(ko) { --f-sample: "IBM Plex Sans", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "IBM Plex Sans Thai", sans-serif; }
+:lang(zh-Hans) { --f-sample: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "IBM Plex Sans Thai", sans-serif; }
+:lang(zh-Hant) { --f-sample: "IBM Plex Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "IBM Plex Sans Thai", sans-serif; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+a { color: var(--accent); }
+
+.wrap { max-width: 1480px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+.top { padding: 28px 0 0; }
+.title-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; }
+.brand h1 { font: 700 30px/1.15 var(--f-display); margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+.brand p { margin: 6px 0 0; color: var(--muted); max-width: 62ch; }
+.tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.search { position: relative; }
+.search input {
+  width: 300px; max-width: 100%; height: 40px; padding: 0 40px 0 38px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit;
+}
+.search input::placeholder { color: var(--muted); }
+.search svg { position: absolute; left: 12px; top: 12px; width: 16px; height: 16px; color: var(--muted); }
+.search kbd { position: absolute; right: 10px; top: 9px; font: 500 12px/20px var(--f-mono); padding: 0 6px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); }
+.toggle { display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); cursor: pointer; user-select: none; }
+.toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.switch { width: 30px; height: 18px; border-radius: 99px; background: var(--line); position: relative; transition: background .15s; flex: none; }
+.switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .15s; }
+.toggle input:checked + .switch { background: var(--accent); }
+.toggle input:checked + .switch::after { transform: translateX(12px); }
+.toggle input:focus-visible + .switch { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 18px 0 0; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: 13px; color: var(--muted); }
+.meta b { color: var(--ink); font-weight: 600; }
+.meta .sample { font-family: var(--f-mono); color: var(--ink); }
+.legend { display: inline-flex; gap: 12px; flex-wrap: wrap; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 12px; border-radius: 3px; display: inline-block; }
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; margin: 20px 0 0; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { flex: none; border: 0; background: none; padding: 10px 14px 12px; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; display: inline-flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+.tab .code { font: 600 11px/1 var(--f-mono); padding: 4px 6px; border-radius: 5px; background: var(--accent-soft); color: var(--accent); }
+.tab[aria-selected="true"] .code { background: var(--accent); color: var(--accent-ink); }
+.tab .nat { font-family: var(--f-sample); }
+.tab-sep { width: 1px; background: var(--line); margin: 10px 6px; flex: none; }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; padding: 24px 0 64px; }
+.rail { position: sticky; top: 16px; align-self: start; display: grid; gap: 2px; }
+.rail .rail-h { font-size: 12px; color: var(--muted); padding: 0 10px 6px; }
+.rail button { display: flex; justify-content: space-between; align-items: center; gap: 8px; text-align: left; border: 0; background: none; padding: 7px 10px; border-radius: 8px; cursor: pointer; color: var(--muted); }
+.rail button:hover { background: var(--surface); color: var(--ink); }
+.rail button.on { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
+.rail .cnt { font: 500 12px var(--f-mono); color: var(--muted); }
+.rail button.empty { opacity: .4; }
+
+.sec { scroll-margin-top: 16px; margin-bottom: 36px; }
+.sec-h { display: flex; align-items: baseline; gap: 10px; margin: 0 0 12px; }
+.sec-h h2 { font: 600 20px/1.3 var(--f-display); margin: 0; }
+.sec-h .en { color: var(--muted); font-size: 13px; }
+
+/* Compare table */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1100px; table-layout: fixed; }
+.cmp col.c-label { width: 200px; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.cmp tr:last-child > * { border-bottom: 0; }
+.cmp thead th { position: sticky; top: 0; background: var(--surface); font-weight: 600; font-size: 13px; padding-top: 10px; padding-bottom: 10px; z-index: 1; }
+.cmp thead th button { border: 0; background: none; padding: 0; cursor: pointer; display: inline-flex; align-items: baseline; gap: 8px; }
+.cmp thead th button:hover .nat { text-decoration: underline; }
+.cmp thead .code { font: 600 11px/1 var(--f-mono); padding: 4px 6px; border-radius: 5px; background: var(--accent-soft); color: var(--accent); }
+.cmp thead .nat { font-family: var(--f-sample); font-weight: 500; }
+.cmp th:first-child, .cmp td:first-child { position: sticky; left: 0; background: var(--surface); z-index: 2; box-shadow: 1px 0 0 var(--line); }
+.cmp thead th:first-child { z-index: 3; color: var(--muted); font-weight: 500; }
+.cmp tbody tr:hover > * { background: var(--specimen); }
+.cmp tbody tr:hover .val { background: var(--surface); }
+
+.rlabel { font-weight: 600; line-height: 1.4; }
+.ren { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+.src { display: inline-block; margin-top: 6px; font: 500 10.5px/1 var(--f-mono); letter-spacing: .02em; padding: 3px 6px; border-radius: 4px; }
+.src.cldr { background: var(--accent-soft); color: var(--accent); }
+.src.style { border: 1px solid var(--line); color: var(--muted); }
+.common { display: block; font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+.val {
+  display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: var(--specimen);
+  border-radius: 8px; padding: 7px 10px; cursor: copy; font-family: var(--f-sample); font-size: 15px; line-height: 1.5;
+  white-space: pre-line; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; position: relative; transition: border-color .12s;
+}
+.val:hover { border-color: var(--accent); }
+.val.list { display: flex; flex-wrap: wrap; gap: 4px; white-space: normal; }
+.chip { font-size: 13px; padding: 1px 7px; border-radius: 5px; background: var(--surface); border: 1px solid var(--line); }
+.desc { font-size: 14px; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; }
+.desc:lang(ja), .desc:lang(ko), .desc:lang(zh-Hans), .desc:lang(zh-Hant) { font-family: var(--f-sample); }
+.pat { display: inline-block; margin-top: 6px; font: 12px/1.4 var(--f-mono); color: var(--muted); background: transparent; border: 1px dashed var(--line); border-radius: 5px; padding: 1px 6px; }
+.note { display: block; font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; white-space: pre-line; }
+.val.list.ord { flex-direction: column; align-items: flex-start; }
+.chip i { font: 500 10.5px var(--f-mono); color: var(--muted); font-style: normal; margin-right: 5px; }
+
+/* Invisible characters */
+.inv { border-radius: 2px; }
+body.show-inv .inv { padding: 0 1px; }
+body.show-inv .inv-nb { background: var(--mark-nb); }
+body.show-inv .inv-nn { background: var(--mark-nn); }
+body.show-inv .inv-th { background: var(--mark-th); }
+body:not(.show-inv) .legend { display: none; }
+
+/* Language view */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; box-shadow: var(--shadow); margin-bottom: 20px; }
+.hero-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.hero-top .big { font: 600 40px/1.1 var(--f-sample); letter-spacing: -.01em; }
+.hero-top .tag { font: 600 13px var(--f-mono); padding: 4px 8px; border-radius: 6px; background: var(--accent); color: var(--accent-ink); }
+.hero-top .sub { color: var(--muted); }
+.facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.fact { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--specimen); }
+.fact .k { font-size: 12px; color: var(--muted); }
+.fact .v { font-weight: 600; margin-top: 2px; line-height: 1.4; }
+.checks { border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 12px; background: var(--surface); padding: 18px 22px; margin-bottom: 28px; }
+.checks h2 { font: 600 17px/1.3 var(--f-display); margin: 0 0 10px; }
+.checks ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+.checks li { max-width: 90ch; }
+.checks li::marker { font: 600 13px var(--f-mono); color: var(--accent); }
+
+.rows { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+.row { display: grid; grid-template-columns: 240px minmax(0, 1.1fr) minmax(0, 1fr); gap: 20px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.row:last-child { border-bottom: 0; }
+.row .detail .pat { margin-top: 0; margin-right: 6px; }
+.row .detail .note:first-child { margin-top: 0; }
+
+/* Special letters */
+.chars-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.cpanel { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); padding: 18px 20px 20px; display: grid; gap: 18px; align-content: start; }
+.cpanel-h { display: flex; align-items: baseline; gap: 10px; }
+.cpanel-h .code { font: 600 11px/1 var(--f-mono); padding: 4px 6px; border-radius: 5px; background: var(--accent); color: var(--accent-ink); }
+.cpanel-h .nat { font: 600 18px/1.2 var(--f-display); }
+.cpanel-h .cnt { margin-left: auto; font: 500 12px var(--f-mono); color: var(--muted); }
+.samples { display: grid; gap: 8px; }
+.samples .k { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+.cgroup-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-bottom: 8px; }
+.cgroup-h h3 { font: 600 15px/1.3 var(--f-body); margin: 0; }
+.cgroup-h span { font-size: 12.5px; color: var(--muted); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 10px; }
+.tile { border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: grid; gap: 6px; align-content: start; }
+.glyphs { display: flex; gap: 6px; }
+.gl { flex: 1; min-width: 0; height: 58px; border: 1px solid var(--line); border-radius: 8px; background: var(--specimen); cursor: copy; font: 500 30px/1 var(--f-sample); transition: border-color .12s; }
+.gl:hover { border-color: var(--accent); }
+.tile .cp { font: 11.5px/1.5 var(--f-mono); color: var(--muted); }
+.tile .ex { font-size: 14px; }
+.tile .moj { font: 11.5px/1.5 var(--f-mono); color: var(--muted); }
+.tile .moj b { color: var(--ink); font-weight: 500; }
+.tile .note { margin-top: 0; }
+.cqa { border-top: 1px solid var(--line); padding-top: 14px; }
+.cqa h3 { font: 600 15px/1.3 var(--f-body); margin: 0 0 8px; }
+.cqa ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: 14px; }
+.cqa li::marker { font: 600 12px var(--f-mono); color: var(--accent); }
+.chars-foot { font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+/* Sorting demo */
+.sortdemo { margin-top: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); padding: 20px; display: grid; gap: 16px; }
+.sortdemo h3 { font: 600 17px/1.3 var(--f-display); margin: 0; text-wrap: balance; }
+.sortdemo .lead { margin: 4px 0 0; color: var(--muted); font-size: 14px; max-width: 80ch; }
+.sd-input { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.sd-input .k { font-size: 12px; color: var(--muted); margin-right: 4px; }
+.fn { display: inline-flex; align-items: center; gap: 6px; font: 13px/1.4 var(--f-sample); padding: 3px 8px 3px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--specimen); white-space: nowrap; }
+.fn::before { content: ""; width: 4px; align-self: stretch; border-radius: 2px; background: var(--sc); }
+.s-oth { --sc: var(--s-oth); } .s-lat { --sc: var(--s-lat); } .s-hang { --sc: var(--s-hang); } .s-kana { --sc: var(--s-kana); } .s-han { --sc: var(--s-han); }
+.sd-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); }
+.sd-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sd-legend i { width: 10px; height: 10px; border-radius: 3px; background: var(--sc); }
+.sd-cols-wrap { overflow-x: auto; }
+.sd-cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(168px, 1fr); gap: 10px; min-width: min-content; }
+.sd-col { border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: grid; gap: 8px; align-content: start; background: var(--surface); }
+.sd-col.bad { border-color: var(--bad); background: var(--bad-soft); }
+.sd-col-h { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
+.sd-col-h b { font-size: 14px; line-height: 1.3; }
+.sd-col-h .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.sd-col.bad .sub { color: var(--bad); }
+.sd-copy { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; font-size: 12px; padding: 2px 8px; cursor: pointer; flex: none; }
+.sd-copy:hover { border-color: var(--accent); color: var(--accent); }
+.sd-col ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; counter-reset: n; }
+.sd-col li { counter-increment: n; display: flex; align-items: center; gap: 6px; }
+.sd-col li::before { content: counter(n); font: 10.5px var(--f-mono); color: var(--muted); width: 16px; text-align: right; flex: none; }
+.sd-col li .fn { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.sd-flow { font-size: 12px; color: var(--muted); line-height: 1.45; }
+.sd-bottom { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 16px; }
+.sd-nat { border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; align-content: start; }
+.sd-nat h4, .sd-qa h4 { margin: 0; font: 600 15px/1.3 var(--f-body); }
+.sd-nat .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sd-nat .pair > div { display: grid; gap: 4px; align-content: start; }
+.sd-nat .k { font-size: 12px; color: var(--muted); }
+.sd-qa { border-top: 0; }
+.sd-qa ol { margin: 8px 0 0; padding-left: 22px; display: grid; gap: 6px; font-size: 14px; }
+.sd-qa li::marker { font: 600 12px var(--f-mono); color: var(--accent); }
+@media (max-width: 960px) { .sd-bottom { grid-template-columns: minmax(0, 1fr); } }
+
+.empty-state { padding: 48px 24px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
+
+footer { border-top: 1px solid var(--line); padding: 20px 0 40px; color: var(--muted); font-size: 13px; }
+footer ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; }
+
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 14px; transition: opacity .15s, transform .15s; max-width: calc(100% - 32px); z-index: 10; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 960px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 12px; }
+  .rail { position: sticky; top: 0; z-index: 5; display: flex; gap: 6px; overflow-x: auto; padding: 10px 0; background: var(--bg); scrollbar-width: none; }
+  .rail .rail-h { display: none; }
+  .rail button { flex: none; border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; }
+  .rail button.on { box-shadow: none; border-color: var(--accent); }
+  .sec { scroll-margin-top: 64px; }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 16px; }
+  .brand h1 { font-size: 24px; }
+  .search, .search input { width: 100%; }
+  .tools { width: 100%; }
+  .hero-top .big { font-size: 32px; }
+  .hero { padding: 18px; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cmp col.c-label { width: 140px; }
+  table.cmp { min-width: 1000px; }
+  .cmp th, .cmp td { padding: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body class="show-inv">
+<div class="wrap">
+  <header class="top">
+    <div class="title-row">
+      <div class="brand">
+        <h1>Locale Format Reference</h1>
+        <p>รูปแบบมาตรฐานของวันที่ เวลา ตัวเลข สกุลเงิน และข้อความ ใน 6 ภาษา สำหรับใช้ตรวจงาน localization คลิกที่ค่าตัวอย่างเพื่อคัดลอกพร้อมอักขระจริง</p>
+      </div>
+      <div class="tools">
+        <label class="search" for="q">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>
+          <input id="q" type="search" placeholder="ค้นหา เช่น currency, 12 ชม., «" autocomplete="off" aria-label="ค้นหารายการ">
+          <kbd aria-hidden="true">/</kbd>
+        </label>
+        <label class="toggle" for="inv">
+          <input id="inv" type="checkbox" checked>
+          <span class="switch" aria-hidden="true"></span>
+          <span>แสดงช่องว่างพิเศษ</span>
+        </label>
+      </div>
+    </div>
+    <div class="meta">
+      <span>ค่าตัวอย่าง: <span class="sample">Mon 2026-03-09 14:05:30</span> · <span class="sample">1234567.891</span> · <span class="sample">1234.50</span></span>
+      <span>ข้อมูล: <b>Unicode CLDR 48</b> และ style guide ของแต่ละภาษา</span>
+      <span class="legend" aria-label="คำอธิบายสี">
+        <span><i style="background:var(--mark-nb)"></i>NBSP U+00A0</span>
+        <span><i style="background:var(--mark-nn)"></i>Narrow NBSP U+202F</span>
+        <span><i style="background:var(--mark-th)"></i>Thin space U+2009</span>
+      </span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="มุมมอง" id="tabs"></nav>
+  </header>
+
+  <div class="layout">
+    <nav class="rail" id="rail" aria-label="หมวดหมู่"></nav>
+    <main id="main"></main>
+  </div>
+
+  <footer>
+    <div>ค่าที่มีป้าย <b>CLDR</b> สร้างจากข้อมูล Unicode CLDR 48 (ICU 78) ระบบปฏิบัติการหรือ browser ที่ใช้ CLDR เวอร์ชันเก่าอาจให้ผลต่างเล็กน้อย เช่น ชนิดของช่องว่าง ค่าที่มีป้าย <b>Style</b> มาจาก style guide และมาตรฐานการเขียนของแต่ละภาษา ถ้าผลิตภัณฑ์มี style guide ของตัวเอง ให้ยึดของผลิตภัณฑ์ก่อน</div>
+    <ul>
+      <li><a href="https://cldr.unicode.org/">Unicode CLDR</a></li>
+      <li><a href="https://www.w3.org/TR/jlreq/">W3C: Requirements for Japanese Text Layout</a></li>
+      <li><a href="https://www.w3.org/TR/klreq/">W3C: Requirements for Hangul Text Layout and Typography</a></li>
+      <li><a href="https://www.w3.org/TR/clreq/">W3C: Requirements for Chinese Text Layout</a></li>
+      <li>DIN 5008 (เยอรมัน) · Lexique des règles typographiques en usage à l'Imprimerie nationale (ฝรั่งเศส) · 한글 맞춤법 문장 부호 (เกาหลี) · GB/T 15834 标点符号用法 (จีนตัวย่อ) · 教育部《重訂標點符號手冊》 (จีนตัวเต็ม)</li>
+    </ul>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const C = __C__;
+const SORT = __SORT__;
+__CONTENT__
+
+const INV = { " ": ["nb", "U+00A0 NO-BREAK SPACE"], " ": ["nn", "U+202F NARROW NO-BREAK SPACE"], " ": ["th", "U+2009 THIN SPACE"] };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = s => esc(s).replace(/[   ]/g, ch => `<span class="inv inv-${INV[ch][0]}" title="${INV[ch][1]}">${ch}</span>`);
+const pick = (x, id) => x == null ? "" : (typeof x === "string" ? x : (x[id] || ""));
+const DESC = new Set(["overview"]);
+const DESC_ITEMS = new Set(["Word spacing", "Capitalization", "Line breaking", "Text expansion vs. English", "Collation basis", "Script order", "Measurement system", "Currency decimals", "Symbol code point", "Postal code", "First day of week", "Title marks", "Paper size"]);
+ITEMS.forEach((it, i) => { it.id = "i" + i; it.desc = DESC.has(it.cat) || DESC_ITEMS.has(it.en); });
+
+function get(item, loc) {
+  const c = C[loc.tag], v = item.v;
+  if (typeof v === "function") return v(c, C.extra, loc.id);
+  if (typeof v === "string") return v.split(".").reduce((o, k) => o[k], c);
+  return v[loc.id];
+}
+function valueHTML(item, loc) {
+  const v = get(item, loc);
+  if (item.desc) return `<div class="desc" lang="${/[฀-๿]/.test(v) ? "th" : loc.lang}">${fmt(v)}</div>`;
+  if (Array.isArray(v) && item.ordered) return `<button class="val list ord" type="button" lang="${loc.lang}" data-copy="${esc(v.join("\n"))}" aria-label="คัดลอกลำดับ ${loc.en}">${v.map((x, i) => `<span class="chip"><i>${i + 1}</i>${fmt(x)}</span>`).join("")}</button>`;
+  if (Array.isArray(v)) return `<button class="val list" type="button" lang="${loc.lang}" data-copy="${esc(v.join("\n"))}" aria-label="คัดลอก ${esc(item.en)} ${loc.en}">${v.map(x => `<span class="chip">${fmt(x)}</span>`).join("")}</button>`;
+  return `<button class="val" type="button" lang="${loc.lang}" data-copy="${esc(v)}" aria-label="คัดลอก ${esc(v)}">${fmt(v)}</button>`;
+}
+function detailHTML(item, loc) {
+  const p = typeof item.pat === "object" ? pick(item.pat, loc.id) : "";
+  const n = typeof item.note === "object" ? pick(item.note, loc.id) : "";
+  return (p ? `<code class="pat" title="CLDR pattern">${fmt(p)}</code>` : "") + (n ? `<span class="note">${esc(n)}</span>` : "");
+}
+function labelHTML(item) {
+  const common = typeof item.note === "string" ? `<span class="common">${esc(item.note)}</span>` : "";
+  const cp = typeof item.pat === "string" ? `<code class="pat">${fmt(item.pat)}</code>` : "";
+  return `<div class="rlabel">${esc(item.label)}</div><span class="ren">${esc(item.en)}</span><span class="src ${item.src === "CLDR" ? "cldr" : "style"}">${item.src === "CLDR" ? "CLDR" : "Style"}</span>${cp ? "<br>" + cp : ""}${common}`;
+}
+
+let view = "compare", query = "";
+
+const SCRIPT = [["s-lat", "ละติน", /\p{Script=Latin}/u], ["s-hang", "ฮันกึล", /\p{Script=Hangul}/u], ["s-kana", "คานะ (ญี่ปุ่น)", /[\p{Script=Hiragana}\p{Script=Katakana}]/u], ["s-han", "อักษรฮั่น (จีน/คันจิ/ฮันจา)", /\p{Script=Han}/u]];
+const scriptOf = name => { const ch = [...name][0]; const f = SCRIPT.find(s => s[2].test(ch)); return f ? f[0] : "s-oth"; };
+const fnChip = name => `<span class="fn ${scriptOf(name)}">${esc(name)}</span>`;
+const LBL = { en: "EN", de: "DE", fr: "FR", ja: "JA", ko: "KO", "zh-hans": "简 zh-CN", "zh-hant": "繁 zh-TW" };
+function sortMatches() {
+  if (!query) return true;
+  const q = query.toLowerCase();
+  return ["sort sorting collation a-z เรียง natural code point", ...SORT.files].join(" ").toLowerCase().includes(q);
+}
+function sortBlock(ids) {
+  if (!sortMatches()) return "";
+  const keys = ["en", ...ids];
+  const groups = [];
+  for (const k of keys) {
+    const g = groups.find(g => JSON.stringify(SORT.mixed[g.keys[0]]) === JSON.stringify(SORT.mixed[k]));
+    if (g) g.keys.push(k); else groups.push({ keys: [k] });
+  }
+  const flow = k => SORT.scripts[k].filter(x => x !== "สัญลักษณ์" && x !== "ตัวเลข").join(" → ");
+  const col = (title, sub, list, cls = "", flowTxt = "") => `<div class="sd-col ${cls}">
+      <div class="sd-col-h"><b>${title}<span class="sub">${sub}</span></b><button class="sd-copy" type="button" data-copy="${esc(list.join("\n"))}">คัดลอก</button></div>
+      ${flowTxt ? `<div class="sd-flow">${flowTxt}</div>` : ""}
+      <ol>${list.map(f => `<li>${fnChip(f)}</li>`).join("")}</ol></div>`;
+  const cols = [col("เรียงตาม code point", "บั๊กที่พบบ่อย ไม่ใช่ลำดับ A–Z ของภาษาไหนเลย", SORT.codepoint, "bad", "ตัวเลข → ตัวใหญ่ → _ → ตัวเล็ก → ตัวมีสำเนียง → คานะ → ฮั่น → ฮันกึล")]
+    .concat(groups.map(g => {
+      const title = g.keys.map(k => LBL[k]).join(" · ");
+      const sub = g.keys.includes("en") ? (g.keys.length > 1 ? "เรียงเหมือนภาษาอังกฤษ" : "ค่าเริ่มต้น (อ้างอิง)") : "ลำดับของภาษานี้";
+      return col(title, sub, SORT.mixed[g.keys[0]], "", flow(g.keys[0]));
+    }));
+  const nat = SORT.natural.en;
+  return `<div class="sortdemo">
+    <div><h3>ตัวอย่าง: ชื่อไฟล์ผสมละตินกับ CJK เรียง A–Z</h3>
+      <p class="lead">ไฟล์ ${SORT.files.length} ไฟล์ชุดเดียวกัน เรียงด้วย collation ของแต่ละภาษา (เปิด natural sort แบบตัวจัดการไฟล์) แถบสีบอกระบบตัวเขียนของตัวอักษรแรก</p></div>
+    <div class="sd-input"><span class="k">ก่อนเรียง</span>${SORT.files.map(fnChip).join("")}</div>
+    <div class="sd-legend">${[["s-oth", "สัญลักษณ์ / ตัวเลข"], ...SCRIPT].map(s => `<span class="${s[0]}"><i></i>${s[1]}</span>`).join("")}</div>
+    <div class="sd-cols-wrap"><div class="sd-cols">${cols.join("")}</div></div>
+    <div class="sd-bottom">
+      <div class="sd-nat"><h4>ชื่อไฟล์ที่มีตัวเลข</h4>
+        <div class="pair"><div><span class="k">Collation มาตรฐาน</span>${nat.plain.map(fnChip).join("")}</div><div><span class="k">Natural sort (numeric)</span>${nat.num.map(fnChip).join("")}</div></div>
+        <span class="note">ผลเหมือนกันทุกภาษา ตัวจัดการไฟล์ของ Windows และ macOS ใช้แบบ natural sort</span></div>
+      <div class="sd-qa"><h4>จุดที่ต้องเช็คเรื่องการเรียง</h4><ol>${SORT_QA.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>
+    </div></div>`;
+}
+
+
+const MARKS = { "\u0300": "grave", "\u0301": "acute", "\u0302": "circumflex", "\u0308": "diaeresis", "\u0327": "cedilla" };
+const cpOf = ch => [...ch].map(c => "U+" + c.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")).join(" ");
+let dec1252 = null; try { dec1252 = new TextDecoder("windows-1252"); } catch (e) {}
+const moji = ch => { try { return dec1252 ? dec1252.decode(new TextEncoder().encode(ch)) : ""; } catch (e) { return ""; } };
+function nfd(ch) {
+  const d = ch.normalize("NFD");
+  if (d === ch) return "";
+  return [...d].map((c, i) => i === 0 ? c : (MARKS[c] ? `${cpOf(c)} ${MARKS[c]}` : cpOf(c))).join(" + ");
+}
+function charMatches(ch, grp) {
+  if (!query) return true;
+  const q = query.toLowerCase();
+  return [ch.g.join(" "), ch.g.map(cpOf).join(" "), ch.ex, ch.note, grp.name, grp.th, "special letters อักขระพิเศษ"].join(" ").toLowerCase().includes(q);
+}
+function charsPanel(id) {
+  const loc = LOCS.find(l => l.id === id), data = CHARS[id];
+  let n = 0;
+  const groups = data.groups.map(grp => {
+    const list = grp.chars.filter(ch => charMatches(ch, grp));
+    n += list.length;
+    if (!list.length) return "";
+    return `<div class="cgroup"><div class="cgroup-h"><h3>${esc(grp.name)}</h3><span>${esc(grp.th)}</span></div><div class="tiles">${list.map(ch => {
+      const d = ch.g.map(nfd).filter(Boolean)[ch.g.length > 1 ? 1 : 0] || ch.g.map(nfd).filter(Boolean)[0] || "";
+      const lower = ch.g[ch.g.length - 1];
+      const m = moji(lower);
+      return `<div class="tile">
+        <div class="glyphs">${ch.g.map(g => `<button class="gl" type="button" lang="${loc.lang}" data-copy="${esc(g)}" aria-label="คัดลอก ${esc(g)} ${cpOf(g)}">${esc(g)}</button>`).join("")}</div>
+        <div class="cp">${ch.g.map(cpOf).join(" · ")}${d ? `<br>NFD ${esc(lower)} = ${esc(d)}` : ""}</div>
+        <div class="ex" lang="${loc.lang}">${esc(ch.ex)}</div>
+        ${m ? `<div class="moj">encoding ผิดจะเห็น <b>${fmt(m)}</b></div>` : ""}
+        ${ch.note ? `<span class="note">${esc(ch.note)}</span>` : ""}
+      </div>`;
+    }).join("")}</div></div>`;
+  }).join("");
+  if (!n) return { html: "", n };
+  const samples = query ? "" : `<div class="samples">${data.samples.map(s => `<div><div class="k">${esc(s.label)}</div><button class="val" type="button" lang="${loc.lang}" data-copy="${esc(s.text)}">${esc(s.text)}</button></div>`).join("")}</div>`;
+  const qa = query ? "" : `<div class="cqa"><h3>จุดที่ต้องเช็ค</h3><ol>${data.qa.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>`;
+  return { n, html: `<div class="cpanel"><div class="cpanel-h"><span class="code">${loc.short}</span><span class="nat" lang="${loc.lang}">${loc.native}</span><span class="cnt">${n} ชุด</span></div>${samples}${groups}${qa}</div>` };
+}
+function charsSection(ids, cat) {
+  const panels = ids.map(charsPanel);
+  const n = panels.reduce((a, p) => a + p.n, 0);
+  if (!n) return { html: "", n };
+  const foot = ids.length > 1 ? `<p class="chars-foot">ภาษาญี่ปุ่น เกาหลี และจีนไม่ใช้อักษรละตินที่มีเครื่องหมายกำกับ จึงมีแค่ DE กับ FR ในหมวดนี้</p>` : "";
+  return { n, html: `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}"><div class="sec-h"><h2>${cat.th}</h2><span class="en">${cat.en}</span></div><div class="chars-grid">${panels.map(p => p.html).join("")}</div>${foot}</section>` };
+}
+
+function matches(item, locs) {
+  if (!query) return true;
+  const q = query.toLowerCase();
+  const hay = [item.label, item.en, typeof item.note === "string" ? item.note : ""];
+  for (const loc of locs) {
+    const v = get(item, loc); hay.push(Array.isArray(v) ? v.join(" ") : v, pick(item.note, loc.id), pick(item.pat, loc.id));
+  }
+  return hay.join(" ").toLowerCase().includes(q);
+}
+
+function renderTabs() {
+  const t = document.getElementById("tabs");
+  t.innerHTML = `<button class="tab" role="tab" data-view="compare" aria-selected="${view === "compare"}">ตารางเทียบทุกภาษา</button><span class="tab-sep" aria-hidden="true"></span>` +
+    LOCS.map(l => `<button class="tab" role="tab" data-view="${l.id}" aria-selected="${view === l.id}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button>`).join("");
+}
+
+function renderRail(counts) {
+  document.getElementById("rail").innerHTML = `<div class="rail-h">หมวดหมู่</div>` + CATS.filter(c => c.id in counts).map(c =>
+    `<button type="button" data-cat="${c.id}" class="${counts[c.id] ? "" : "empty"}"><span>${c.th}</span><span class="cnt">${counts[c.id] || 0}</span></button>`).join("");
+}
+
+function renderCompare() {
+  const counts = {}; let html = "";
+  for (const cat of CATS) {
+    if (cat.id === "chars") { const r = charsSection(cat.only, cat); counts[cat.id] = r.n; html += r.html; continue; }
+    const rows = ITEMS.filter(i => i.cat === cat.id && matches(i, LOCS));
+    const extra = cat.id === "sort" ? sortBlock(LOCS.map(l => l.id)) : "";
+    counts[cat.id] = rows.length + (extra ? 1 : 0);
+    if (!rows.length && !extra) continue;
+    html += `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">
+      <div class="sec-h"><h2>${cat.th}</h2><span class="en">${cat.en}</span></div>
+      ${rows.length ? `<div class="tbl-wrap"><table class="cmp"><colgroup><col class="c-label">${LOCS.map(() => "<col>").join("")}</colgroup>
+      <thead><tr><th scope="col">รายการ</th>${LOCS.map(l => `<th scope="col"><button type="button" data-view="${l.id}" title="ดูภาษา${l.th}ทั้งหมด"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button></th>`).join("")}</tr></thead>
+      <tbody>${rows.map(it => `<tr><th scope="row">${labelHTML(it)}</th>${LOCS.map(l => `<td>${valueHTML(it, l)}${detailHTML(it, l)}</td>`).join("")}</tr>`).join("")}</tbody>
+      </table></div>` : ""}${extra}</section>`;
+  }
+  return { html, counts };
+}
+
+function renderLang(loc) {
+  const counts = {};
+  const facts = ITEMS.filter(i => i.cat === "overview").map(i => `<div class="fact"><div class="k">${esc(i.label)}</div><div class="v">${fmt(get(i, loc))}</div></div>`).join("");
+  let html = query ? "" : `<section class="hero" aria-label="สรุป">
+      <div class="hero-top"><span class="big" lang="${loc.lang}">${loc.native}</span><span class="tag">${loc.tag}</span><span class="sub">${loc.en} · ภาษา${loc.th} · <span lang="${loc.lang}">${loc.region}</span></span></div>
+      <div class="facts">${facts}</div></section>
+    <section class="checks"><h2>จุดที่มักพบปัญหาตอนตรวจ</h2><ol>${CHECKS[loc.id].map(c => `<li>${esc(c)}</li>`).join("")}</ol></section>`;
+  for (const cat of CATS) {
+    if (cat.id === "overview") continue;
+    if (cat.only && !cat.only.includes(loc.id)) continue;
+    if (cat.id === "chars") { const r = charsSection([loc.id], cat); counts[cat.id] = r.n; html += r.html; continue; }
+    const rows = ITEMS.filter(i => i.cat === cat.id && matches(i, [loc]));
+    const extra = cat.id === "sort" ? sortBlock([loc.id]) : "";
+    counts[cat.id] = rows.length + (extra ? 1 : 0);
+    if (!rows.length && !extra) continue;
+    html += `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">
+      <div class="sec-h"><h2>${cat.th}</h2><span class="en">${cat.en}</span></div>
+      ${rows.length ? `<div class="rows">${rows.map(it => `<div class="row"><div>${labelHTML(it)}</div><div>${valueHTML(it, loc)}</div><div class="detail">${detailHTML(it, loc)}</div></div>`).join("")}</div>` : ""}${extra}</section>`;
+  }
+  return { html, counts };
+}
+
+let observer;
+function render() {
+  renderTabs();
+  const loc = LOCS.find(l => l.id === view);
+  const { html, counts } = loc ? renderLang(loc) : renderCompare();
+  const main = document.getElementById("main");
+  main.innerHTML = html.includes('class="sec"') ? html : html + `<div class="empty-state">ไม่พบรายการที่ตรงกับ “${esc(query)}” ลองใช้คำอื่น หรือล้างช่องค้นหา</div>`;
+  renderRail(counts);
+  spy();
+}
+
+function spy() {
+  if (observer) observer.disconnect();
+  if (!("IntersectionObserver" in window)) return;
+  const btns = [...document.querySelectorAll("#rail button")];
+  const setOn = id => btns.forEach(b => b.classList.toggle("on", b.dataset.cat === id));
+  const first = document.querySelector("#main .sec"); if (first) setOn(first.dataset.cat);
+  observer = new IntersectionObserver(es => {
+    const vis = es.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (vis) setOn(vis.target.dataset.cat);
+  }, { rootMargin: "-10% 0px -70% 0px" });
+  document.querySelectorAll("#main .sec").forEach(s => observer.observe(s));
+}
+
+function setView(v, push = true) {
+  if (v !== "compare" && !LOCS.some(l => l.id === v)) v = "compare";
+  view = v;
+  if (push && location.hash.slice(1) !== v) { try { history.replaceState(null, "", "#" + v); } catch (e) { location.hash = v; } }
+  render();
+  window.scrollTo({ top: 0 });
+}
+
+let toastT;
+function toast(msg) {
+  const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("on");
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 1800);
+}
+async function copy(text) {
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
+    try { const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove(); } catch (e2) { ok = false; }
+  }
+  const special = /[   ]/.test(text) ? " (มีช่องว่างพิเศษ)" : "";
+  toast(ok ? `คัดลอกแล้ว: ${text.split("\n")[0]}${text.includes("\n") ? " …" : ""}${special}` : "คัดลอกไม่สำเร็จ ลองเลือกข้อความแล้วกด Ctrl+C");
+}
+
+document.addEventListener("click", e => {
+  const v = e.target.closest("[data-view]"); if (v) { setView(v.dataset.view); return; }
+  const c = e.target.closest("[data-copy]"); if (c) { copy(c.dataset.copy); return; }
+  const r = e.target.closest("#rail button"); if (r) { const s = document.getElementById("sec-" + r.dataset.cat); if (s) s.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" }); }
+});
+document.getElementById("q").addEventListener("input", e => { query = e.target.value.trim(); render(); });
+document.getElementById("inv").addEventListener("change", e => document.body.classList.toggle("show-inv", e.target.checked));
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && document.activeElement.tagName !== "INPUT") { e.preventDefault(); document.getElementById("q").focus(); }
+  if (e.key === "Escape" && document.activeElement.id === "q") { e.target.value = ""; query = ""; render(); }
+});
+document.getElementById("tabs").addEventListener("keydown", e => {
+  if (!["ArrowRight", "ArrowLeft"].includes(e.key)) return;
+  const ids = ["compare", ...LOCS.map(l => l.id)]; let i = ids.indexOf(view);
+  i = (i + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length; setView(ids[i]);
+  document.querySelector(`.tab[data-view="${ids[i]}"]`).focus();
+});
+window.addEventListener("hashchange", () => setView(location.hash.slice(1) || "compare", false));
+view = location.hash.slice(1) || "compare";
+if (view !== "compare" && !LOCS.some(l => l.id === view)) view = "compare";
+render();
+</script>
+</body>
+</html>
