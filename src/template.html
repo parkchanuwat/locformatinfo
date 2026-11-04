@@ -120,7 +120,7 @@ a { color: var(--accent); }
 
 /* Compare table */
 .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
-table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1100px; table-layout: fixed; }
+table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1240px; table-layout: fixed; }
 .cmp col.c-label { width: 200px; }
 .cmp th, .cmp td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .cmp tr:last-child > * { border-bottom: 0; }
@@ -144,7 +144,7 @@ table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width
 .val {
   display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: var(--specimen);
   border-radius: 8px; padding: 7px 10px; cursor: copy; font-family: var(--f-sample); font-size: 15px; line-height: 1.5;
-  white-space: pre-line; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; position: relative; transition: border-color .12s;
+  white-space: pre-line; overflow-wrap: break-word; font-variant-numeric: tabular-nums; position: relative; transition: border-color .12s;
 }
 .val:hover { border-color: var(--accent); }
 .val.list { display: flex; flex-wrap: wrap; gap: 4px; white-space: normal; }
@@ -329,7 +329,7 @@ footer ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; }
   .hero { padding: 18px; }
   .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cmp col.c-label { width: 140px; }
-  table.cmp { min-width: 1000px; }
+  table.cmp { min-width: 1120px; }
   .cmp th, .cmp td { padding: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
@@ -604,7 +604,8 @@ function charsSection(ids, cat) {
 function matches(item, locs) {
   if (!query) return true;
   const q = query.toLowerCase();
-  const hay = [item.label, item.en, typeof item.note === "string" ? item.note + " " + T(item.note) : ""];
+  const cat = CATS.find(c => c.id === item.cat);
+  const hay = [item.label, item.en, cat ? cat.th + " " + cat.en : "", typeof item.note === "string" ? item.note + " " + T(item.note) : ""];
   for (const loc of locs) {
     const raw = get(item, loc), v = shown(item, loc), n = pick(item.note, loc.id);
     hay.push(Array.isArray(raw) ? raw.join(" ") : raw + " " + v, n, T(n), pick(item.pat, loc.id));
@@ -616,6 +617,8 @@ function renderTabs() {
   document.getElementById("tabs").innerHTML = `<button class="tab" role="tab" data-view="compare" aria-selected="${view === "compare"}">${u("tabCompare")}</button><span class="tab-sep" aria-hidden="true"></span>` +
     LOCS.map(l => `<button class="tab" role="tab" data-view="${l.id}" aria-selected="${view === l.id}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button>`).join("") +
     `<span class="tab-sep" aria-hidden="true"></span><button class="tab" role="tab" data-view="testdata" aria-selected="${view === "testdata"}"><span class="code">UTF</span>${u("tabTD")}</button>`;
+  const tabs = document.getElementById("tabs"), on = tabs.querySelector('[aria-selected="true"]');
+  if (on && tabs.scrollWidth > tabs.clientWidth) { const a = on.getBoundingClientRect(), t = tabs.getBoundingClientRect(); tabs.scrollLeft += (a.left + a.width / 2) - (t.left + t.width / 2); }
 }
 function renderRail(list) {
   document.getElementById("rail").innerHTML = `<div class="rail-h">${u("railHead")}</div>` + list.map(c =>
@@ -744,10 +747,13 @@ function analyse(s) {
     const g = gbLen(ch); if (gb !== null) gb = g === null ? null : gb + g;
     return { ch, cp: cpOf(ch), type: charType(ch), u8: U8.encode(ch).length, u16: ch.length, gb: g };
   });
+  const isEmo = c => !!c && /[\p{Extended_Pictographic}\p{Emoji_Modifier}]/u.test(c);
+  const base = i => cps[i] === "\uFE0F" ? cps[i - 1] : cps[i];
+  const inEmoji = i => (cps[i] === "\u200D" && isEmo(base(i - 1)) && isEmo(cps[i + 1])) || (cps[i] === "\uFE0F" && isEmo(cps[i - 1]));
   const flags = {
     supp: cps.filter(c => c.codePointAt(0) >= 0x10000).length,
-    mark: rows.filter(r => r.type === "mark").length,
-    inv: rows.filter(r => r.type === "fmt" || (r.type === "space" && r.ch !== " ")).length,
+    mark: rows.filter((r, i) => r.type === "mark" && !inEmoji(i)).length,
+    inv: rows.filter((r, i) => (r.type === "fmt" && !inEmoji(i)) || (r.type === "space" && r.ch !== " ")).length,
     fw: cps.filter(c => /[\u3000！-｠￠-￦]/.test(c)).length,
     hw: cps.filter(c => /[｡-ﾟ]/.test(c)).length,
     lone: rows.filter(r => r.type === "lone").length,
@@ -858,7 +864,7 @@ const validView = v => v === "compare" || v === "testdata" || LOCS.some(l => l.i
 function setView(v, push = true) {
   if (!validView(v)) v = "compare";
   view = v;
-  if (push && location.hash.slice(1) !== v) { try { history.replaceState(null, "", "#" + v); } catch (e) { location.hash = v; } }
+  if (push && location.hash.slice(1) !== v) { try { history.pushState(null, "", "#" + v); } catch (e) { location.hash = v; } }
   render();
   window.scrollTo({ top: 0 });
 }
@@ -895,7 +901,9 @@ document.getElementById("tabs").addEventListener("keydown", e => {
   i = (i + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length; setView(ids[i]);
   document.querySelector(`.tab[data-view="${ids[i]}"]`).focus();
 });
-window.addEventListener("hashchange", () => setView(location.hash.slice(1) || "compare", false));
+const onNav = () => { const v = location.hash.slice(1) || "compare"; if (v !== view) setView(v, false); };
+window.addEventListener("hashchange", onNav);
+window.addEventListener("popstate", onNav);
 view = location.hash.slice(1) || "compare";
 if (!validView(view)) view = "compare";
 applyStatic();

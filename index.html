@@ -120,7 +120,7 @@ a { color: var(--accent); }
 
 /* Compare table */
 .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
-table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1100px; table-layout: fixed; }
+table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1240px; table-layout: fixed; }
 .cmp col.c-label { width: 200px; }
 .cmp th, .cmp td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .cmp tr:last-child > * { border-bottom: 0; }
@@ -144,7 +144,7 @@ table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width
 .val {
   display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: var(--specimen);
   border-radius: 8px; padding: 7px 10px; cursor: copy; font-family: var(--f-sample); font-size: 15px; line-height: 1.5;
-  white-space: pre-line; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; position: relative; transition: border-color .12s;
+  white-space: pre-line; overflow-wrap: break-word; font-variant-numeric: tabular-nums; position: relative; transition: border-color .12s;
 }
 .val:hover { border-color: var(--accent); }
 .val.list { display: flex; flex-wrap: wrap; gap: 4px; white-space: normal; }
@@ -329,7 +329,7 @@ footer ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; }
   .hero { padding: 18px; }
   .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cmp col.c-label { width: 140px; }
-  table.cmp { min-width: 1000px; }
+  table.cmp { min-width: 1120px; }
   .cmp th, .cmp td { padding: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
@@ -465,6 +465,29 @@ const C = {
    "F",
    "S",
    "S"
+  ],
+  "monthsShortInDate": [
+   "9. Jan.",
+   "9. Feb.",
+   "9. März",
+   "9. Apr.",
+   "9. Mai",
+   "9. Juni",
+   "9. Juli",
+   "9. Aug.",
+   "9. Sept.",
+   "9. Okt.",
+   "9. Nov.",
+   "9. Dez."
+  ],
+  "daysShortInDate": [
+   "Mo., 9. März",
+   "Di., 10. März",
+   "Mi., 11. März",
+   "Do., 12. März",
+   "Fr., 13. März",
+   "Sa., 14. März",
+   "So., 15. März"
   ],
   "num": "1.234.567,891",
   "neg": "-1.234,5",
@@ -620,6 +643,29 @@ const C = {
    "V",
    "S",
    "D"
+  ],
+  "monthsShortInDate": [
+   "9 janv.",
+   "9 févr.",
+   "9 mars",
+   "9 avr.",
+   "9 mai",
+   "9 juin",
+   "9 juil.",
+   "9 août",
+   "9 sept.",
+   "9 oct.",
+   "9 nov.",
+   "9 déc."
+  ],
+  "daysShortInDate": [
+   "lun. 9 mars",
+   "mar. 10 mars",
+   "mer. 11 mars",
+   "jeu. 12 mars",
+   "ven. 13 mars",
+   "sam. 14 mars",
+   "dim. 15 mars"
   ],
   "num": "1 234 567,891",
   "neg": "-1 234,5",
@@ -778,6 +824,29 @@ const C = {
    "土",
    "日"
   ],
+  "monthsShortInDate": [
+   "1月9日",
+   "2月9日",
+   "3月9日",
+   "4月9日",
+   "5月9日",
+   "6月9日",
+   "7月9日",
+   "8月9日",
+   "9月9日",
+   "10月9日",
+   "11月9日",
+   "12月9日"
+  ],
+  "daysShortInDate": [
+   "3月9日(月)",
+   "3月10日(火)",
+   "3月11日(水)",
+   "3月12日(木)",
+   "3月13日(金)",
+   "3月14日(土)",
+   "3月15日(日)"
+  ],
   "num": "1,234,567.891",
   "neg": "-1,234.5",
   "small": "0.5",
@@ -932,6 +1001,29 @@ const C = {
    "금",
    "토",
    "일"
+  ],
+  "monthsShortInDate": [
+   "1월 9일",
+   "2월 9일",
+   "3월 9일",
+   "4월 9일",
+   "5월 9일",
+   "6월 9일",
+   "7월 9일",
+   "8월 9일",
+   "9월 9일",
+   "10월 9일",
+   "11월 9일",
+   "12월 9일"
+  ],
+  "daysShortInDate": [
+   "3월 9일 (월)",
+   "3월 10일 (화)",
+   "3월 11일 (수)",
+   "3월 12일 (목)",
+   "3월 13일 (금)",
+   "3월 14일 (토)",
+   "3월 15일 (일)"
   ],
   "num": "1,234,567.891",
   "neg": "-1,234.5",
@@ -1088,6 +1180,29 @@ const C = {
    "六",
    "日"
   ],
+  "monthsShortInDate": [
+   "1月9日",
+   "2月9日",
+   "3月9日",
+   "4月9日",
+   "5月9日",
+   "6月9日",
+   "7月9日",
+   "8月9日",
+   "9月9日",
+   "10月9日",
+   "11月9日",
+   "12月9日"
+  ],
+  "daysShortInDate": [
+   "3月9日周一",
+   "3月10日周二",
+   "3月11日周三",
+   "3月12日周四",
+   "3月13日周五",
+   "3月14日周六",
+   "3月15日周日"
+  ],
   "num": "1,234,567.891",
   "neg": "-1,234.5",
   "small": "0.5",
@@ -1242,6 +1357,29 @@ const C = {
    "五",
    "六",
    "日"
+  ],
+  "monthsShortInDate": [
+   "1月9日",
+   "2月9日",
+   "3月9日",
+   "4月9日",
+   "5月9日",
+   "6月9日",
+   "7月9日",
+   "8月9日",
+   "9月9日",
+   "10月9日",
+   "11月9日",
+   "12月9日"
+  ],
+  "daysShortInDate": [
+   "3月9日週一",
+   "3月10日週二",
+   "3月11日週三",
+   "3月12日週四",
+   "3月13日週五",
+   "3月14日週六",
+   "3月15日週日"
   ],
   "num": "1,234,567.891",
   "neg": "-1,234.5",
@@ -1666,6 +1804,7 @@ const SORT = {
    "input": [
     "하늘",
     "가방",
+    "학생",
     "나무",
     "까치",
     "갈비",
@@ -1681,6 +1820,7 @@ const SORT = {
     "나무",
     "하늘",
     "學校",
+    "학생",
     "apple"
    ]
   },
@@ -1897,13 +2037,14 @@ const ITEMS = [
   { cat: "overview", label: "ลำดับวันที่", en: "Date order", src: "CLDR",
     v: K("วัน · เดือน · ปี", "วัน · เดือน · ปี", "ปี · เดือน · วัน", "ปี · เดือน · วัน", "ปี · เดือน · วัน", "ปี · เดือน · วัน") },
   { cat: "overview", label: "ระบบเวลาเริ่มต้น", en: "Default clock", src: "CLDR",
-    v: K("24 ชม.", "24 ชม.", "24 ชม.", "12 ชม. (오전/오후)", "24 ชม.", "12 ชม. (上午/下午)") },
+    v: K("24 ชม.", "24 ชม.", "24 ชม.", "12 ชม. (오전/오후)", "24 ชม.", "12 ชม. (凌晨/上午/中午/下午/晚上)") },
   { cat: "overview", label: "วันแรกของสัปดาห์", en: "First day of week", src: "CLDR",
     v: K("วันจันทร์", "วันจันทร์", "วันอาทิตย์", "วันอาทิตย์", "วันจันทร์", "วันอาทิตย์") },
   { cat: "overview", label: "สกุลเงินหลัก", en: "Local currency", src: "CLDR",
     v: K("EUR · € หลังตัวเลข", "EUR · € หลังตัวเลข", "JPY · ￥ หน้าตัวเลข", "KRW · ₩ หน้าตัวเลข", "CNY · ¥ หน้าตัวเลข", "TWD · $ หน้าตัวเลข") },
-  { cat: "overview", label: "เครื่องหมายคำพูดหลัก", en: "Primary quotes", src: "Style",
-    v: K("„…“", "«" + NN + "…" + NN + "»", "「…」", "“…”", "“…”", "「…」") },
+  { cat: "overview", label: "เครื่องหมายคำพูดหลัก", en: "Primary quotes", src: "CLDR",
+    v: K("„…“", "«" + NN + "…" + NN + "»", "「…」", "“…”", "“…”", "「…」"),
+    note: K("", "เครื่องหมายมาจาก CLDR ส่วนช่องว่างไม่ตัดบรรทัดด้านในมาจาก style guide (U+202F หรือ U+00A0)", "", "", "", "") },
 
   // ---------- date ----------
   { cat: "date", label: "แบบสั้น", en: "Short date", src: "CLDR", v: "dateShort",
@@ -1956,17 +2097,22 @@ const ITEMS = [
   { cat: "calendar", label: "การนับสัปดาห์ของปี", en: "Week numbering", src: "CLDR",
     v: K("KW 11", "semaine 11 (S11)", "第11週", "11주차", "第11周", "第11週"),
     note: K("ISO 8601: สัปดาห์แรกต้องมีอย่างน้อย 4 วัน", "ISO 8601: สัปดาห์แรกต้องมีอย่างน้อย 4 วัน", "สัปดาห์แรกคือสัปดาห์ที่มี 1 ม.ค.", "สัปดาห์แรกคือสัปดาห์ที่มี 1 ม.ค.", "สัปดาห์แรกคือสัปดาห์ที่มี 1 ม.ค.", "สัปดาห์แรกคือสัปดาห์ที่มี 1 ม.ค.") },
-  { cat: "calendar", label: "ชื่อเดือน", en: "Month names", src: "CLDR", v: "months", list: true },
-  { cat: "calendar", label: "ชื่อเดือนแบบย่อ", en: "Month abbreviations", src: "CLDR", v: "monthsShort", list: true },
+  { cat: "calendar", label: "ชื่อเดือน", en: "Month names", src: "CLDR", v: "months", list: true,
+    note: K("", "", "", "", "ใช้เมื่อแสดงเดี่ยว เช่นหัวปฏิทิน ในวันที่ใช้ตัวเลข 3月 (ไม่ใช่ 三月)", "") },
+  { cat: "calendar", label: "ชื่อเดือนแบบย่อ (แบบเดี่ยว)", en: "Month abbreviations (standalone)", src: "CLDR", v: "monthsShort", list: true,
+    note: K("ใช้เมื่อแสดงเดี่ยว เช่นหัวปฏิทินหรือรายการเดือน ในวันที่จะต่างกัน (ดูแถวถัดไป)", "", "", "", "", "") },
+  { cat: "calendar", label: "ชื่อเดือนแบบย่อในวันที่", en: "Month abbreviations in a date", src: "CLDR", v: "monthsShortInDate", list: true,
+    note: K("ในวันที่ใช้ Jan. · März · Juni · Sept. ไม่ใช่ Jan · Mär · Jun · Sep", "", "", "", "", "") },
   { cat: "calendar", label: "ชื่อวัน (จันทร์–อาทิตย์)", en: "Weekday names", src: "CLDR", v: "days", list: true },
-  { cat: "calendar", label: "ชื่อวันแบบย่อ", en: "Weekday abbreviations", src: "CLDR", v: "daysShort", list: true,
-    note: K("", "มีจุดท้าย", "ในวงเล็บหลังวันที่: (月)", "ในวงเล็บหลังวันที่: (월)", "周一 ใน CN", "週一 ใน TW (ไม่ใช่ 周)") },
+  { cat: "calendar", label: "ชื่อวันแบบย่อ (แบบเดี่ยว)", en: "Weekday abbreviations (standalone)", src: "CLDR", v: "daysShort", list: true,
+    note: K("แบบเดี่ยวไม่มีจุด แต่ในวันที่มีจุด: Mo., 9. März (ดูแถวถัดไป)", "มีจุดท้าย", "ในวงเล็บหลังวันที่: (月)", "ในวงเล็บหลังวันที่: (월)", "周一 ใน CN", "週一 ใน TW (ไม่ใช่ 周)") },
+  { cat: "calendar", label: "ชื่อวันแบบย่อในวันที่", en: "Weekday abbreviations in a date", src: "CLDR", v: "daysShortInDate", list: true },
   { cat: "calendar", label: "ปฏิทินอื่นที่ใช้จริง", en: "Other calendars in use", src: "CLDR",
     v: (c, x, id) => ({ de: "—", fr: "—", ja: x.jaEraLong + "\n" + x.jaEraShort, ko: "음력 1월 21일", "zh-hans": "农历 正月廿一\n(" + x.cnLunar + ")", "zh-hant": x.rocLong + "\n" + x.rocShort })[id],
     note: K("ใช้ปฏิทินเกรโกเรียนอย่างเดียว", "ใช้ปฏิทินเกรโกเรียนอย่างเดียว", "รัชศก 令和 เริ่มปี 2019 ปีแรกเขียนว่า 元年", "จันทรคติ (음력) ใช้กับวันหยุด เช่น 설날", "จันทรคติใช้กับเทศกาล เช่น 春节", "ปี 民國 = ค.ศ. − 1911") },
   { cat: "calendar", label: "เวลาแบบสัมพัทธ์: เมื่อวาน", en: "Relative: yesterday", src: "CLDR", v: "rel.yesterday" },
   { cat: "calendar", label: "เวลาแบบสัมพัทธ์: 3 วันก่อน", en: "Relative: 3 days ago", src: "CLDR", v: "rel.days3ago",
-    note: K("", "", "CLDR มีเว้นวรรค (3 日前) แต่ UI ทั่วไปมักไม่เว้น", "", "", "") },
+    note: K("", "", "CLDR มีเว้นวรรค (3 日前) แต่ UI ทั่วไปมักไม่เว้น", "", "", "CLDR มีเว้นวรรค (3 天前, 2 小時後)") },
   { cat: "calendar", label: "เวลาแบบสัมพัทธ์: อีก 2 ชั่วโมง", en: "Relative: in 2 hours", src: "CLDR", v: "rel.in2h" },
   { cat: "calendar", label: "เวลาแบบสัมพัทธ์: สัปดาห์หน้า", en: "Relative: next week", src: "CLDR", v: "rel.nextWeek" },
 
@@ -1985,8 +2131,8 @@ const ITEMS = [
 
   // ---------- currency ----------
   { cat: "currency", label: "สกุลเงินท้องถิ่น", en: "Local currency", src: "CLDR", v: "cur",
-    pat: K("#,##0.00" + NB + "¤", "#,##0.00" + NB + "¤", "¤#,##0", "¤#,##0", "¤#,##0.00", "¤#,##0.00"),
-    note: K("สัญลักษณ์อยู่หลังตัวเลข มี NBSP คั่น", "สัญลักษณ์อยู่หลังตัวเลข มี NBSP คั่น", "ไม่มีทศนิยม (1234.5 ปัดเป็น 1,235)", "ไม่มีทศนิยม (1234.5 ปัดเป็น 1,235)", "", "ในทางปฏิบัตินิยมเขียน NT$ เพื่อไม่ให้สับสนกับ USD") },
+    pat: K("#,##0.00" + NB + "¤", "#,##0.00" + NB + "¤", "¤#,##0.00", "¤#,##0.00", "¤#,##0.00", "¤#,##0.00"),
+    note: K("สัญลักษณ์อยู่หลังตัวเลข มี NBSP คั่น", "สัญลักษณ์อยู่หลังตัวเลข มี NBSP คั่น", "pattern มี .00 แต่ JPY กำหนดทศนิยม 0 ตำแหน่ง จึงไม่มีทศนิยม (1234.5 ปัดเป็น 1,235)", "pattern มี .00 แต่ KRW กำหนดทศนิยม 0 ตำแหน่ง จึงไม่มีทศนิยม (1234.5 ปัดเป็น 1,235)", "", "ในทางปฏิบัตินิยมเขียน NT$ เพื่อไม่ให้สับสนกับ USD") },
   { cat: "currency", label: "จำนวนเงินติดลบ", en: "Negative amount", src: "CLDR", v: "curNeg" },
   { cat: "currency", label: "แบบบัญชี (ติดลบ)", en: "Accounting format", src: "CLDR", v: "curAcct",
     note: K("เยอรมันไม่ใช้วงเล็บ ใช้เครื่องหมายลบ", "ใช้วงเล็บ", "ใช้วงเล็บ", "ใช้วงเล็บ", "ใช้วงเล็บ", "ใช้วงเล็บ") },
@@ -2032,7 +2178,7 @@ const ITEMS = [
   // ---------- text ----------
   { cat: "text", label: "เครื่องหมายคำพูด", en: "Quotation marks", src: "CLDR",
     v: K("„Text“", "«" + NN + "texte" + NN + "»", "「テキスト」", "“텍스트”", "“文本”", "「文字」"),
-    note: K("เปิดล่าง ปิดบน; หนังสือบางสำนักใช้ »Text«", "มีช่องว่างไม่ตัดบรรทัดด้านใน", "", "", "", "") },
+    note: K("เปิดล่าง ปิดบน; หนังสือบางสำนักใช้ »Text«", "เครื่องหมายมาจาก CLDR ส่วนช่องว่างไม่ตัดบรรทัดด้านในมาจาก style guide (U+202F หรือ U+00A0)", "", "", "", "") },
   { cat: "text", label: "คำพูดซ้อน", en: "Nested quotes", src: "CLDR",
     v: K("‚Text‘", "“texte”", "『テキスト』", "‘텍스트’", "‘文本’", "『文字』") },
   { cat: "text", label: "ชื่อหนังสือ / ผลงาน", en: "Title marks", src: "Style",
@@ -2042,7 +2188,7 @@ const ITEMS = [
   { cat: "text", label: "รายการ (A, B หรือ C)", en: "List: or", src: "CLDR", v: "listOr" },
   { cat: "text", label: "วรรคตอนในประโยค", en: "Sentence punctuation", src: "Style",
     v: K("Speichern? Hinweis: Fertig!", "Enregistrer" + NN + "? Remarque" + NB + ": terminé" + NN + "!", "保存しますか？注意：完了しました。", "저장하시겠습니까? 참고: 완료되었습니다.", "要保存吗？注意：已完成。", "要儲存嗎？注意：已完成。"),
-    note: K("ไม่มีช่องว่างก่อน ? ! : ;", "ต้องมีช่องว่างไม่ตัดบรรทัดก่อน ; ! ? (U+202F) และก่อน : (U+00A0)", "เครื่องหมายเต็มความกว้าง 。、？！", "ใช้เครื่องหมายแบบตะวันตกครึ่งความกว้าง", "เครื่องหมายเต็มความกว้าง ，。？！：；", "เครื่องหมายเต็มความกว้าง วาง 。，、 กลางช่องตัวอักษร") },
+    note: K("ไม่มีช่องว่างก่อน ? ! : ;", "ต้องมีช่องว่างไม่ตัดบรรทัดก่อน ; ! ? และ : แนวของฝรั่งเศสใช้ U+202F ก่อน ; ! ? และ U+00A0 ก่อน : แต่ Word และ style guide หลายแห่งใช้ U+00A0 ทุกตำแหน่ง ให้ยึด style guide ของโปรดักต์", "เครื่องหมายเต็มความกว้าง 。、？！", "ใช้เครื่องหมายแบบตะวันตกครึ่งความกว้าง", "เครื่องหมายเต็มความกว้าง ，。？！：；", "เครื่องหมายเต็มความกว้าง วาง 。，、 กลางช่องตัวอักษร") },
   { cat: "text", label: "ช่องว่างระหว่างคำ", en: "Word spacing", src: "Style",
     v: K("มี", "มี", "ไม่มี", "มี (띄어쓰기)", "ไม่มี", "ไม่มี"),
     note: K("", "", "", "", "style guide ส่วนใหญ่ให้เว้นวรรคระหว่างจีนกับอังกฤษ/ตัวเลข (ไม่ใช่มาตรฐานรัฐ)", "style guide ส่วนใหญ่ให้เว้นวรรคระหว่างจีนกับอังกฤษ/ตัวเลข") },
@@ -2051,7 +2197,7 @@ const ITEMS = [
     note: K("", "", "ใช้ U+2026 สองตัว", "", "ใช้ U+2026 สองตัว (หกจุด)", "ใช้ U+2026 สองตัว (หกจุด)") },
   { cat: "text", label: "ขีด (dash)", en: "Dash", src: "Style",
     v: K("Text – Text", "texte – texte", "テキスト――テキスト", "텍스트—텍스트", "文本——文本", "文字——文字"),
-    note: K("en dash มีเว้นวรรค (Gedankenstrich)", "", "em dash สองตัว", "", "破折号 = em dash สองตัว", "") },
+    note: K("en dash มีเว้นวรรค (Gedankenstrich)", "", "U+2015 (―) สองตัว บางระบบใช้ em dash U+2014 (—) แทน ให้ตกลงใช้แบบเดียวทั้งโปรเจกต์", "", "破折号 = em dash สองตัว", "") },
   { cat: "text", label: "ตัวพิมพ์ใหญ่", en: "Capitalization", src: "Style",
     v: K("คำนามทุกคำขึ้นต้นตัวใหญ่", "หัวข้อขึ้นต้นตัวใหญ่แค่คำแรก", "ไม่มี", "ไม่มี", "ไม่มี", "ไม่มี"),
     note: K("ชื่อวันและเดือนขึ้นต้นตัวใหญ่ (Montag, März)", "ชื่อวัน เดือน ภาษาพิมพ์เล็ก; ตัวใหญ่ต้องคงสำเนียง (É, À)", "คำอังกฤษในประโยคคงตามต้นฉบับ", "", "", "") },
@@ -2071,7 +2217,7 @@ const ITEMS = [
 
   // ---------- sort ----------
   { cat: "sort", label: "หลักการเรียงของภาษา", en: "Collation basis", src: "CLDR",
-    v: K("ä ö ü เรียงต่อจาก a o u\n(Apfel < Äpfel)", "สำเนียงมีผลเป็นลำดับรอง\n(cote < coté < côte < côté)", "ตามเสียงอ่าน あいうえお\nคันจิตามลำดับ JIS", "ตามลำดับ 가나다\nฮันจาแทรกปนกับฮันกึลตามเสียงอ่าน", "ตามพินอิน (拼音)", "ตามจำนวนขีด (筆畫)"),
+    v: K("ä ö ü เท่ากับ a o u ในลำดับหลัก ไม่ได้ไปอยู่ท้ายแบบภาษาสวีเดน\n(Apfel < Äpfel < Ärger < Azur)", "สำเนียงมีผลเป็นลำดับรอง\n(cote < coté < côte < côté)", "ตามเสียงอ่าน あいうえお\nคันจิตามลำดับ JIS", "ตามลำดับ 가나다\nฮันจาแทรกปนกับฮันกึลตามเสียงอ่าน", "ตามพินอิน (拼音)", "ตามจำนวนขีด (筆畫)"),
     note: K("ตัวพิมพ์ใหญ่-เล็กไม่ใช่ลำดับหลัก", "", "ฮิรางานะกับคาตาคานะถือว่าเท่ากันในลำดับหลัก", "ㄲ ㄸ ㅃ ㅆ ㅉ มาหลังพยัญชนะเดี่ยวของมัน", "", "จำนวนขีดเท่ากันจะเรียงตามรากศัพท์ (部首)") },
   { cat: "sort", label: "ลำดับระบบตัวเขียน", en: "Script order", src: "CLDR",
     v: (c, x, id) => SORT.scripts[id].map(T).join(" → "),
@@ -2083,12 +2229,12 @@ const ITEMS = [
              "Before: " + SORT.spec.de.input.join(", ") + "\nStrasse comes before Straße, and Apfel before Äpfel"),
       fr: tr("ก่อนเรียง: " + SORT.spec.fr.input.join(", ") + "\ncoeur กับ cœur เท่ากันในลำดับหลัก ตัดสินที่ลำดับรอง",
              "Before: " + SORT.spec.fr.input.join(", ") + "\ncoeur and cœur are equal at the primary level; the secondary level decides"),
-      ja: tr("ก่อนเรียง: " + SORT.spec.ja.input.join("、") + "\nかこう → かっこう → がっこう: ตัวธรรมดามาก่อนตัวเล็ก (っ) และตัวที่มี dakuten",
-             "Before: " + SORT.spec.ja.input.join("、") + "\nかこう → かっこう → がっこう: plain kana come before small kana (っ) and kana with dakuten"),
-      ko: tr("ก่อนเรียง: " + SORT.spec.ko.input.join(", ") + "\n까치 (ㄲ) มาหลัง ㄱ ทั้งหมด; 學校 (학교) แทรกตามเสียง 학; ละตินอยู่ท้าย",
-             "Before: " + SORT.spec.ko.input.join(", ") + "\n까치 (ㄲ) comes after every ㄱ word; 學校 (학교) is placed by its reading 학; Latin goes last"),
-      "zh-hans": tr("ก่อนเรียง: " + SORT.spec["zh-hans"].input.join("、") + "\n长城 ถูกเรียงด้วยเสียง zhǎng (ไม่ใช่ cháng) จึงไปอยู่หลัง 重庆; Beijing อยู่หลังอักษรจีนทั้งหมด",
-             "Before: " + SORT.spec["zh-hans"].input.join("、") + "\n长城 sorts by the reading zhǎng (not cháng), so it lands after 重庆; Beijing comes after all Chinese characters"),
+      ja: tr("ก่อนเรียง: " + SORT.spec.ja.input.join("、") + "\nかこう → かっこう → がっこう: ตัวธรรมดามาก่อนตัวเล็ก (っ) และตัวที่มี dakuten\nかこう กับ カコウ และ かーど กับ カード เปรียบเทียบได้เท่ากันใน Intl.Collator ลำดับของคู่นี้จึงขึ้นกับแอป ไม่ใช่บั๊ก",
+             "Before: " + SORT.spec.ja.input.join("、") + "\nかこう → かっこう → がっこう: plain kana come before small kana (っ) and kana with dakuten\nかこう / カコウ and かーど / カード compare as equal in Intl.Collator, so their order depends on the app and is not a bug"),
+      ko: tr("ก่อนเรียง: " + SORT.spec.ko.input.join(", ") + "\n까치 (ㄲ) มาหลัง ㄱ ทั้งหมด; 學校 (학교) แทรกตามเสียง 학 จึงมาก่อน 학생; ละตินอยู่ท้าย",
+             "Before: " + SORT.spec.ko.input.join(", ") + "\n까치 (ㄲ) comes after every ㄱ word; 學校 (학교) is placed by its reading 학, so it comes before 학생; Latin goes last"),
+      "zh-hans": tr("ก่อนเรียง: " + SORT.spec["zh-hans"].input.join("、") + "\n长城 ถูกเรียงด้วยเสียง zhǎng (ไม่ใช่ cháng) จึงไปอยู่หลัง 重庆 (重庆 เป็นคำยกเว้นที่เรียงเป็น chóng ส่วน 重 ตัวเดียวหรือ 重要 เรียงเป็น zhòng); Beijing อยู่หลังอักษรจีนทั้งหมด",
+             "Before: " + SORT.spec["zh-hans"].input.join("、") + "\n长城 sorts by the reading zhǎng (not cháng), so it lands after 重庆 (重庆 is an exception sorted as chóng, while 重 alone or 重要 sorts as zhòng); Beijing comes after all Chinese characters"),
       "zh-hant": tr("ก่อนเรียง: " + SORT.spec["zh-hant"].input.join("、") + "\n一 (1 ขีด) · 十 (2) · 大 (3) · 中 日 月 水 (4) · 國 (11)",
              "Before: " + SORT.spec["zh-hant"].input.join("、") + "\n一 (1 stroke) · 十 (2) · 大 (3) · 中 日 月 水 (4) · 國 (11)")
     } },
@@ -2257,7 +2403,7 @@ const SORT_QA = [
   "ไฟล์ CJK ไม่ได้อยู่ท้ายเสมอ: UI จีนวางอักษรฮั่นก่อนละติน และ UI เกาหลีวางฮันกึลก่อนละติน",
   "ถ้าเห็นตัวพิมพ์ใหญ่ทั้งหมดมาก่อนตัวเล็ก หรือ É Ü ไปอยู่หลัง Z แปลว่าโค้ดเรียงตาม code point ไม่ได้ใช้ collation ของภาษา",
   "ตัวเลขในชื่อไฟล์: ตัวจัดการไฟล์ส่วนใหญ่ใช้ natural sort (clip2 ก่อน clip10) แต่ collation มาตรฐานไม่ใช่ ให้ดู spec ของโปรดักต์ว่าคาดหวังแบบไหน",
-  "จีน: อักษรหลายเสียง (多音字) ใช้เสียงเดียวตอนเรียง เช่น 长城 ถูกจัดไว้ใต้ Z ทั้งที่อ่าน cháng ไม่ใช่บั๊กของโปรดักต์",
+  "จีน: อักษรหลายเสียง (多音字) ส่วนใหญ่ใช้เสียงเดียวตอนเรียง เช่น 长城 ถูกจัดไว้ใต้ Z ทั้งที่อ่าน cháng แต่มีคำยกเว้นบางคำ เช่น 重庆 ถูกเรียงเป็น chóng ทั้งสองแบบไม่ใช่บั๊กของโปรดักต์",
   "ญี่ปุ่น: คันจิเรียงตามลำดับ JIS ไม่ใช่เสียงอ่านจริงของคำ ถ้าสเปกต้องการเรียงตามเสียงอ่าน ต้องมีข้อมูล furigana",
   "ผลจริงในแต่ละแอปขึ้นกับ library ที่ใช้ (ICU, Windows, macOS) และเวอร์ชัน ใช้ตารางนี้เป็นค่าอ้างอิงตาม CLDR"
 ];
@@ -2268,7 +2414,7 @@ Object.assign(EN, {
   "ปี · เดือน · วัน": "Year · Month · Day",
   "24 ชม.": "24-hour",
   "12 ชม. (오전/오후)": "12-hour (오전/오후)",
-  "12 ชม. (上午/下午)": "12-hour (上午/下午)",
+  "12 ชม. (凌晨/上午/中午/下午/晚上)": "12-hour (凌晨/上午/中午/下午/晚上)",
   "วันจันทร์": "Monday",
   "วันอาทิตย์": "Sunday",
   "EUR · € หลังตัวเลข": "EUR · € after the number",
@@ -2325,6 +2471,10 @@ Object.assign(EN, {
   "ISO 8601: สัปดาห์แรกต้องมีอย่างน้อย 4 วัน": "ISO 8601: week 1 must contain at least 4 days",
   "สัปดาห์แรกคือสัปดาห์ที่มี 1 ม.ค.": "Week 1 is the week that contains January 1",
   "มีจุดท้าย": "Ends with a period",
+  "ใช้เมื่อแสดงเดี่ยว เช่นหัวปฏิทิน ในวันที่ใช้ตัวเลข 3月 (ไม่ใช่ 三月)": "Used on its own, e.g. calendar headers; dates use the numeral 3月 (not 三月)",
+  "ใช้เมื่อแสดงเดี่ยว เช่นหัวปฏิทินหรือรายการเดือน ในวันที่จะต่างกัน (ดูแถวถัดไป)": "Used on its own, e.g. calendar headers or month lists; inside a date the forms differ (see the next row)",
+  "ในวันที่ใช้ Jan. · März · Juni · Sept. ไม่ใช่ Jan · Mär · Jun · Sep": "Inside a date: Jan. · März · Juni · Sept., not Jan · Mär · Jun · Sep",
+  "แบบเดี่ยวไม่มีจุด แต่ในวันที่มีจุด: Mo., 9. März (ดูแถวถัดไป)": "No period on its own, but a period inside a date: Mo., 9. März (see the next row)",
   "ในวงเล็บหลังวันที่: (月)": "In parentheses after the date: (月)",
   "ในวงเล็บหลังวันที่: (월)": "In parentheses after the date: (월)",
   "周一 ใน CN": "周一 in CN",
@@ -2335,11 +2485,13 @@ Object.assign(EN, {
   "จันทรคติใช้กับเทศกาล เช่น 春节": "Lunar calendar is used for festivals such as 春节",
   "ปี 民國 = ค.ศ. − 1911": "民國 year = Gregorian year − 1911",
   "CLDR มีเว้นวรรค (3 日前) แต่ UI ทั่วไปมักไม่เว้น": "CLDR has a space (3 日前), but most UIs omit it",
+  "CLDR มีเว้นวรรค (3 天前, 2 小時後)": "CLDR has spaces (3 天前, 2 小時後)",
   "Duden อนุญาตให้ไม่ใส่ตัวคั่นได้ (1234)": "Duden allows no separator for 4 digits (1234)",
   "ทุกภาษาใช้ hyphen-minus (U+002D) ตาม CLDR": "All locales use hyphen-minus (U+002D) per CLDR",
   "มี NBSP ก่อน %": "NBSP before %",
   "สัญลักษณ์อยู่หลังตัวเลข มี NBSP คั่น": "Symbol after the number, separated by NBSP",
-  "ไม่มีทศนิยม (1234.5 ปัดเป็น 1,235)": "No decimals (1234.5 rounds to 1,235)",
+  "pattern มี .00 แต่ JPY กำหนดทศนิยม 0 ตำแหน่ง จึงไม่มีทศนิยม (1234.5 ปัดเป็น 1,235)": "The pattern has .00, but JPY is defined with 0 decimal digits, so no decimals (1234.5 rounds to 1,235)",
+  "pattern มี .00 แต่ KRW กำหนดทศนิยม 0 ตำแหน่ง จึงไม่มีทศนิยม (1234.5 ปัดเป็น 1,235)": "The pattern has .00, but KRW is defined with 0 decimal digits, so no decimals (1234.5 rounds to 1,235)",
   "ในทางปฏิบัตินิยมเขียน NT$ เพื่อไม่ให้สับสนกับ USD": "In practice NT$ is common, to avoid confusion with USD",
   "เยอรมันไม่ใช้วงเล็บ ใช้เครื่องหมายลบ": "German uses a minus sign, not parentheses",
   "ใช้วงเล็บ": "Uses parentheses",
@@ -2377,7 +2529,7 @@ Object.assign(EN, {
   "e ยก (superscript) ห้ามใช้ 2ème หรือ 2nd": "Superscript e; never 2ème or 2nd",
   "ขนาด B ของ JIS ใหญ่กว่า ISO B": "JIS B sizes are larger than ISO B",
   "เปิดล่าง ปิดบน; หนังสือบางสำนักใช้ »Text«": "Opens low, closes high; some publishers use »Text«",
-  "มีช่องว่างไม่ตัดบรรทัดด้านใน": "No-break spaces inside the marks",
+  "เครื่องหมายมาจาก CLDR ส่วนช่องว่างไม่ตัดบรรทัดด้านในมาจาก style guide (U+202F หรือ U+00A0)": "The marks come from CLDR; the no-break spaces inside come from style guides (U+202F or U+00A0)",
   "„Titel“ หรือตัวเอียง": "„Titel“ or italics",
   "ตัวเอียง": "Italics",
   "ไม่มีจุลภาคก่อน und": "No comma before und",
@@ -2385,7 +2537,7 @@ Object.assign(EN, {
   "ใช้ 、": "Uses 、",
   "ใช้ 、 คั่นรายการ": "Uses 、 between items",
   "ไม่มีช่องว่างก่อน ? ! : ;": "No space before ? ! : ;",
-  "ต้องมีช่องว่างไม่ตัดบรรทัดก่อน ; ! ? (U+202F) และก่อน : (U+00A0)": "No-break space required before ; ! ? (U+202F) and before : (U+00A0)",
+  "ต้องมีช่องว่างไม่ตัดบรรทัดก่อน ; ! ? และ : แนวของฝรั่งเศสใช้ U+202F ก่อน ; ! ? และ U+00A0 ก่อน : แต่ Word และ style guide หลายแห่งใช้ U+00A0 ทุกตำแหน่ง ให้ยึด style guide ของโปรดักต์": "A no-break space is required before ; ! ? and :. French typography uses U+202F before ; ! ? and U+00A0 before :, but Word and many style guides use U+00A0 everywhere; follow the product style guide",
   "เครื่องหมายเต็มความกว้าง 。、？！": "Full-width punctuation 。、？！",
   "ใช้เครื่องหมายแบบตะวันตกครึ่งความกว้าง": "Western half-width punctuation",
   "เครื่องหมายเต็มความกว้าง ，。？！：；": "Full-width punctuation ，。？！：；",
@@ -2399,7 +2551,7 @@ Object.assign(EN, {
   "ใช้ U+2026 สองตัว": "Two U+2026 characters",
   "ใช้ U+2026 สองตัว (หกจุด)": "Two U+2026 characters (six dots)",
   "en dash มีเว้นวรรค (Gedankenstrich)": "Spaced en dash (Gedankenstrich)",
-  "em dash สองตัว": "Two em dashes",
+  "U+2015 (―) สองตัว บางระบบใช้ em dash U+2014 (—) แทน ให้ตกลงใช้แบบเดียวทั้งโปรเจกต์": "Two U+2015 (―); some systems use the em dash U+2014 (—) instead, so agree on one across the project",
   "破折号 = em dash สองตัว": "破折号 = two em dashes",
   "คำนามทุกคำขึ้นต้นตัวใหญ่": "Every noun is capitalized",
   "หัวข้อขึ้นต้นตัวใหญ่แค่คำแรก": "Headings capitalize only the first word",
@@ -2422,7 +2574,7 @@ Object.assign(EN, {
   "CLDR เป็นตัวเล็ก (français) แต่ขึ้นต้นตัวใหญ่เมื่ออยู่ในเมนู": "CLDR uses lowercase (français), but capitalize it at the start of a menu item",
   "Strg+S แทน Ctrl+S": "Strg+S instead of Ctrl+S",
   "ใช้ชื่ออังกฤษ": "English key names",
-  "ä ö ü เรียงต่อจาก a o u\n(Apfel < Äpfel)": "ä ö ü sort right after a o u\n(Apfel < Äpfel)",
+  "ä ö ü เท่ากับ a o u ในลำดับหลัก ไม่ได้ไปอยู่ท้ายแบบภาษาสวีเดน\n(Apfel < Äpfel < Ärger < Azur)": "ä ö ü equal a o u at the primary level; they don't go to the end as in Swedish\n(Apfel < Äpfel < Ärger < Azur)",
   "สำเนียงมีผลเป็นลำดับรอง\n(cote < coté < côte < côté)": "Accents are a secondary difference\n(cote < coté < côte < côté)",
   "ตามเสียงอ่าน あいうえお\nคันจิตามลำดับ JIS": "By reading, あいうえお order\nKanji in JIS order",
   "ตามลำดับ 가나다\nฮันจาแทรกปนกับฮันกึลตามเสียงอ่าน": "가나다 order\nHanja interleaved with Hangul by reading",
@@ -2546,7 +2698,7 @@ Object.assign(EN, {
   "ไฟล์ CJK ไม่ได้อยู่ท้ายเสมอ: UI จีนวางอักษรฮั่นก่อนละติน และ UI เกาหลีวางฮันกึลก่อนละติน": "CJK files aren't always last: a Chinese UI puts Han before Latin, and a Korean UI puts Hangul before Latin",
   "ถ้าเห็นตัวพิมพ์ใหญ่ทั้งหมดมาก่อนตัวเล็ก หรือ É Ü ไปอยู่หลัง Z แปลว่าโค้ดเรียงตาม code point ไม่ได้ใช้ collation ของภาษา": "If all capitals come before lowercase, or É and Ü land after Z, the code sorts by code point instead of using the language's collation",
   "ตัวเลขในชื่อไฟล์: ตัวจัดการไฟล์ส่วนใหญ่ใช้ natural sort (clip2 ก่อน clip10) แต่ collation มาตรฐานไม่ใช่ ให้ดู spec ของโปรดักต์ว่าคาดหวังแบบไหน": "Digits in file names: most file managers use natural sort (clip2 before clip10), but standard collation doesn't; check which the product spec expects",
-  "จีน: อักษรหลายเสียง (多音字) ใช้เสียงเดียวตอนเรียง เช่น 长城 ถูกจัดไว้ใต้ Z ทั้งที่อ่าน cháng ไม่ใช่บั๊กของโปรดักต์": "Chinese: polyphonic characters (多音字) sort by one reading, so 长城 lands under Z even though it is read cháng; this is not a product bug",
+  "จีน: อักษรหลายเสียง (多音字) ส่วนใหญ่ใช้เสียงเดียวตอนเรียง เช่น 长城 ถูกจัดไว้ใต้ Z ทั้งที่อ่าน cháng แต่มีคำยกเว้นบางคำ เช่น 重庆 ถูกเรียงเป็น chóng ทั้งสองแบบไม่ใช่บั๊กของโปรดักต์": "Chinese: polyphonic characters (多音字) mostly sort by one reading, so 长城 lands under Z even though it is read cháng, but a few words are exceptions, such as 重庆 sorted as chóng; neither is a product bug",
   "ญี่ปุ่น: คันจิเรียงตามลำดับ JIS ไม่ใช่เสียงอ่านจริงของคำ ถ้าสเปกต้องการเรียงตามเสียงอ่าน ต้องมีข้อมูล furigana": "Japanese: kanji sort in JIS order, not by the word's actual reading; sorting by reading needs furigana data",
   "ผลจริงในแต่ละแอปขึ้นกับ library ที่ใช้ (ICU, Windows, macOS) และเวอร์ชัน ใช้ตารางนี้เป็นค่าอ้างอิงตาม CLDR": "Real results depend on the library (ICU, Windows, macOS) and its version; treat this table as the CLDR reference",
   "สัญลักษณ์": "Symbols",
@@ -2645,7 +2797,7 @@ const TESTDATA = [
       { s: "ガギグ", t: { th: "คาตาคานะมี dakuten (เต็ม)", en: "Katakana with dakuten (full-width)" }, n: { th: "1 code point ต่อตัว", en: "1 code point each" } },
       { s: "ｶﾞｷﾞｸﾞ", t: { th: "คาตาคานะมี dakuten (ครึ่ง)", en: "Katakana with dakuten (half-width)" }, n: { th: "ﾞ แยกเป็นอีกตัว จึงเป็น 2 code point ต่อตัว", en: "ﾞ is a separate character, so 2 code points each" } },
       { s: "！？（）［］：", t: { th: "เครื่องหมายเต็มความกว้าง", en: "Full-width punctuation" }, n: { th: "", en: "" } },
-      { s: "a\u3000b", t: { th: "ช่องว่างเต็มความกว้าง (U+3000)", en: "Ideographic space (U+3000)" }, inv: true, n: { th: "trim() ของ JavaScript ลบได้ แต่บางระบบไม่นับเป็นช่องว่าง", en: "JavaScript trim() removes it, but some systems don't treat it as whitespace" } },
+      { s: "a\u3000b", t: { th: "ช่องว่างเต็มความกว้าง (U+3000)", en: "Ideographic space (U+3000)" }, inv: true, n: { th: "ถ้าอยู่ต้นหรือท้ายข้อความ trim() ของ JavaScript และ strip() ของ Python ลบได้ แต่ trim() ของ Java ไม่ลบ", en: "At the start or end of a string, JavaScript trim() and Python strip() remove it, but Java's trim() doesn't" } },
       { s: "￥ / ¥", t: { th: "เยนเต็มและครึ่งความกว้าง", en: "Full- and half-width yen" }, n: { th: "U+FFE5 กับ U+00A5", en: "U+FFE5 vs U+00A5" } }
     ] },
 
@@ -4778,7 +4930,8 @@ function charsSection(ids, cat) {
 function matches(item, locs) {
   if (!query) return true;
   const q = query.toLowerCase();
-  const hay = [item.label, item.en, typeof item.note === "string" ? item.note + " " + T(item.note) : ""];
+  const cat = CATS.find(c => c.id === item.cat);
+  const hay = [item.label, item.en, cat ? cat.th + " " + cat.en : "", typeof item.note === "string" ? item.note + " " + T(item.note) : ""];
   for (const loc of locs) {
     const raw = get(item, loc), v = shown(item, loc), n = pick(item.note, loc.id);
     hay.push(Array.isArray(raw) ? raw.join(" ") : raw + " " + v, n, T(n), pick(item.pat, loc.id));
@@ -4790,6 +4943,8 @@ function renderTabs() {
   document.getElementById("tabs").innerHTML = `<button class="tab" role="tab" data-view="compare" aria-selected="${view === "compare"}">${u("tabCompare")}</button><span class="tab-sep" aria-hidden="true"></span>` +
     LOCS.map(l => `<button class="tab" role="tab" data-view="${l.id}" aria-selected="${view === l.id}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button>`).join("") +
     `<span class="tab-sep" aria-hidden="true"></span><button class="tab" role="tab" data-view="testdata" aria-selected="${view === "testdata"}"><span class="code">UTF</span>${u("tabTD")}</button>`;
+  const tabs = document.getElementById("tabs"), on = tabs.querySelector('[aria-selected="true"]');
+  if (on && tabs.scrollWidth > tabs.clientWidth) { const a = on.getBoundingClientRect(), t = tabs.getBoundingClientRect(); tabs.scrollLeft += (a.left + a.width / 2) - (t.left + t.width / 2); }
 }
 function renderRail(list) {
   document.getElementById("rail").innerHTML = `<div class="rail-h">${u("railHead")}</div>` + list.map(c =>
@@ -4918,10 +5073,13 @@ function analyse(s) {
     const g = gbLen(ch); if (gb !== null) gb = g === null ? null : gb + g;
     return { ch, cp: cpOf(ch), type: charType(ch), u8: U8.encode(ch).length, u16: ch.length, gb: g };
   });
+  const isEmo = c => !!c && /[\p{Extended_Pictographic}\p{Emoji_Modifier}]/u.test(c);
+  const base = i => cps[i] === "\uFE0F" ? cps[i - 1] : cps[i];
+  const inEmoji = i => (cps[i] === "\u200D" && isEmo(base(i - 1)) && isEmo(cps[i + 1])) || (cps[i] === "\uFE0F" && isEmo(cps[i - 1]));
   const flags = {
     supp: cps.filter(c => c.codePointAt(0) >= 0x10000).length,
-    mark: rows.filter(r => r.type === "mark").length,
-    inv: rows.filter(r => r.type === "fmt" || (r.type === "space" && r.ch !== " ")).length,
+    mark: rows.filter((r, i) => r.type === "mark" && !inEmoji(i)).length,
+    inv: rows.filter((r, i) => (r.type === "fmt" && !inEmoji(i)) || (r.type === "space" && r.ch !== " ")).length,
     fw: cps.filter(c => /[\u3000！-｠￠-￦]/.test(c)).length,
     hw: cps.filter(c => /[｡-ﾟ]/.test(c)).length,
     lone: rows.filter(r => r.type === "lone").length,
@@ -5032,7 +5190,7 @@ const validView = v => v === "compare" || v === "testdata" || LOCS.some(l => l.i
 function setView(v, push = true) {
   if (!validView(v)) v = "compare";
   view = v;
-  if (push && location.hash.slice(1) !== v) { try { history.replaceState(null, "", "#" + v); } catch (e) { location.hash = v; } }
+  if (push && location.hash.slice(1) !== v) { try { history.pushState(null, "", "#" + v); } catch (e) { location.hash = v; } }
   render();
   window.scrollTo({ top: 0 });
 }
@@ -5069,7 +5227,9 @@ document.getElementById("tabs").addEventListener("keydown", e => {
   i = (i + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length; setView(ids[i]);
   document.querySelector(`.tab[data-view="${ids[i]}"]`).focus();
 });
-window.addEventListener("hashchange", () => setView(location.hash.slice(1) || "compare", false));
+const onNav = () => { const v = location.hash.slice(1) || "compare"; if (v !== view) setView(v, false); };
+window.addEventListener("hashchange", onNav);
+window.addEventListener("popstate", onNav);
 view = location.hash.slice(1) || "compare";
 if (!validView(view)) view = "compare";
 applyStatic();

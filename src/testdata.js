@@ -84,7 +84,7 @@ const TESTDATA = [
       { s: "ガギグ", t: { th: "คาตาคานะมี dakuten (เต็ม)", en: "Katakana with dakuten (full-width)" }, n: { th: "1 code point ต่อตัว", en: "1 code point each" } },
       { s: "ｶﾞｷﾞｸﾞ", t: { th: "คาตาคานะมี dakuten (ครึ่ง)", en: "Katakana with dakuten (half-width)" }, n: { th: "ﾞ แยกเป็นอีกตัว จึงเป็น 2 code point ต่อตัว", en: "ﾞ is a separate character, so 2 code points each" } },
       { s: "！？（）［］：", t: { th: "เครื่องหมายเต็มความกว้าง", en: "Full-width punctuation" }, n: { th: "", en: "" } },
-      { s: "a\u3000b", t: { th: "ช่องว่างเต็มความกว้าง (U+3000)", en: "Ideographic space (U+3000)" }, inv: true, n: { th: "trim() ของ JavaScript ลบได้ แต่บางระบบไม่นับเป็นช่องว่าง", en: "JavaScript trim() removes it, but some systems don't treat it as whitespace" } },
+      { s: "a\u3000b", t: { th: "ช่องว่างเต็มความกว้าง (U+3000)", en: "Ideographic space (U+3000)" }, inv: true, n: { th: "ถ้าอยู่ต้นหรือท้ายข้อความ trim() ของ JavaScript และ strip() ของ Python ลบได้ แต่ trim() ของ Java ไม่ลบ", en: "At the start or end of a string, JavaScript trim() and Python strip() remove it, but Java's trim() doesn't" } },
       { s: "￥ / ¥", t: { th: "เยนเต็มและครึ่งความกว้าง", en: "Full- and half-width yen" }, n: { th: "U+FFE5 กับ U+00A5", en: "U+FFE5 vs U+00A5" } }
     ] },
 
