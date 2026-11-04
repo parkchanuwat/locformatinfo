@@ -17,6 +17,9 @@ for (const l of L){
  for(let m=0;m<12;m++){const x=new Date(Date.UTC(2026,m,15));months.push(f({month:"long"},x));monthsShort.push(f({month:"short"},x));}
  for(let i=0;i<7;i++){const x=new Date(Date.UTC(2026,2,9+i));days.push(f({weekday:"long"},x));daysShort.push(f({weekday:"short"},x));daysNarrow.push(f({weekday:"narrow"},x));}
  Object.assign(r,{months,monthsShort,days,daysShort,daysNarrow});
+ // Format-context forms (inside a date) can differ from the standalone forms above, e.g. de "Sept." vs "Sep"
+ r.monthsShortInDate=[...Array(12).keys()].map(m=>f({month:"short",day:"numeric"},new Date(Date.UTC(2026,m,9))));
+ r.daysShortInDate=[...Array(7).keys()].map(i=>f({weekday:"short",month:"short",day:"numeric"},new Date(Date.UTC(2026,2,9+i))));
  const n=(v,opt={})=>new Intl.NumberFormat(l,opt).format(v);
  r.num=n(1234567.891); r.neg=n(-1234.5); r.small=n(0.5); r.int4=n(1234); r.int5=n(12345);
  r.sci=n(123456,{notation:"scientific"});
