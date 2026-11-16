@@ -1,5 +1,5 @@
 // Sanity checks for src/content.js: every cell cites a page that exists in its PDF,
-// every rule/warning has both Thai and English text, and nothing is left empty.
+// every rule has both Thai and English text, and nothing is left empty.
 const fs = require("fs"), path = require("path"), vm = require("vm");
 const ctx = {}; vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "src/content.js"), "utf8") + ";this.O={SOURCES,LOCS,CATS,ITEMS,CHECKS};", ctx);
@@ -16,9 +16,9 @@ for (const it of ITEMS) {
     const where = `${it.en} / ${l.id}`;
     if (c.p == null) errs.push(`${where}: no page`);
     else for (const n of pages(c.p)) if (!(n >= 1 && n <= SOURCES[l.id].pages)) errs.push(`${where}: page ${n} outside 1–${SOURCES[l.id].pages}`);
-    if (!c.s && !c.r && !c.na && !c.x) errs.push(`${where}: empty cell`);
-    [].concat(c.s || [], c.x || []).forEach(v => { if (typeof v !== "string" || !v.trim()) errs.push(`${where}: bad sample`); });
-    bi(c.r, where + " r"); bi(c.w, where + " w"); bi(c.na, where + " na");
+    if (!c.s && !c.r && !c.na) errs.push(`${where}: empty cell`);
+    [].concat(c.s || []).forEach(v => { if (typeof v !== "string" || !v.trim()) errs.push(`${where}: bad sample`); });
+    bi(c.r, where + " r"); bi(c.na, where + " na");
   }
 }
 for (const l of LOCS) for (const c of CHECKS[l.id] || []) { bi(c, `check ${l.id}`); for (const n of pages(c.p)) if (!(n >= 1 && n <= SOURCES[l.id].pages)) errs.push(`check ${l.id}: page ${n}`); }
