@@ -46,6 +46,7 @@ body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--f-body); -
 :lang(ko) { --f-sample: "IBM Plex Sans", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "IBM Plex Sans Thai", sans-serif; }
 :lang(zh-Hans) { --f-sample: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "IBM Plex Sans Thai", sans-serif; }
 :lang(zh-Hant) { --f-sample: "IBM Plex Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "IBM Plex Sans Thai", sans-serif; }
+:lang(th) { --f-sample: "IBM Plex Sans Thai", "IBM Plex Sans", "Leelawadee UI", "Thonburi", sans-serif; }
 button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
 a { color: var(--accent); }
@@ -112,7 +113,7 @@ body:not(.show-inv) .legend .lg-nb { display: none; }
 
 /* Compare table */
 .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
-table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1180px; table-layout: fixed; }
+table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1360px; table-layout: fixed; }
 .cmp col.c-label { width: 190px; }
 .cmp th, .cmp td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .cmp tr:last-child > * { border-bottom: 0; }
@@ -208,7 +209,7 @@ footer p { margin: 0 0 12px; max-width: 110ch; }
   .hero { padding: 18px; }
   .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cmp col.c-label { width: 140px; }
-  table.cmp { min-width: 1060px; }
+  table.cmp { min-width: 1220px; }
   .cmp th, .cmp td { padding: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
@@ -264,9 +265,9 @@ __CONTENT__
 // ---------- UI language ----------
 const UI = {
   th: {
-    subtitle: "รูปแบบวันที่ เวลา ตัวเลข สกุลเงิน เครื่องหมายวรรคตอน และข้อความ UI ใน 6 ภาษา สรุปจาก Adobe Localization Style Guide เท่านั้น ทุกค่ามีเลขหน้าอ้างอิง คลิกตัวอย่างเพื่อคัดลอกพร้อมอักขระจริง",
+    subtitle: "รูปแบบวันที่ เวลา ตัวเลข สกุลเงิน เครื่องหมายวรรคตอน และข้อความ UI ใน 7 ภาษา สรุปจาก Adobe Localization Style Guide เท่านั้น ทุกค่ามีเลขหน้าอ้างอิง คลิกตัวอย่างเพื่อคัดลอกพร้อมอักขระจริง",
     searchPh: "ค้นหา เช่น สกุลเงิน, «, Ctrl", searchAria: "ค้นหารายการ", inv: "แสดง NBSP", langAria: "ภาษาของหน้าเว็บ",
-    data: "ข้อมูล: <b>Adobe Localization Style Guide</b> (PDF) 6 เล่ม", lgPage: "หน้าใน PDF",
+    data: "ข้อมูล: <b>Adobe Localization Style Guide</b> (PDF) 7 เล่ม", lgPage: "หน้าใน PDF",
     tabsAria: "มุมมอง", railAria: "หมวดหมู่", railHead: "หมวดหมู่", tabCompare: "ตารางเทียบทุกภาษา", colItem: "รายการ",
     viewAll: l => `ดูภาษา${l.th}ทั้งหมด`, heroSub: l => `${l.en} · ภาษา${l.th}`, heroAria: "สรุป", checks: "จุดที่ต้องเช็คตอนตรวจงาน",
     empty: q => `ไม่พบรายการที่ตรงกับ “${q}” ลองใช้คำอื่น หรือล้างช่องค้นหา`,
@@ -277,9 +278,9 @@ const UI = {
     removed: "หัวข้อจากเว็บเวอร์ชันก่อนที่ไม่มีใน PDF ถูกเอาออกแล้ว ได้แก่ ค่าที่สร้างจาก CLDR (ชื่อเขตเวลา เวลาแบบสัมพัทธ์ วันแรกของสัปดาห์ การนับสัปดาห์ สัญกรณ์วิทยาศาสตร์ ชื่อภาษา) ตารางการเรียงลำดับแบบ collation อักขระพิเศษ DE/FR และหน้าชุดทดสอบอักขระ"
   },
   en: {
-    subtitle: "Date, time, number, currency, punctuation and UI text formats in 6 languages, taken only from the Adobe Localization Style Guides. Every value cites its PDF page. Click a sample to copy it with its exact characters.",
+    subtitle: "Date, time, number, currency, punctuation and UI text formats in 7 languages, taken only from the Adobe Localization Style Guides. Every value cites its PDF page. Click a sample to copy it with its exact characters.",
     searchPh: "Search, e.g. currency, «, Ctrl", searchAria: "Search items", inv: "Show NBSP", langAria: "Page language",
-    data: "Data: 6 <b>Adobe Localization Style Guide</b> PDFs", lgPage: "PDF page",
+    data: "Data: 7 <b>Adobe Localization Style Guide</b> PDFs", lgPage: "PDF page",
     tabsAria: "Views", railAria: "Categories", railHead: "Categories", tabCompare: "Compare all languages", colItem: "Item",
     viewAll: l => `View all of ${l.en}`, heroSub: l => l.en, heroAria: "Summary", checks: "What to check when reviewing",
     empty: q => `Nothing matches “${q}”. Try another term or clear the search.`,
