@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Locale Format Reference</title>
+<title>Locale Format Reference · Adobe Style Guides</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+KR:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Layout idea: a QA reference tool. Tabs on top (compare all / one language), sticky category rail on the left,
-     sample values as copyable "specimen" buttons, invisible spaces made visible with coloured marks. */
+  /* A QA reference tool: tabs on top (compare all / one language), sticky category rail on the left,
+     samples as copyable "specimen" buttons, every value tagged with the PDF page it comes from. */
   --bg: #f3f5f7;
   --surface: #ffffff;
   --ink: #15212d;
@@ -21,10 +21,9 @@
   --accent-soft: #e0eff0;
   --specimen: #f7f9fa;
   --mark-nb: #f4cf63;
-  --mark-nn: #c3b0f3;
-  --mark-th: #9fd9bd;
+  --bad: #b4382f; --bad-soft: #fbeceb;
+  --warn: #8a5a00; --warn-soft: #fdf3dc;
   --shadow: 0 1px 2px rgba(21,33,45,.06), 0 4px 16px rgba(21,33,45,.05);
-  --s-oth: #8b97a3; --s-lat: #2c6cd1; --s-hang: #c23f78; --s-kana: #d27a1f; --s-han: #6a4cc7; --bad: #b4382f; --bad-soft: #fbeceb;
   --f-display: "Anuphan", "IBM Plex Sans Thai", system-ui, sans-serif;
   --f-body: "IBM Plex Sans Thai", "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -35,15 +34,9 @@
   :root:not([data-theme="light"]) {
     --bg: #0e151b; --surface: #151f28; --ink: #e4ebf1; --muted: #93a1ae; --line: #253240;
     --accent: #5cc0c6; --accent-ink: #082024; --accent-soft: #16343a; --specimen: #1a2631;
-    --mark-nb: rgba(244,207,99,.45); --mark-nn: rgba(170,145,240,.5); --mark-th: rgba(110,200,160,.45);
-    --shadow: 0 1px 2px rgba(0,0,0,.3); --s-oth: #7d8995; --s-lat: #6fa2f0; --s-hang: #ec79a9; --s-kana: #f0a659; --s-han: #a58ef0; --bad: #f08a80; --bad-soft: #3a2020; color-scheme: dark;
+    --mark-nb: rgba(244,207,99,.45); --bad: #f08a80; --bad-soft: #3a2020; --warn: #f0c66e; --warn-soft: #3a3020;
+    --shadow: 0 1px 2px rgba(0,0,0,.3); color-scheme: dark;
   }
-}
-:root[data-theme="dark"] {
-  --bg: #0e151b; --surface: #151f28; --ink: #e4ebf1; --muted: #93a1ae; --line: #253240;
-  --accent: #5cc0c6; --accent-ink: #082024; --accent-soft: #16343a; --specimen: #1a2631;
-  --mark-nb: rgba(244,207,99,.45); --mark-nn: rgba(170,145,240,.5); --mark-th: rgba(110,200,160,.45);
-  --shadow: 0 1px 2px rgba(0,0,0,.3); --s-oth: #7d8995; --s-lat: #6fa2f0; --s-hang: #ec79a9; --s-kana: #f0a659; --s-han: #a58ef0; --bad: #f08a80; --bad-soft: #3a2020; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -63,7 +56,7 @@ a { color: var(--accent); }
 .top { padding: 28px 0 0; }
 .title-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; }
 .brand h1 { font: 700 30px/1.15 var(--f-display); margin: 0; letter-spacing: -.01em; text-wrap: balance; }
-.brand p { margin: 6px 0 0; color: var(--muted); max-width: 62ch; }
+.brand p { margin: 6px 0 0; color: var(--muted); max-width: 66ch; }
 .tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .search { position: relative; }
 .search input {
@@ -87,10 +80,10 @@ a { color: var(--accent); }
 
 .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 18px 0 0; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: 13px; color: var(--muted); }
 .meta b { color: var(--ink); font-weight: 600; }
-.meta .sample { font-family: var(--f-mono); color: var(--ink); }
-.legend { display: inline-flex; gap: 12px; flex-wrap: wrap; }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-.legend i { width: 14px; height: 12px; border-radius: 3px; display: inline-block; }
+.legend { display: inline-flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 12px; border-radius: 3px; display: inline-block; background: var(--mark-nb); }
+body:not(.show-inv) .legend .lg-nb { display: none; }
 
 /* Tabs */
 .tabs { display: flex; gap: 4px; margin: 20px 0 0; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
@@ -111,7 +104,6 @@ a { color: var(--accent); }
 .rail button:hover { background: var(--surface); color: var(--ink); }
 .rail button.on { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: inset 2px 0 0 var(--accent); }
 .rail .cnt { font: 500 12px var(--f-mono); color: var(--muted); }
-.rail button.empty { opacity: .4; }
 
 .sec { scroll-margin-top: 16px; margin-bottom: 36px; }
 .sec-h { display: flex; align-items: baseline; gap: 10px; margin: 0 0 12px; }
@@ -120,8 +112,8 @@ a { color: var(--accent); }
 
 /* Compare table */
 .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
-table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1100px; table-layout: fixed; }
-.cmp col.c-label { width: 200px; }
+table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1180px; table-layout: fixed; }
+.cmp col.c-label { width: 190px; }
 .cmp th, .cmp td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .cmp tr:last-child > * { border-bottom: 0; }
 .cmp thead th { position: sticky; top: 0; background: var(--surface); font-weight: 600; font-size: 13px; padding-top: 10px; padding-bottom: 10px; z-index: 1; }
@@ -136,177 +128,69 @@ table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width
 
 .rlabel { font-weight: 600; line-height: 1.4; }
 .ren { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
-.src { display: inline-block; margin-top: 6px; font: 500 10.5px/1 var(--f-mono); letter-spacing: .02em; padding: 3px 6px; border-radius: 4px; }
-.src.cldr { background: var(--accent-soft); color: var(--accent); }
-.src.style { border: 1px solid var(--line); color: var(--muted); }
-.common { display: block; font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
 
+.vals { display: grid; gap: 4px; }
 .val {
   display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: var(--specimen);
-  border-radius: 8px; padding: 7px 10px; cursor: copy; font-family: var(--f-sample); font-size: 15px; line-height: 1.5;
-  white-space: pre-line; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; position: relative; transition: border-color .12s;
+  border-radius: 8px; padding: 6px 10px; cursor: copy; font-family: var(--f-sample); font-size: 15px; line-height: 1.5;
+  white-space: pre-line; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; transition: border-color .12s;
 }
 .val:hover { border-color: var(--accent); }
-.val.list { display: flex; flex-wrap: wrap; gap: 4px; white-space: normal; }
-.chip { font-size: 13px; padding: 1px 7px; border-radius: 5px; background: var(--surface); border: 1px solid var(--line); }
-.desc { font-size: 14px; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; }
-.desc:lang(ja), .desc:lang(ko), .desc:lang(zh-Hans), .desc:lang(zh-Hant) { font-family: var(--f-sample); }
-.pat { display: inline-block; margin-top: 6px; font: 12px/1.4 var(--f-mono); color: var(--muted); background: transparent; border: 1px dashed var(--line); border-radius: 5px; padding: 1px 6px; }
-.note { display: block; font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; white-space: pre-line; }
-.val.list.ord { flex-direction: column; align-items: flex-start; }
-.chip i { font: 500 10.5px var(--f-mono); color: var(--muted); font-style: normal; margin-right: 5px; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.chips .val { width: auto; padding: 3px 8px; font-size: 14px; }
+.xs { display: flex; flex-wrap: wrap; gap: 4px; align-items: baseline; margin-top: 6px; }
+.xs .xk { font: 600 11px/1 var(--f-mono); color: var(--bad); }
+.xv { font: 13px/1.45 var(--f-sample); padding: 1px 6px; border-radius: 5px; background: var(--bad-soft); color: var(--bad); text-decoration: line-through; text-decoration-thickness: 1px; overflow-wrap: anywhere; white-space: pre-line; }
+.rule { display: block; font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+.rule.lead { margin-top: 0; color: var(--ink); font-size: 13.5px; }
+.warn { display: block; font-size: 12.5px; line-height: 1.5; margin-top: 6px; padding: 5px 8px; border-radius: 6px; background: var(--warn-soft); color: var(--warn); }
+.warn::before { content: "⚠ "; }
+.na { display: inline-block; font-size: 13px; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 3px 8px; }
+.none { color: var(--line); font-size: 18px; line-height: 1; }
+.pg { display: inline-block; margin-top: 6px; font: 500 10.5px/1 var(--f-mono); letter-spacing: .02em; padding: 3px 6px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); cursor: help; white-space: nowrap; }
+.pg b { font-weight: 600; color: var(--accent); }
 
 /* Invisible characters */
 .inv { border-radius: 2px; }
 body.show-inv .inv { padding: 0 1px; }
 body.show-inv .inv-nb { background: var(--mark-nb); }
-body.show-inv .inv-nn { background: var(--mark-nn); }
-body.show-inv .inv-th { background: var(--mark-th); }
-body:not(.show-inv) .legend { display: none; }
 
 /* Language view */
-.hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; box-shadow: var(--shadow); margin-bottom: 20px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; box-shadow: var(--shadow); margin-bottom: 20px; }
 .hero-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
 .hero-top .big { font: 600 40px/1.1 var(--f-sample); letter-spacing: -.01em; }
 .hero-top .tag { font: 600 13px var(--f-mono); padding: 4px 8px; border-radius: 6px; background: var(--accent); color: var(--accent-ink); }
 .hero-top .sub { color: var(--muted); }
+.hero-src { font-size: 13px; color: var(--muted); margin: -6px 0 0; }
+.hero-src code { font: 12px var(--f-mono); color: var(--ink); }
 .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
 .fact { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--specimen); }
 .fact .k { font-size: 12px; color: var(--muted); }
-.fact .v { font-weight: 600; margin-top: 2px; line-height: 1.4; }
+.fact .v { font-weight: 600; margin-top: 2px; line-height: 1.4; font-family: var(--f-sample); overflow-wrap: anywhere; }
 .checks { border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 12px; background: var(--surface); padding: 18px 22px; margin-bottom: 28px; }
 .checks h2 { font: 600 17px/1.3 var(--f-display); margin: 0 0 10px; }
 .checks ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
-.checks li { max-width: 90ch; }
+.checks li { max-width: 92ch; }
 .checks li::marker { font: 600 13px var(--f-mono); color: var(--accent); }
+.checks .pg { margin: 0 0 0 6px; vertical-align: 1px; }
 
 .rows { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
-.row { display: grid; grid-template-columns: 240px minmax(0, 1.1fr) minmax(0, 1fr); gap: 20px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: 220px minmax(0, 1fr) minmax(0, 1.1fr); gap: 20px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
 .row:last-child { border-bottom: 0; }
-.row .detail .pat { margin-top: 0; margin-right: 6px; }
-.row .detail .note:first-child { margin-top: 0; }
-
-/* Special letters */
-.chars-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-.cpanel { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); padding: 18px 20px 20px; display: grid; gap: 18px; align-content: start; }
-.cpanel-h { display: flex; align-items: baseline; gap: 10px; }
-.cpanel-h .code { font: 600 11px/1 var(--f-mono); padding: 4px 6px; border-radius: 5px; background: var(--accent); color: var(--accent-ink); }
-.cpanel-h .nat { font: 600 18px/1.2 var(--f-display); }
-.cpanel-h .cnt { margin-left: auto; font: 500 12px var(--f-mono); color: var(--muted); }
-.samples { display: grid; gap: 8px; }
-.samples .k { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
-.cgroup-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-bottom: 8px; }
-.cgroup-h h3 { font: 600 15px/1.3 var(--f-body); margin: 0; }
-.cgroup-h span { font-size: 12.5px; color: var(--muted); }
-.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 10px; }
-.tile { border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: grid; gap: 6px; align-content: start; }
-.glyphs { display: flex; gap: 6px; }
-.gl { flex: 1; min-width: 0; height: 58px; border: 1px solid var(--line); border-radius: 8px; background: var(--specimen); cursor: copy; font: 500 30px/1 var(--f-sample); transition: border-color .12s; }
-.gl:hover { border-color: var(--accent); }
-.tile .cp { font: 11.5px/1.5 var(--f-mono); color: var(--muted); }
-.tile .ex { font-size: 14px; }
-.tile .moj { font: 11.5px/1.5 var(--f-mono); color: var(--muted); }
-.tile .moj b { color: var(--ink); font-weight: 500; }
-.tile .note { margin-top: 0; }
-.cqa { border-top: 1px solid var(--line); padding-top: 14px; }
-.cqa h3 { font: 600 15px/1.3 var(--f-body); margin: 0 0 8px; }
-.cqa ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: 14px; }
-.cqa li::marker { font: 600 12px var(--f-mono); color: var(--accent); }
-.chars-foot { font-size: 13px; color: var(--muted); margin-top: 10px; }
-
-/* Sorting demo */
-.sortdemo { margin-top: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); padding: 20px; display: grid; gap: 16px; }
-.sortdemo h3 { font: 600 17px/1.3 var(--f-display); margin: 0; text-wrap: balance; }
-.sortdemo .lead { margin: 4px 0 0; color: var(--muted); font-size: 14px; max-width: 80ch; }
-.sd-input { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.sd-input .k { font-size: 12px; color: var(--muted); margin-right: 4px; }
-.fn { display: inline-flex; align-items: center; gap: 6px; font: 13px/1.4 var(--f-sample); padding: 3px 8px 3px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--specimen); white-space: nowrap; }
-.fn::before { content: ""; width: 4px; align-self: stretch; border-radius: 2px; background: var(--sc); }
-.s-oth { --sc: var(--s-oth); } .s-lat { --sc: var(--s-lat); } .s-hang { --sc: var(--s-hang); } .s-kana { --sc: var(--s-kana); } .s-han { --sc: var(--s-han); }
-.sd-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); }
-.sd-legend span { display: inline-flex; align-items: center; gap: 6px; }
-.sd-legend i { width: 10px; height: 10px; border-radius: 3px; background: var(--sc); }
-.sd-cols-wrap { overflow-x: auto; }
-.sd-cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(168px, 1fr); gap: 10px; min-width: min-content; }
-.sd-col { border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: grid; gap: 8px; align-content: start; background: var(--surface); }
-.sd-col.bad { border-color: var(--bad); background: var(--bad-soft); }
-.sd-col-h { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
-.sd-col-h b { font-size: 14px; line-height: 1.3; }
-.sd-col-h .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
-.sd-col.bad .sub { color: var(--bad); }
-.sd-copy { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; font-size: 12px; padding: 2px 8px; cursor: pointer; flex: none; }
-.sd-copy:hover { border-color: var(--accent); color: var(--accent); }
-.sd-col ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; counter-reset: n; }
-.sd-col li { counter-increment: n; display: flex; align-items: center; gap: 6px; }
-.sd-col li::before { content: counter(n); font: 10.5px var(--f-mono); color: var(--muted); width: 16px; text-align: right; flex: none; }
-.sd-col li .fn { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.sd-flow { font-size: 12px; color: var(--muted); line-height: 1.45; }
-.sd-bottom { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 16px; }
-.sd-nat { border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; align-content: start; }
-.sd-nat h4, .sd-qa h4 { margin: 0; font: 600 15px/1.3 var(--f-body); }
-.sd-nat .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.sd-nat .pair > div { display: grid; gap: 4px; align-content: start; }
-.sd-nat .k { font-size: 12px; color: var(--muted); }
-.sd-qa { border-top: 0; }
-.sd-qa ol { margin: 8px 0 0; padding-left: 22px; display: grid; gap: 6px; font-size: 14px; }
-.sd-qa li::marker { font: 600 12px var(--f-mono); color: var(--accent); }
-@media (max-width: 960px) { .sd-bottom { grid-template-columns: minmax(0, 1fr); } }
-
-/* Character test data */
-.td-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; }
-.td-h { font: 600 26px/1.2 var(--f-display); margin: 0 0 6px; }
-.lead { color: var(--muted); margin: 0; max-width: 70ch; }
-.gloss { display: grid; gap: 6px; margin: 0; }
-.gloss div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 10px; font-size: 13.5px; }
-.gloss dt { font: 500 12.5px/1.6 var(--f-mono); color: var(--accent); }
-.gloss dd { margin: 0; color: var(--muted); }
-.counter-card { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); padding: 18px 20px; display: grid; gap: 14px; }
-.counter-card textarea { width: 100%; min-height: 84px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--specimen); color: var(--ink); font: 16px/1.6 var(--f-sample); }
-.counter-card textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-#tdResult { display: grid; gap: 12px; }
-.metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
-.metric { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--specimen); display: grid; gap: 2px; }
-.metric .k { font: 500 12px var(--f-mono); color: var(--muted); }
-.metric .v { font: 600 26px/1.15 var(--f-mono); font-variant-numeric: tabular-nums; }
-.flags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.flags .k { font-size: 12px; color: var(--muted); margin-right: 4px; }
-.flag { font-size: 12.5px; padding: 3px 9px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
-.flag.bad { background: var(--bad-soft); color: var(--bad); }
-.flag.ok { background: var(--specimen); color: var(--muted); border: 1px solid var(--line); }
-.bd summary { cursor: pointer; font-weight: 600; font-size: 14px; }
-.bd-wrap { margin-top: 8px; max-height: 340px; overflow: auto; border: 1px solid var(--line); border-radius: 10px; }
-.bd-t { border-collapse: collapse; width: 100%; font-size: 13px; }
-.bd-t th, .bd-t td { padding: 5px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
-.bd-t thead th { position: sticky; top: 0; background: var(--surface); color: var(--muted); font-weight: 500; font-size: 12px; }
-.bd-t tr.bad td { background: var(--bad-soft); color: var(--bad); }
-.bd-t .glyph { font: 18px/1.3 var(--f-sample); }
-.num { text-align: right !important; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
-.mono { font-family: var(--f-mono); }
-.ipill { display: inline-block; font: 600 10px/1 var(--f-mono); padding: 3px 4px; margin: 0 1px; border-radius: 4px; background: var(--mark-nb); color: var(--ink); vertical-align: middle; }
-.sec-lead { margin: -4px 0 12px; color: var(--muted); max-width: 90ch; font-size: 14px; }
-.sec-note { margin: 10px 0 0; color: var(--muted); font-size: 13px; max-width: 90ch; }
-table.td { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 1060px; table-layout: fixed; }
-table.td col.c-s { width: 210px; } table.td col.c-w { width: 260px; } table.td col.c-c { width: auto; } table.td col.c-n { width: 82px; }
-table.td th, table.td td { text-align: left; vertical-align: top; padding: 11px 12px; border-bottom: 1px solid var(--line); }
-table.td tr:last-child > * { border-bottom: 0; }
-table.td thead th { font-size: 12px; font-weight: 500; color: var(--muted); background: var(--surface); }
-table.td thead th.num { font-family: var(--f-body); }
-table.td td.num { font-size: 15px; padding-top: 16px; }
-table.td td.diff { color: var(--accent); font-weight: 600; }
-table.td tbody tr:hover > td { background: var(--specimen); }
-table.td tbody tr:hover .val { background: var(--surface); }
-.td-val { font-size: 18px; }
-.small { font-size: 11.5px; line-height: 1.55; color: var(--muted); overflow-wrap: anywhere; }
-.hexl { display: block; margin-top: 4px; }
-.hexl b { font-weight: 500; color: var(--ink); margin-right: 4px; }
-@media (max-width: 960px) { .td-hero { grid-template-columns: minmax(0, 1fr); } .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .gloss div { grid-template-columns: 90px minmax(0, 1fr); } }
+.row .detail .pg { margin-top: 8px; }
+.row.empty-row { color: var(--muted); }
 
 .empty-state { padding: 48px 24px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
 
 footer { border-top: 1px solid var(--line); padding: 20px 0 40px; color: var(--muted); font-size: 13px; }
-footer ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; }
+footer h2 { font: 600 15px/1.3 var(--f-display); color: var(--ink); margin: 0 0 8px; }
+footer p { margin: 0 0 12px; max-width: 110ch; }
+.srcs { border-collapse: collapse; width: 100%; margin: 6px 0 16px; font-size: 13px; }
+.srcs th, .srcs td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.srcs th { color: var(--muted); font-weight: 500; font-size: 12px; }
+.srcs td { color: var(--ink); }
+.srcs code { font: 12px var(--f-mono); overflow-wrap: anywhere; }
+.srcs-wrap { overflow-x: auto; }
 
 .toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 14px; transition: opacity .15s, transform .15s; max-width: calc(100% - 32px); z-index: 10; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
@@ -329,7 +213,7 @@ footer ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; }
   .hero { padding: 18px; }
   .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cmp col.c-label { width: 140px; }
-  table.cmp { min-width: 1000px; }
+  table.cmp { min-width: 1060px; }
   .cmp th, .cmp td { padding: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
@@ -361,12 +245,11 @@ footer ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; }
       </div>
     </div>
     <div class="meta">
-      <span><span id="metaSample"></span> <span class="sample">Mon 2026-03-09 14:05:30</span> · <span class="sample">1234567.891</span> · <span class="sample">1234.50</span></span>
       <span id="metaData"></span>
       <span class="legend" id="legend">
-        <span><i style="background:var(--mark-nb)"></i>NBSP U+00A0</span>
-        <span><i style="background:var(--mark-nn)"></i>Narrow NBSP U+202F</span>
-        <span><i style="background:var(--mark-th)"></i>Thin space U+2009</span>
+        <span class="lg-nb"><i></i>NBSP U+00A0</span>
+        <span><span class="xv">✗</span><span id="lgBad"></span></span>
+        <span><span class="pg"><b>p.</b>38</span><span id="lgPage"></span></span>
       </span>
     </div>
     <nav class="tabs" role="tablist" id="tabs"></nav>
@@ -377,93 +260,60 @@ footer ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 2px; }
     <main id="main"></main>
   </div>
 
-  <footer>
-    <div id="footNote"></div>
-    <ul>
-      <li><a href="https://cldr.unicode.org/">Unicode CLDR</a></li>
-      <li><a href="https://www.w3.org/TR/jlreq/">W3C: Requirements for Japanese Text Layout</a></li>
-      <li><a href="https://www.w3.org/TR/klreq/">W3C: Requirements for Hangul Text Layout and Typography</a></li>
-      <li><a href="https://www.w3.org/TR/clreq/">W3C: Requirements for Chinese Text Layout</a></li>
-      <li id="footStd"></li>
-    </ul>
-  </footer>
+  <footer id="foot"></footer>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-const C = __C__;
-const SORT = __SORT__;
 __CONTENT__
-__I18N__
-__TESTDATA__
-const TDSTATS = __TDSTATS__;
 
 // ---------- UI language ----------
 const UI = {
   th: {
-    subtitle: "รูปแบบมาตรฐานของวันที่ เวลา ตัวเลข สกุลเงิน และข้อความ ใน 6 ภาษา สำหรับใช้ตรวจงาน localization คลิกที่ค่าตัวอย่างเพื่อคัดลอกพร้อมอักขระจริง",
-    searchPh: "ค้นหา เช่น currency, 12 ชม., «", searchAria: "ค้นหารายการ", inv: "แสดงช่องว่างพิเศษ", langAria: "ภาษาของหน้าเว็บ",
-    sample: "ค่าตัวอย่าง:", data: "ข้อมูล: <b>Unicode CLDR 48</b> และ style guide ของแต่ละภาษา", legendAria: "คำอธิบายสี",
+    subtitle: "รูปแบบวันที่ เวลา ตัวเลข สกุลเงิน เครื่องหมายวรรคตอน และข้อความ UI ใน 6 ภาษา สรุปจาก Adobe Localization Style Guide เท่านั้น ทุกค่ามีเลขหน้าอ้างอิง คลิกตัวอย่างเพื่อคัดลอกพร้อมอักขระจริง",
+    searchPh: "ค้นหา เช่น สกุลเงิน, «, Ctrl", searchAria: "ค้นหารายการ", inv: "แสดง NBSP", langAria: "ภาษาของหน้าเว็บ",
+    data: "ข้อมูล: <b>Adobe Localization Style Guide</b> (PDF) 6 เล่ม", lgBad: "รูปแบบที่ guide ระบุว่าผิด", lgPage: "หน้าใน PDF",
     tabsAria: "มุมมอง", railAria: "หมวดหมู่", railHead: "หมวดหมู่", tabCompare: "ตารางเทียบทุกภาษา", colItem: "รายการ",
-    viewAll: l => `ดูภาษา${l.th}ทั้งหมด`, heroSub: l => `${l.en} · ภาษา${l.th}`, heroAria: "สรุป", checks: "จุดที่มักพบปัญหาตอนตรวจ",
+    viewAll: l => `ดูภาษา${l.th}ทั้งหมด`, heroSub: l => `${l.en} · ภาษา${l.th}`, heroAria: "สรุป", checks: "จุดที่ต้องเช็คตอนตรวจงาน",
     empty: q => `ไม่พบรายการที่ตรงกับ “${q}” ลองใช้คำอื่น หรือล้างช่องค้นหา`,
-    copied: "คัดลอกแล้ว:", special: " (มีช่องว่างพิเศษ)", copyFail: "คัดลอกไม่สำเร็จ ลองเลือกข้อความแล้วกด Ctrl+C", copy: "คัดลอก", copyOrder: "คัดลอกลำดับ",
-    charsCount: n => `${n} ชุด`, charsQA: "จุดที่ต้องเช็ค", moji: "encoding ผิดจะเห็น",
-    charsFoot: "ภาษาญี่ปุ่น เกาหลี และจีนไม่ใช้อักษรละตินที่มีเครื่องหมายกำกับ จึงมีแค่ DE กับ FR ในหมวดนี้",
-    sortTitle: "ตัวอย่าง: ชื่อไฟล์ผสมละตินกับ CJK เรียง A–Z",
-    sortLead: n => `ไฟล์ ${n} ไฟล์ชุดเดียวกัน เรียงด้วย collation ของแต่ละภาษา (เปิด natural sort แบบตัวจัดการไฟล์) แถบสีบอกระบบตัวเขียนของตัวอักษรแรก`,
-    before: "ก่อนเรียง", cpTitle: "เรียงตาม code point", cpSub: "บั๊กที่พบบ่อย ไม่ใช่ลำดับ A–Z ของภาษาไหนเลย",
-    cpFlow: "ตัวเลข → ตัวใหญ่ → _ → ตัวเล็ก → ตัวมีสำเนียง → คานะ → ฮั่น → ฮันกึล",
-    sameEn: "เรียงเหมือนภาษาอังกฤษ", defRef: "ค่าเริ่มต้น (อ้างอิง)", thisLang: "ลำดับของภาษานี้",
-    natTitle: "ชื่อไฟล์ที่มีตัวเลข", natPlain: "Collation มาตรฐาน", natNote: "ผลเหมือนกันทุกภาษา ตัวจัดการไฟล์ของ Windows และ macOS ใช้แบบ natural sort",
-    sortQA: "จุดที่ต้องเช็คเรื่องการเรียง",
-    scripts: { "s-oth": "สัญลักษณ์ / ตัวเลข", "s-lat": "ละติน", "s-hang": "ฮันกึล", "s-kana": "คานะ (ญี่ปุ่น)", "s-han": "อักษรฮั่น (จีน/คันจิ/ฮันจา)" },
-    footNote: "ค่าที่มีป้าย <b>CLDR</b> สร้างจากข้อมูล Unicode CLDR 48 (ICU 78) ระบบปฏิบัติการหรือ browser ที่ใช้ CLDR เวอร์ชันเก่าอาจให้ผลต่างเล็กน้อย เช่น ชนิดของช่องว่าง ค่าที่มีป้าย <b>Style</b> มาจาก style guide และมาตรฐานการเขียนของแต่ละภาษา ถ้าผลิตภัณฑ์มี style guide ของตัวเอง ให้ยึดของผลิตภัณฑ์ก่อน",
-    footStd: "DIN 5008 (เยอรมัน) · Lexique des règles typographiques en usage à l'Imprimerie nationale (ฝรั่งเศส) · 한글 맞춤법 문장 부호 (เกาหลี) · GB/T 15834 标点符号用法 (จีนตัวย่อ) · 教育部《重訂標點符號手冊》 (จีนตัวเต็ม)"
+    none: "guide เล่มนี้ไม่ได้ระบุ", page: "หน้า", wrong: "ผิด",
+    copied: "คัดลอกแล้ว:", special: " (มี NBSP)", copyFail: "คัดลอกไม่สำเร็จ ลองเลือกข้อความแล้วกด Ctrl+C", copy: "คัดลอก",
+    srcHead: "แหล่งข้อมูล", srcCols: ["ภาษา", "เอกสาร", "เวอร์ชัน", "วันที่", "ไฟล์"],
+    footNote: "ทุกค่าในหน้านี้สรุปจาก PDF ในตารางด้านล่างเท่านั้น ตัวอย่างคัดลอกตามที่ guide เขียน (… คือส่วนที่ละไว้ และ → คือการแทนที่ตามตารางใน guide) ส่วนกฎเป็นการสรุปความ ช่องที่มีเครื่องหมาย — คือ guide เล่มนั้นไม่ได้พูดถึง ช่องที่มี ⚠ คือ guide เขียนขัดกันเอง ให้ถาม IPM ก่อนรายงานเป็นบั๊ก PDF ไม่ได้ใส่ NBSP ไว้ในตัวอักษรจริง หน้านี้จึงใส่ NBSP ตามที่กฎของแต่ละภาษากำหนด ถ้าโปรดักต์มี style guide หรือคำสั่งจาก IPM ที่ต่างออกไป ให้ยึดตามนั้นก่อน",
+    removed: "หัวข้อจากเว็บเวอร์ชันก่อนที่ไม่มีใน PDF ถูกเอาออกแล้ว ได้แก่ ค่าที่สร้างจาก CLDR (ชื่อเขตเวลา เวลาแบบสัมพัทธ์ วันแรกของสัปดาห์ การนับสัปดาห์ สัญกรณ์วิทยาศาสตร์ ชื่อภาษา) ตารางการเรียงลำดับแบบ collation อักขระพิเศษ DE/FR และหน้าชุดทดสอบอักขระ"
   },
   en: {
-    subtitle: "Standard formats for dates, times, numbers, currency and text in 6 languages, for localization QA. Click any sample to copy it with its exact characters.",
-    searchPh: "Search, e.g. currency, «", searchAria: "Search items", inv: "Show special spaces", langAria: "Page language",
-    sample: "Sample values:", data: "Data: <b>Unicode CLDR 48</b> and each language's style guides", legendAria: "Color key",
+    subtitle: "Date, time, number, currency, punctuation and UI text formats in 6 languages, taken only from the Adobe Localization Style Guides. Every value cites its PDF page. Click a sample to copy it with its exact characters.",
+    searchPh: "Search, e.g. currency, «, Ctrl", searchAria: "Search items", inv: "Show NBSP", langAria: "Page language",
+    data: "Data: 6 <b>Adobe Localization Style Guide</b> PDFs", lgBad: "Form the guide marks as incorrect", lgPage: "PDF page",
     tabsAria: "Views", railAria: "Categories", railHead: "Categories", tabCompare: "Compare all languages", colItem: "Item",
-    viewAll: l => `View all of ${l.en}`, heroSub: l => l.en, heroAria: "Summary", checks: "Common issues to check",
+    viewAll: l => `View all of ${l.en}`, heroSub: l => l.en, heroAria: "Summary", checks: "What to check when reviewing",
     empty: q => `Nothing matches “${q}”. Try another term or clear the search.`,
-    copied: "Copied:", special: " (includes special spaces)", copyFail: "Couldn't copy. Select the text and press Ctrl+C.", copy: "Copy", copyOrder: "Copy order",
-    charsCount: n => `${n} ${n === 1 ? "set" : "sets"}`, charsQA: "What to check", moji: "Wrong encoding shows",
-    charsFoot: "Japanese, Korean and Chinese don't use accented Latin letters, so this category covers only DE and FR.",
-    sortTitle: "Example: mixed Latin and CJK file names sorted A–Z",
-    sortLead: n => `The same ${n} files, sorted with each language's collation (natural sort on, like a file manager). The color bar shows the script of the first character.`,
-    before: "Before sorting", cpTitle: "Sorted by code point", cpSub: "A common bug; not A–Z order in any language",
-    cpFlow: "Digits → capitals → _ → lowercase → accented → kana → Han → Hangul",
-    sameEn: "Same order as English", defRef: "Default (reference)", thisLang: "This language's order",
-    natTitle: "File names with numbers", natPlain: "Standard collation", natNote: "Same result in every language. Windows and macOS file managers use natural sort.",
-    sortQA: "What to check when sorting",
-    scripts: { "s-oth": "Symbols / digits", "s-lat": "Latin", "s-hang": "Hangul", "s-kana": "Kana (Japanese)", "s-han": "Han (Chinese / kanji / hanja)" },
-    footNote: "Values tagged <b>CLDR</b> are generated from Unicode CLDR 48 (ICU 78). Operating systems or browsers on older CLDR versions may differ slightly, for example in the type of space. Values tagged <b>Style</b> come from each language's style guides and writing standards. If the product has its own style guide, follow it first.",
-    footStd: "DIN 5008 (German) · Lexique des règles typographiques en usage à l'Imprimerie nationale (French) · 한글 맞춤법 문장 부호 (Korean) · GB/T 15834 标点符号用法 (Chinese Simplified) · 教育部《重訂標點符號手冊》 (Chinese Traditional)"
+    none: "Not covered by this guide", page: "page", wrong: "Wrong",
+    copied: "Copied:", special: " (includes NBSP)", copyFail: "Couldn't copy. Select the text and press Ctrl+C.", copy: "Copy",
+    srcHead: "Sources", srcCols: ["Language", "Document", "Version", "Date", "File"],
+    footNote: "Everything on this page is summarized from the PDFs listed below and nothing else. Samples are copied as the guides write them (… marks omitted text, → shows a substitution from the guide's table); rules are paraphrased. A — means the guide doesn't cover the topic. A ⚠ means the guide contradicts itself; ask the IPM before logging a bug. The PDFs don't encode no-break spaces as characters, so this page inserts NBSP wherever a language's rules call for one. If a product has its own style guide or IPM instructions that differ, follow those first.",
+    removed: "Topics from the previous version that the PDFs don't cover have been removed: CLDR-generated values (time zone names, relative time, first day of week, week numbering, scientific notation, language names), the collation sorting tables, the DE/FR special-letter panels and the character test data page."
   }
 };
 let uiLang = "th";
 try { const s = localStorage.getItem("lfr-ui-lang"); if (s === "en" || s === "th") uiLang = s; } catch (e) {}
 const u = k => UI[uiLang][k];
-function T(s) { return uiLang === "en" && typeof s === "string" && Object.prototype.hasOwnProperty.call(EN, s) ? EN[s] : s; }
-const catName = c => uiLang === "en" ? c.en : c.th;
-const itemName = it => uiLang === "en" ? it.en : it.label;
+const L = o => o ? (uiLang === "en" ? o.en : o.th) : "";
 
 function applyStatic() {
   document.documentElement.lang = uiLang;
   document.getElementById("subtitle").textContent = u("subtitle");
   const q = document.getElementById("q"); q.placeholder = u("searchPh"); q.setAttribute("aria-label", u("searchAria"));
   document.getElementById("invLabel").textContent = u("inv");
-  document.getElementById("metaSample").textContent = u("sample");
   document.getElementById("metaData").innerHTML = u("data");
-  document.getElementById("legend").setAttribute("aria-label", u("legendAria"));
+  document.getElementById("lgBad").textContent = u("lgBad");
+  document.getElementById("lgPage").textContent = u("lgPage");
   document.getElementById("tabs").setAttribute("aria-label", u("tabsAria"));
   document.getElementById("rail").setAttribute("aria-label", u("railAria"));
-  document.getElementById("footNote").innerHTML = u("footNote");
-  document.getElementById("footStd").textContent = u("footStd");
   const sw = document.getElementById("langsw"); sw.setAttribute("aria-label", u("langAria"));
   sw.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.ui === uiLang)));
+  renderFooter();
 }
 function setUI(l) {
   if (l === uiLang) return;
@@ -473,370 +323,125 @@ function setUI(l) {
 }
 
 // ---------- helpers ----------
-const INV = { "\u00A0": ["nb", "U+00A0 NO-BREAK SPACE"], "\u202F": ["nn", "U+202F NARROW NO-BREAK SPACE"], "\u2009": ["th", "U+2009 THIN SPACE"] };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const fmt = s => esc(s).replace(/[\u00A0\u202F\u2009]/g, ch => `<span class="inv inv-${INV[ch][0]}" title="${INV[ch][1]}">${ch}</span>`);
-const pick = (x, id) => x == null ? "" : (typeof x === "string" ? x : (x[id] || ""));
-const THAI = /[฀-๿]/;
-const DESC = new Set(["overview"]);
-const DESC_ITEMS = new Set(["Word spacing", "Capitalization", "Line breaking", "Text expansion vs. English", "Collation basis", "Script order", "Measurement system", "Currency decimals", "Symbol code point", "Postal code", "First day of week", "Title marks", "Paper size"]);
-ITEMS.forEach((it, i) => { it.id = "i" + i; it.desc = DESC.has(it.cat) || DESC_ITEMS.has(it.en); });
+const fmt = s => esc(s).replace(/ /g, `<span class="inv inv-nb" title="U+00A0 NO-BREAK SPACE"> </span>`);
+const arr = s => s == null ? [] : (Array.isArray(s) ? s : [s]);
+const itemName = it => uiLang === "en" ? it.en : it.th;
+const catName = c => uiLang === "en" ? c.en : c.th;
+ITEMS.forEach((it, i) => { it.id = "i" + i; });
 
-function get(item, loc) {
-  const c = C[loc.tag], v = item.v;
-  if (typeof v === "function") return v(c, C.extra, loc.id);
-  if (typeof v === "string") return v.split(".").reduce((o, k) => o[k], c);
-  return v[loc.id];
+function pageTag(loc, p) {
+  if (p == null) return "";
+  const src = SOURCES[loc.id];
+  return `<span class="pg" title="${esc(src.file)} · ${esc(u("page"))} ${esc(p)}"><b>p.</b>${esc(p)}</span>`;
 }
-function shown(item, loc) { const raw = get(item, loc); return Array.isArray(raw) ? raw : T(raw); }
-function valueHTML(item, loc) {
-  const raw = get(item, loc), v = shown(item, loc);
-  if (item.desc) return `<div class="desc" lang="${THAI.test(v) ? "th" : (v !== raw ? "en" : loc.lang)}">${fmt(v)}</div>`;
-  if (Array.isArray(v) && item.ordered) return `<button class="val list ord" type="button" lang="${loc.lang}" data-copy="${esc(v.join("\n"))}" aria-label="${u("copyOrder")} ${loc.en}">${v.map((x, i) => `<span class="chip"><i>${i + 1}</i>${fmt(x)}</span>`).join("")}</button>`;
-  if (Array.isArray(v)) return `<button class="val list" type="button" lang="${loc.lang}" data-copy="${esc(v.join("\n"))}" aria-label="${u("copy")} ${esc(item.en)} ${loc.en}">${v.map(x => `<span class="chip">${fmt(x)}</span>`).join("")}</button>`;
-  return `<button class="val" type="button" lang="${loc.lang}" data-copy="${esc(v)}" aria-label="${u("copy")} ${esc(v)}">${fmt(v)}</button>`;
+function samplesHTML(cell, loc) {
+  const s = arr(cell.s);
+  if (!s.length) return "";
+  const btn = v => `<button class="val" type="button" lang="${loc.lang}" data-copy="${esc(v)}" aria-label="${esc(u("copy"))} ${esc(v)}">${fmt(v)}</button>`;
+  const short = s.length > 1 && s.every(v => [...v].length <= 14 && !v.includes("\n"));
+  return short ? `<div class="chips">${s.map(btn).join("")}</div>` : `<div class="vals">${s.map(btn).join("")}</div>`;
 }
-function detailHTML(item, loc) {
-  const p = typeof item.pat === "object" ? pick(item.pat, loc.id) : "";
-  const n = typeof item.note === "object" ? T(pick(item.note, loc.id)) : "";
-  return (p ? `<code class="pat" title="CLDR pattern">${fmt(p)}</code>` : "") + (n ? `<span class="note">${esc(n)}</span>` : "");
+function wrongHTML(cell, loc) {
+  const x = arr(cell.x);
+  return x.length ? `<div class="xs"><span class="xk">✗ ${esc(u("wrong"))}</span>${x.map(v => `<span class="xv" lang="${loc.lang}">${fmt(v)}</span>`).join("")}</div>` : "";
 }
-function labelHTML(item) {
-  const common = typeof item.note === "string" ? `<span class="common">${esc(T(item.note))}</span>` : "";
-  const cp = typeof item.pat === "string" ? `<code class="pat">${fmt(item.pat)}</code>` : "";
-  const sub = uiLang === "en" ? "" : `<span class="ren">${esc(item.en)}</span>`;
-  return `<div class="rlabel">${esc(itemName(item))}</div>${sub}<span class="src ${item.src === "CLDR" ? "cldr" : "style"}">${item.src === "CLDR" ? "CLDR" : "Style"}</span>${cp ? "<br>" + cp : ""}${common}`;
+function ruleHTML(cell, lead) {
+  const parts = [];
+  if (cell.na) parts.push(`<span class="na">${esc(L(cell.na))}</span>`);
+  if (cell.r) parts.push(`<span class="rule${lead && !cell.na ? " lead" : ""}">${fmt(L(cell.r))}</span>`);
+  if (cell.w) parts.push(`<span class="warn">${fmt(L(cell.w))}</span>`);
+  return parts.join("");
 }
-const secHead = cat => `<div class="sec-h"><h2>${esc(catName(cat))}</h2>${uiLang === "en" ? "" : `<span class="en">${esc(cat.en)}</span>`}</div>`;
+const noneHTML = () => `<span class="none" title="${esc(u("none"))}" aria-label="${esc(u("none"))}">—</span>`;
 
+// Compare view: samples, then wrong forms, then the rule, then the page.
+function cellCompare(item, loc) {
+  const c = item.v[loc.id];
+  if (!c) return noneHTML();
+  return samplesHTML(c, loc) + wrongHTML(c, loc) + ruleHTML(c, !c.s) + pageTag(loc, c.p);
+}
+
+// ---------- search ----------
 let view = "compare", query = "";
-
-// ---------- sorting demo ----------
-const SCRIPT = [["s-lat", /\p{Script=Latin}/u], ["s-hang", /\p{Script=Hangul}/u], ["s-kana", /[\p{Script=Hiragana}\p{Script=Katakana}]/u], ["s-han", /\p{Script=Han}/u]];
-const scriptOf = name => { const ch = [...name][0]; const f = SCRIPT.find(s => s[1].test(ch)); return f ? f[0] : "s-oth"; };
-const fnChip = name => `<span class="fn ${scriptOf(name)}">${esc(name)}</span>`;
-const LBL = { en: "EN", de: "DE", fr: "FR", ja: "JA", ko: "KO", "zh-hans": "简 zh-CN", "zh-hant": "繁 zh-TW" };
-function sortMatches() {
-  if (!query) return true;
-  const q = query.toLowerCase();
-  return ["sort sorting collation a-z เรียง natural code point", ...SORT.files].join(" ").toLowerCase().includes(q);
+function cellText(c) {
+  if (!c) return "";
+  return [...arr(c.s), ...arr(c.x), c.r && c.r.th, c.r && c.r.en, c.w && c.w.th, c.w && c.w.en, c.na && c.na.th, c.na && c.na.en].filter(Boolean).join(" ").replace(/ /g, " ");
 }
-function sortBlock(ids) {
-  if (!sortMatches()) return "";
-  const groups = [];
-  for (const k of ["en", ...ids]) {
-    const g = groups.find(g => JSON.stringify(SORT.mixed[g.keys[0]]) === JSON.stringify(SORT.mixed[k]));
-    if (g) g.keys.push(k); else groups.push({ keys: [k] });
-  }
-  const flow = k => SORT.scripts[k].filter(x => x !== "สัญลักษณ์" && x !== "ตัวเลข").map(T).join(" → ");
-  const col = (title, sub, list, cls = "", flowTxt = "") => `<div class="sd-col ${cls}">
-      <div class="sd-col-h"><b>${title}<span class="sub">${sub}</span></b><button class="sd-copy" type="button" data-copy="${esc(list.join("\n"))}">${u("copy")}</button></div>
-      ${flowTxt ? `<div class="sd-flow">${flowTxt}</div>` : ""}
-      <ol>${list.map(f => `<li>${fnChip(f)}</li>`).join("")}</ol></div>`;
-  const cols = [col(u("cpTitle"), u("cpSub"), SORT.codepoint, "bad", u("cpFlow"))]
-    .concat(groups.map(g => {
-      const sub = g.keys.includes("en") ? (g.keys.length > 1 ? u("sameEn") : u("defRef")) : u("thisLang");
-      return col(g.keys.map(k => LBL[k]).join(" · "), sub, SORT.mixed[g.keys[0]], "", flow(g.keys[0]));
-    }));
-  const nat = SORT.natural.en, sc = u("scripts");
-  return `<div class="sortdemo">
-    <div><h3>${u("sortTitle")}</h3><p class="lead">${u("sortLead")(SORT.files.length)}</p></div>
-    <div class="sd-input"><span class="k">${u("before")}</span>${SORT.files.map(fnChip).join("")}</div>
-    <div class="sd-legend">${["s-oth", "s-lat", "s-hang", "s-kana", "s-han"].map(k => `<span class="${k}"><i></i>${sc[k]}</span>`).join("")}</div>
-    <div class="sd-cols-wrap"><div class="sd-cols">${cols.join("")}</div></div>
-    <div class="sd-bottom">
-      <div class="sd-nat"><h4>${u("natTitle")}</h4>
-        <div class="pair"><div><span class="k">${u("natPlain")}</span>${nat.plain.map(fnChip).join("")}</div><div><span class="k">Natural sort (numeric)</span>${nat.num.map(fnChip).join("")}</div></div>
-        <span class="note">${u("natNote")}</span></div>
-      <div class="sd-qa"><h4>${u("sortQA")}</h4><ol>${SORT_QA.map(x => `<li>${esc(T(x))}</li>`).join("")}</ol></div>
-    </div></div>`;
-}
-
-// ---------- special letters ----------
-const MARKS = { "\u0300": "grave", "\u0301": "acute", "\u0302": "circumflex", "\u0308": "diaeresis", "\u0327": "cedilla" };
-const cpOf = ch => [...ch].map(c => "U+" + c.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")).join(" ");
-let dec1252 = null; try { dec1252 = new TextDecoder("windows-1252"); } catch (e) {}
-const moji = ch => { try { return dec1252 ? dec1252.decode(new TextEncoder().encode(ch)) : ""; } catch (e) { return ""; } };
-function nfd(ch) {
-  const d = ch.normalize("NFD");
-  if (d === ch) return "";
-  return [...d].map((c, i) => i === 0 ? c : (MARKS[c] ? `${cpOf(c)} ${MARKS[c]}` : cpOf(c))).join(" + ");
-}
-function charMatches(ch, grp) {
-  if (!query) return true;
-  const q = query.toLowerCase();
-  return [ch.g.join(" "), ch.g.map(cpOf).join(" "), ch.ex, ch.note, T(ch.note), grp.name, T(grp.name), grp.th, T(grp.th), "special letters อักขระพิเศษ"].join(" ").toLowerCase().includes(q);
-}
-function charsPanel(id) {
-  const loc = LOCS.find(l => l.id === id), data = CHARS[id];
-  let n = 0;
-  const groups = data.groups.map(grp => {
-    const list = grp.chars.filter(ch => charMatches(ch, grp));
-    n += list.length;
-    if (!list.length) return "";
-    return `<div class="cgroup"><div class="cgroup-h"><h3>${esc(T(grp.name))}</h3><span>${esc(T(grp.th))}</span></div><div class="tiles">${list.map(ch => {
-      const d = ch.g.map(nfd).filter(Boolean)[ch.g.length > 1 ? 1 : 0] || ch.g.map(nfd).filter(Boolean)[0] || "";
-      const lower = ch.g[ch.g.length - 1];
-      const m = moji(lower);
-      return `<div class="tile">
-        <div class="glyphs">${ch.g.map(g => `<button class="gl" type="button" lang="${loc.lang}" data-copy="${esc(g)}" aria-label="${u("copy")} ${esc(g)} ${cpOf(g)}">${esc(g)}</button>`).join("")}</div>
-        <div class="cp">${ch.g.map(cpOf).join(" · ")}${d ? `<br>NFD ${esc(lower)} = ${esc(d)}` : ""}</div>
-        <div class="ex" lang="${loc.lang}">${esc(ch.ex)}</div>
-        ${m ? `<div class="moj">${u("moji")} <b>${fmt(m)}</b></div>` : ""}
-        ${ch.note ? `<span class="note">${esc(T(ch.note))}</span>` : ""}
-      </div>`;
-    }).join("")}</div></div>`;
-  }).join("");
-  if (!n) return { html: "", n };
-  const samples = query ? "" : `<div class="samples">${data.samples.map(s => `<div><div class="k">${esc(T(s.label))}</div><button class="val" type="button" lang="${loc.lang}" data-copy="${esc(s.text)}">${esc(s.text)}</button></div>`).join("")}</div>`;
-  const qa = query ? "" : `<div class="cqa"><h3>${u("charsQA")}</h3><ol>${data.qa.map(x => `<li>${esc(T(x))}</li>`).join("")}</ol></div>`;
-  return { n, html: `<div class="cpanel"><div class="cpanel-h"><span class="code">${loc.short}</span><span class="nat" lang="${loc.lang}">${loc.native}</span><span class="cnt">${u("charsCount")(n)}</span></div>${samples}${groups}${qa}</div>` };
-}
-function charsSection(ids, cat) {
-  const panels = ids.map(charsPanel);
-  const n = panels.reduce((a, p) => a + p.n, 0);
-  if (!n) return { html: "", n };
-  const foot = ids.length > 1 ? `<p class="chars-foot">${u("charsFoot")}</p>` : "";
-  return { n, html: `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">${secHead(cat)}<div class="chars-grid">${panels.map(p => p.html).join("")}</div>${foot}</section>` };
-}
-
-// ---------- views ----------
 function matches(item, locs) {
   if (!query) return true;
   const q = query.toLowerCase();
-  const hay = [item.label, item.en, typeof item.note === "string" ? item.note + " " + T(item.note) : ""];
-  for (const loc of locs) {
-    const raw = get(item, loc), v = shown(item, loc), n = pick(item.note, loc.id);
-    hay.push(Array.isArray(raw) ? raw.join(" ") : raw + " " + v, n, T(n), pick(item.pat, loc.id));
-  }
-  return hay.join(" ").toLowerCase().includes(q);
+  const hay = [item.th, item.en, ...locs.map(l => cellText(item.v[l.id]))].join(" ").toLowerCase();
+  return hay.includes(q);
 }
 
+// ---------- views ----------
 function renderTabs() {
   document.getElementById("tabs").innerHTML = `<button class="tab" role="tab" data-view="compare" aria-selected="${view === "compare"}">${u("tabCompare")}</button><span class="tab-sep" aria-hidden="true"></span>` +
-    LOCS.map(l => `<button class="tab" role="tab" data-view="${l.id}" aria-selected="${view === l.id}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button>`).join("") +
-    `<span class="tab-sep" aria-hidden="true"></span><button class="tab" role="tab" data-view="testdata" aria-selected="${view === "testdata"}"><span class="code">UTF</span>${u("tabTD")}</button>`;
+    LOCS.map(l => `<button class="tab" role="tab" data-view="${l.id}" aria-selected="${view === l.id}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button>`).join("");
 }
 function renderRail(list) {
   document.getElementById("rail").innerHTML = `<div class="rail-h">${u("railHead")}</div>` + list.map(c =>
-    `<button type="button" data-cat="${c.id}" class="${c.n === 0 ? "empty" : ""}"><span>${esc(c.name)}</span><span class="cnt">${c.n}</span></button>`).join("");
+    `<button type="button" data-cat="${c.id}"><span>${esc(c.name)}</span><span class="cnt">${c.n}</span></button>`).join("");
 }
+const secHead = cat => `<div class="sec-h"><h2>${esc(catName(cat))}</h2>${uiLang === "en" ? "" : `<span class="en">${esc(cat.en)}</span>`}</div>`;
+const labelHTML = item => `<div class="rlabel">${esc(itemName(item))}</div>${uiLang === "en" ? "" : `<span class="ren">${esc(item.en)}</span>`}`;
 
 function renderCompare() {
   const counts = {}; let html = "";
   for (const cat of CATS) {
-    if (cat.id === "chars") { const r = charsSection(cat.only, cat); counts[cat.id] = r.n; html += r.html; continue; }
     const rows = ITEMS.filter(i => i.cat === cat.id && matches(i, LOCS));
-    const extra = cat.id === "sort" ? sortBlock(LOCS.map(l => l.id)) : "";
-    counts[cat.id] = rows.length + (extra ? 1 : 0);
-    if (!rows.length && !extra) continue;
+    if (!rows.length) continue;
+    counts[cat.id] = rows.length;
     html += `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">${secHead(cat)}
-      ${rows.length ? `<div class="tbl-wrap"><table class="cmp"><colgroup><col class="c-label">${LOCS.map(() => "<col>").join("")}</colgroup>
+      <div class="tbl-wrap"><table class="cmp"><colgroup><col class="c-label">${LOCS.map(() => "<col>").join("")}</colgroup>
       <thead><tr><th scope="col">${u("colItem")}</th>${LOCS.map(l => `<th scope="col"><button type="button" data-view="${l.id}" title="${esc(u("viewAll")(l))}"><span class="code">${l.short}</span><span class="nat" lang="${l.lang}">${l.native}</span></button></th>`).join("")}</tr></thead>
-      <tbody>${rows.map(it => `<tr><th scope="row">${labelHTML(it)}</th>${LOCS.map(l => `<td>${valueHTML(it, l)}${detailHTML(it, l)}</td>`).join("")}</tr>`).join("")}</tbody>
-      </table></div>` : ""}${extra}</section>`;
+      <tbody>${rows.map(it => `<tr><th scope="row">${labelHTML(it)}</th>${LOCS.map(l => `<td>${cellCompare(it, l)}</td>`).join("")}</tr>`).join("")}</tbody>
+      </table></div></section>`;
   }
   return { html, counts };
 }
 
 function renderLang(loc) {
-  const counts = {};
-  const facts = ITEMS.filter(i => i.cat === "overview").map(i => `<div class="fact"><div class="k">${esc(itemName(i))}</div><div class="v">${fmt(shown(i, loc))}</div></div>`).join("");
+  const counts = {}; const src = SOURCES[loc.id];
+  const facts = ITEMS.filter(i => i.cat === "overview").map(i => {
+    const c = i.v[loc.id];
+    return `<div class="fact"><div class="k">${esc(itemName(i))}</div><div class="v" lang="${loc.lang}">${c ? fmt(arr(c.s).join(" · ")) : "—"}</div></div>`;
+  }).join("");
   let html = query ? "" : `<section class="hero" aria-label="${u("heroAria")}">
-      <div class="hero-top"><span class="big" lang="${loc.lang}">${loc.native}</span><span class="tag">${loc.tag}</span><span class="sub">${esc(u("heroSub")(loc))} · <span lang="${loc.lang}">${loc.region}</span></span></div>
+      <div class="hero-top"><span class="big" lang="${loc.lang}">${loc.native}</span><span class="tag">${loc.tag}</span><span class="sub">${esc(u("heroSub")(loc))}</span></div>
+      <p class="hero-src">${esc(src.title)} · v${esc(src.ver)} · ${esc(src.date)} · <code>${esc(src.file)}</code>${loc.extra ? `<br>${esc(L(loc.extra))}` : ""}</p>
       <div class="facts">${facts}</div></section>
-    <section class="checks"><h2>${u("checks")}</h2><ol>${CHECKS[loc.id].map(c => `<li>${esc(T(c))}</li>`).join("")}</ol></section>`;
+    <section class="checks"><h2>${u("checks")}</h2><ol>${CHECKS[loc.id].map(c => `<li><span lang="${uiLang}">${fmt(L(c))}</span>${pageTag(loc, c.p)}</li>`).join("")}</ol></section>`;
   for (const cat of CATS) {
     if (cat.id === "overview") continue;
-    if (cat.only && !cat.only.includes(loc.id)) continue;
-    if (cat.id === "chars") { const r = charsSection([loc.id], cat); counts[cat.id] = r.n; html += r.html; continue; }
-    const rows = ITEMS.filter(i => i.cat === cat.id && matches(i, [loc]));
-    const extra = cat.id === "sort" ? sortBlock([loc.id]) : "";
-    counts[cat.id] = rows.length + (extra ? 1 : 0);
-    if (!rows.length && !extra) continue;
+    const rows = ITEMS.filter(i => i.cat === cat.id && i.v[loc.id] && matches(i, [loc]));
+    if (!rows.length) continue;
+    counts[cat.id] = rows.length;
     html += `<section class="sec" id="sec-${cat.id}" data-cat="${cat.id}">${secHead(cat)}
-      ${rows.length ? `<div class="rows">${rows.map(it => `<div class="row"><div>${labelHTML(it)}</div><div>${valueHTML(it, loc)}</div><div class="detail">${detailHTML(it, loc)}</div></div>`).join("")}</div>` : ""}${extra}</section>`;
+      <div class="rows">${rows.map(it => {
+        const c = it.v[loc.id];
+        const left = samplesHTML(c, loc) + wrongHTML(c, loc);
+        return `<div class="row"><div>${labelHTML(it)}</div><div>${left || ruleHTML(c, true)}</div><div class="detail">${left ? ruleHTML(c, false) : ""}${pageTag(loc, c.p)}</div></div>`;
+      }).join("")}</div></section>`;
   }
   return { html, counts };
 }
 
-// ---------- character test data ----------
-Object.assign(UI.th, {
-  tabTD: "ชุดทดสอบอักขระ", tdTitle: "ชุดทดสอบอักขระ",
-  tdLead: "ข้อความทดสอบสำหรับภาษาและ encoding ต่างๆ พร้อมจำนวนตัวอักษรและ byte ในแต่ละหน่วย คลิกตัวอย่างเพื่อคัดลอกข้อความจริง",
-  gloss: [["Grapheme", "ตัวอักษรที่ผู้ใช้เห็นเป็น 1 ตัว"], ["Code point", "จำนวนตัวอักษร Unicode (len() ของ Python)"], ["UTF-16", "หน่วยที่ JavaScript, Java, C# นับ (.length)"], ["UTF-8", "byte ในไฟล์และฐานข้อมูลส่วนใหญ่"], ["GB18030", "byte เมื่อบันทึกเป็น GB18030-2022"]],
-  colSample: "ตัวอย่าง", colWhat: "คืออะไร / ทดสอบอะไร", colCps: "Code point และ byte",
-  counter: "ตัวนับ byte", counterLead: "วางข้อความเพื่อนับจำนวนตัวอักษรและ byte คำนวณใน browser ของคุณ",
-  counterPh: "วางข้อความที่นี่", counterLabel: "ข้อความที่ต้องการนับ",
-  found: "สิ่งที่พบ", nothing: "ไม่พบอักขระพิเศษ",
-  flags: { supp: "ตัวอักษร 4 byte (surrogate pair)", mark: "เครื่องหมายประกอบ", inv: "อักขระที่มองไม่เห็น", fw: "อักษรเต็มความกว้าง", hw: "คาตาคานะครึ่งความกว้าง", lone: "surrogate ครึ่งตัว (ข้อมูลเสีย)", nfc: "ไม่ใช่ NFC (มีตัวที่แยกส่วน)" },
-  bdTitle: "แยกทีละ code point", bdMore: n => `และอีก ${n} ตัว`, bdChar: "ตัวอักษร", bdType: "ประเภท",
-  types: { latin: "ละติน", cyr: "Cyrillic", greek: "กรีก", han: "อักษรฮั่น", kana: "คานะ", hangul: "ฮันกึล", thai: "ไทย", arabic: "อาหรับ", hebrew: "ฮีบรู", deva: "เทวนาครี", mark: "เครื่องหมายประกอบ", fmt: "อักขระควบคุมรูปแบบ", space: "ช่องว่าง", emoji: "อีโมจิ", digit: "ตัวเลข", punct: "เครื่องหมาย", other: "อื่นๆ", lone: "surrogate ครึ่งตัว" },
-  tdQA: "จุดที่ต้องเช็ค", noGB: "browser นี้ไม่รองรับการคำนวณ GB18030"
-});
-Object.assign(UI.en, {
-  tabTD: "Character test data", tdTitle: "Character test data",
-  tdLead: "Test strings for different scripts and encodings, with character and byte counts in each unit. Click a sample to copy the exact string.",
-  gloss: [["Grapheme", "What the user sees as one character"], ["Code point", "Unicode characters (Python len())"], ["UTF-16", "Units counted by JavaScript, Java, C# (.length)"], ["UTF-8", "Bytes in most files and databases"], ["GB18030", "Bytes when saved as GB18030-2022"]],
-  colSample: "Sample", colWhat: "What it is / what it tests", colCps: "Code points and bytes",
-  counter: "Byte counter", counterLead: "Paste text to count its characters and bytes. Everything is calculated in your browser.",
-  counterPh: "Paste text here", counterLabel: "Text to count",
-  found: "Found", nothing: "No special characters found",
-  flags: { supp: "4-byte characters (surrogate pairs)", mark: "Combining marks", inv: "Invisible characters", fw: "Full-width forms", hw: "Half-width katakana", lone: "Lone surrogates (broken data)", nfc: "Not NFC (has decomposed characters)" },
-  bdTitle: "Code point breakdown", bdMore: n => `and ${n} more`, bdChar: "Character", bdType: "Type",
-  types: { latin: "Latin", cyr: "Cyrillic", greek: "Greek", han: "Han", kana: "Kana", hangul: "Hangul", thai: "Thai", arabic: "Arabic", hebrew: "Hebrew", deva: "Devanagari", mark: "Combining mark", fmt: "Format character", space: "Space", emoji: "Emoji", digit: "Digit", punct: "Punctuation", other: "Other", lone: "Lone surrogate" },
-  tdQA: "What to check", noGB: "This browser can't calculate GB18030"
-});
-const tdName = g => uiLang === "en" ? g.en : g.th;
-const L2 = o => o ? (uiLang === "en" ? o.en : o.th) : "";
-
-const INV_NAMES = { "\u200B": "ZWSP", "\uFEFF": "BOM", "\u00A0": "NBSP", "\u00AD": "SHY", "\u200C": "ZWNJ", "\u200D": "ZWJ", "\u200E": "LRM", "\u200F": "RLM", "\u2028": "LSEP", "\u2029": "PSEP", "\u3000": "IDSP", "\u202F": "NNBSP", "\u2009": "THSP", "\u2060": "WJ", "\u180E": "MVS" };
-const fmtInv = s => [...s].map(ch => INV_NAMES[ch] ? `<span class="ipill" title="${cpOf(ch)}">${INV_NAMES[ch]}</span>` : esc(ch)).join("");
-function sampleLang(s, g, it) {
-  if (it.lang) return it.lang;
-  if (/[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(s)) return "ja";
-  if (/\p{Script=Hangul}/u.test(s)) return "ko";
-  if (/\p{Script=Han}/u.test(s)) return g.id === "gb18030" ? "zh-Hans" : "ja";
-  return "";
+function renderFooter() {
+  document.getElementById("foot").innerHTML = `<h2>${u("srcHead")}</h2><p>${esc(u("footNote"))}</p>
+    <div class="srcs-wrap"><table class="srcs"><thead><tr>${u("srcCols").map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead>
+    <tbody>${LOCS.map(l => { const s = SOURCES[l.id]; return `<tr><td>${esc(l.tag)}</td><td>${esc(s.title)}${l.extra ? `<br><span class="rule">${esc(L(l.extra))}</span>` : ""}</td><td>${esc(s.ver)}</td><td>${esc(s.date)}</td><td><code>${esc(s.file)}</code></td></tr>`; }).join("")}</tbody></table></div>
+    <p>${esc(u("removed"))}</p>`;
 }
-function tdMatches(g, it, st) {
-  if (!query) return true;
-  const q = query.toLowerCase();
-  return [it.s, it.d, it.t.th, it.t.en, it.n.th, it.n.en, g.th, g.en, st.cps.join(" ")].join(" ").toLowerCase().includes(q);
-}
-
-// GB18030 byte length in the browser: 2-byte set built from the platform decoder
-let GB2 = undefined;
-function gbTwo() {
-  if (GB2 !== undefined) return GB2;
-  try {
-    const d = new TextDecoder("gb18030"), set = new Set();
-    for (let a = 0x81; a <= 0xfe; a++) for (let b = 0x40; b <= 0xfe; b++) {
-      if (b === 0x7f) continue;
-      const ch = d.decode(new Uint8Array([a, b]));
-      if (ch.length === 1 && ch !== "\uFFFD") set.add(ch);
-    }
-    GB2 = set;
-  } catch (e) { GB2 = null; }
-  return GB2;
-}
-function gbLen(ch) {
-  const cp = ch.codePointAt(0);
-  if (cp >= 0xd800 && cp <= 0xdfff) return null;
-  if (cp < 0x80) return 1;
-  if (cp >= 0x10000) return 4;
-  const set = gbTwo();
-  return set ? (set.has(ch) ? 2 : 4) : null;
-}
-const U8 = new TextEncoder();
-function charType(ch) {
-  const cp = ch.codePointAt(0);
-  if (cp >= 0xd800 && cp <= 0xdfff) return "lone";
-  const tests = [["mark", /\p{M}/u], ["fmt", /\p{Cf}/u], ["space", /[\p{Zs}\u2028\u2029]/u], ["emoji", /\p{Extended_Pictographic}/u], ["digit", /\p{Nd}/u], ["latin", /\p{Script=Latin}/u], ["cyr", /\p{Script=Cyrillic}/u], ["greek", /\p{Script=Greek}/u], ["han", /\p{Script=Han}/u], ["kana", /[\p{Script=Hiragana}\p{Script=Katakana}]/u], ["hangul", /\p{Script=Hangul}/u], ["thai", /\p{Script=Thai}/u], ["arabic", /\p{Script=Arabic}/u], ["hebrew", /\p{Script=Hebrew}/u], ["deva", /\p{Script=Devanagari}/u], ["punct", /[\p{P}\p{S}]/u]];
-  const f = tests.find(t => t[1].test(ch));
-  return f ? f[0] : "other";
-}
-function analyse(s) {
-  const cps = [...s];
-  let seg = null; try { seg = [...new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(s)].length; } catch (e) {}
-  let gb = 0;
-  const rows = cps.map(ch => {
-    const g = gbLen(ch); if (gb !== null) gb = g === null ? null : gb + g;
-    return { ch, cp: cpOf(ch), type: charType(ch), u8: U8.encode(ch).length, u16: ch.length, gb: g };
-  });
-  const flags = {
-    supp: cps.filter(c => c.codePointAt(0) >= 0x10000).length,
-    mark: rows.filter(r => r.type === "mark").length,
-    inv: rows.filter(r => r.type === "fmt" || (r.type === "space" && r.ch !== " ")).length,
-    fw: cps.filter(c => /[\u3000！-｠￠-￦]/.test(c)).length,
-    hw: cps.filter(c => /[｡-ﾟ]/.test(c)).length,
-    lone: rows.filter(r => r.type === "lone").length,
-    nfc: s !== s.normalize("NFC") ? 1 : 0
-  };
-  return { graphemes: seg, codepoints: cps.length, utf16: s.length, utf8: U8.encode(s).length, gb18030: gb, rows, flags };
-}
-const COUNTER_SAMPLE = "𠮷野家 \u{1F468}\u200D\u{1F469}\u200D\u{1F467}\u200D\u{1F466} ＡＢＣ ｶﾞ e\u0301\u200B!";
-let counterText = COUNTER_SAMPLE;
-function counterResultHTML() {
-  const a = analyse(counterText), na = v => v === null ? "—" : v;
-  const metrics = [["Grapheme", na(a.graphemes)], ["Code point", a.codepoints], ["UTF-16", a.utf16], ["UTF-8", a.utf8], ["GB18030", na(a.gb18030)]];
-  const fl = u("flags"), found = Object.entries(a.flags).filter(([, n]) => n);
-  const max = 200, rows = a.rows.slice(0, max), ty = u("types");
-  return `<div class="metrics">${metrics.map(([k, v]) => `<div class="metric"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("")}</div>
-    ${a.gb18030 === null && gbTwo() === null ? `<p class="note">${u("noGB")}</p>` : ""}
-    <div class="flags"><span class="k">${u("found")}</span>${found.length ? found.map(([k, n]) => `<span class="flag ${k === "lone" ? "bad" : ""}">${fl[k]}${k === "nfc" ? "" : ` · ${n}`}</span>`).join("") : `<span class="flag ok">${u("nothing")}</span>`}</div>
-    ${a.rows.length ? `<details class="bd" ${a.rows.length <= 40 ? "open" : ""}><summary>${u("bdTitle")} (${a.rows.length})</summary>
-      <div class="bd-wrap"><table class="bd-t"><thead><tr><th>#</th><th>${u("bdChar")}</th><th>Code point</th><th>${u("bdType")}</th><th class="num">UTF-8</th><th class="num">UTF-16</th><th class="num">GB18030</th></tr></thead>
-      <tbody>${rows.map((r, i) => `<tr class="${r.type === "lone" ? "bad" : ""}"><td class="num">${i + 1}</td><td class="glyph">${r.type === "lone" ? "\uFFFD" : (INV_NAMES[r.ch] || r.type === "fmt" || r.type === "mark" ? (INV_NAMES[r.ch] ? fmtInv(r.ch) : (r.type === "mark" ? "◌" + esc(r.ch) : `<span class="ipill">${r.cp}</span>`)) : esc(r.ch))}</td><td class="mono">${r.cp}</td><td>${ty[r.type]}</td><td class="num">${r.u8}</td><td class="num">${r.u16}</td><td class="num">${na(r.gb)}</td></tr>`).join("")}</tbody></table>
-      ${a.rows.length > max ? `<p class="note">${u("bdMore")(a.rows.length - max)}</p>` : ""}</div></details>` : ""}`;
-}
-
-function renderTestData() {
-  const rail = []; let html = "";
-  if (!query) {
-    html += `<section class="hero td-hero" aria-label="${u("heroAria")}">
-      <div><h2 class="td-h">${u("tdTitle")}</h2><p class="lead">${u("tdLead")}</p></div>
-      <dl class="gloss">${u("gloss").map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></section>
-      <section class="sec counter" id="sec-td-counter" data-cat="td-counter">
-        <div class="sec-h"><h2>${u("counter")}</h2></div>
-        <div class="counter-card">
-          <p class="lead">${u("counterLead")}</p>
-          <label class="sr" for="tdInput">${u("counterLabel")}</label>
-          <textarea id="tdInput" rows="3" spellcheck="false" placeholder="${esc(u("counterPh"))}">${esc(counterText)}</textarea>
-          <div id="tdResult">${counterResultHTML()}</div>
-        </div>
-      </section>`;
-    rail.push({ id: "td-counter", name: u("counter"), n: "" });
-  }
-  for (const g of TESTDATA) {
-    const st = TDSTATS.stats[g.id];
-    const items = g.items.map((it, i) => ({ it, st: st[i] })).filter(x => tdMatches(g, x.it, x.st));
-    rail.push({ id: "td-" + g.id, name: tdName(g), n: items.length });
-    if (!items.length) continue;
-    html += `<section class="sec" id="sec-td-${g.id}" data-cat="td-${g.id}">
-      <div class="sec-h"><h2>${esc(tdName(g))}</h2></div>
-      <p class="sec-lead">${esc(L2(g.intro))}</p>
-      <div class="tbl-wrap"><table class="td"><colgroup><col class="c-s"><col class="c-w"><col class="c-c"><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-n"></colgroup>
-      <thead><tr><th scope="col">${u("colSample")}</th><th scope="col">${u("colWhat")}</th><th scope="col">${u("colCps")}</th><th scope="col" class="num">Grapheme</th><th scope="col" class="num">Code point</th><th scope="col" class="num">UTF-16</th><th scope="col" class="num">UTF-8</th><th scope="col" class="num">GB18030</th></tr></thead>
-      <tbody>${items.map(({ it, st }) => {
-        const lang = sampleLang(it.s, g, it);
-        const shownS = it.d ? esc(it.d) : (it.inv ? fmtInv(it.s) : esc(it.s));
-        const cps = st.cps.length > 8 ? st.cps.slice(0, 8).join(" ") + " …" : st.cps.join(" ");
-        return `<tr>
-          <td><button class="val td-val" type="button" ${lang ? `lang="${lang}"` : ""} data-copy="${esc(it.s)}" aria-label="${u("copy")} ${esc(it.d || it.s)}">${shownS}</button></td>
-          <td><div class="rlabel">${esc(L2(it.t))}</div>${L2(it.n) ? `<span class="note">${esc(L2(it.n))}</span>` : ""}</td>
-          <td class="mono small">${cps}<span class="hexl"><b>UTF-8</b> ${st.utf8hex}</span><span class="hexl"><b>GB18030</b> ${st.gbhex}</span></td>
-          <td class="num ${st.graphemes < st.codepoints ? "diff" : ""}">${st.graphemes}</td>
-          <td class="num">${st.codepoints}</td>
-          <td class="num ${st.utf16 > st.codepoints ? "diff" : ""}">${st.utf16}</td>
-          <td class="num">${st.utf8}</td>
-          <td class="num">${st.gb18030}</td></tr>`;
-      }).join("")}</tbody></table></div>
-      ${g.notes ? `<p class="sec-note">${esc(L2(g.notes))}</p>` : ""}</section>`;
-  }
-  if (!query) {
-    html += `<section class="sec checks" id="sec-td-qa" data-cat="td-qa"><h2>${u("tdQA")}</h2><ol>${TD_QA[uiLang].map(x => `<li>${esc(x)}</li>`).join("")}</ol></section>`;
-    rail.push({ id: "td-qa", name: u("tdQA"), n: "" });
-  }
-  return { html, rail };
-}
-document.addEventListener("input", e => {
-  if (e.target.id !== "tdInput") return;
-  counterText = e.target.value;
-  document.getElementById("tdResult").innerHTML = counterResultHTML();
-});
 
 let observer;
 function render() {
   renderTabs();
   const loc = LOCS.find(l => l.id === view);
-  let html, list;
-  if (view === "testdata") ({ html, rail: list } = renderTestData());
-  else {
-    const r = loc ? renderLang(loc) : renderCompare();
-    html = r.html; list = CATS.filter(c => c.id in r.counts).map(c => ({ id: c.id, name: catName(c), n: r.counts[c.id] || 0 }));
-  }
-  document.getElementById("main").innerHTML = html.includes('class="sec') ? html : html + `<div class="empty-state">${esc(u("empty")(query))}</div>`;
+  const r = loc ? renderLang(loc) : renderCompare();
+  const list = CATS.filter(c => c.id in r.counts).map(c => ({ id: c.id, name: catName(c), n: r.counts[c.id] }));
+  document.getElementById("main").innerHTML = r.html.includes('class="sec') ? r.html : r.html + `<div class="empty-state">${esc(u("empty")(query))}</div>`;
   renderRail(list);
   spy();
 }
@@ -854,7 +459,7 @@ function spy() {
   document.querySelectorAll("#main .sec").forEach(s => observer.observe(s));
 }
 
-const validView = v => v === "compare" || v === "testdata" || LOCS.some(l => l.id === v);
+const validView = v => v === "compare" || LOCS.some(l => l.id === v);
 function setView(v, push = true) {
   if (!validView(v)) v = "compare";
   view = v;
@@ -873,7 +478,7 @@ async function copy(text) {
   try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
     try { const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove(); } catch (e2) { ok = false; }
   }
-  const special = /[\u00A0\u202F\u2009]/.test(text) ? u("special") : "";
+  const special = / /.test(text) ? u("special") : "";
   toast(ok ? `${u("copied")} ${text.split("\n")[0]}${text.includes("\n") ? " …" : ""}${special}` : u("copyFail"));
 }
 
@@ -881,7 +486,7 @@ document.addEventListener("click", e => {
   const ui = e.target.closest("[data-ui]"); if (ui) { setUI(ui.dataset.ui); return; }
   const v = e.target.closest("[data-view]"); if (v) { setView(v.dataset.view); return; }
   const c = e.target.closest("[data-copy]"); if (c) { copy(c.dataset.copy); return; }
-  const r = e.target.closest("#rail button"); if (r) { const s = document.getElementById("sec-" + r.dataset.cat); if (s) s.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" }); }
+  const r = e.target.closest("#rail button"); if (r) { const s = document.getElementById("sec-" + r.dataset.cat); if (s) s.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }
 });
 document.getElementById("q").addEventListener("input", e => { query = e.target.value.trim(); render(); });
 document.getElementById("inv").addEventListener("change", e => document.body.classList.toggle("show-inv", e.target.checked));
@@ -891,7 +496,7 @@ document.addEventListener("keydown", e => {
 });
 document.getElementById("tabs").addEventListener("keydown", e => {
   if (!["ArrowRight", "ArrowLeft"].includes(e.key)) return;
-  const ids = ["compare", ...LOCS.map(l => l.id), "testdata"]; let i = ids.indexOf(view);
+  const ids = ["compare", ...LOCS.map(l => l.id)]; let i = ids.indexOf(view);
   i = (i + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length; setView(ids[i]);
   document.querySelector(`.tab[data-view="${ids[i]}"]`).focus();
 });
