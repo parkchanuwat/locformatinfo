@@ -3,7 +3,6 @@
 //   s  = sample(s) to copy, written exactly as the guide shows them (string or array)
 //   x  = incorrect forms the guide calls out (array)
 //   r  = the rule, summarised { th, en }
-//   w  = the guide contradicts itself here { th, en }
 //   na = the guide says the topic does not apply { th, en }
 //   p  = page number(s) in the PDF
 // A cell set to null means the guide does not cover the topic.
@@ -87,7 +86,7 @@ const ITEMS = [
     "zh-hant": { s: "2017 年 8 月 21 日，星期一", p: 35 } } },
   { cat: "date", th: "วันที่แบบสั้น", en: "Short date", v: {
     de: { s: "21.08.2019", r: t("DD.MM.YYYY", "DD.MM.YYYY"), p: 37 },
-    fr: { s: "21/08/2017", r: t("คั่นด้วย /", "Separated by /"), w: t("ช่องกฎในตารางเขียน DD/MM/YY แต่ตัวอย่างใช้ปี 4 หลัก", "The table's rule says DD/MM/YY, but its example has a 4-digit year"), p: 35 },
+    fr: { s: "21/08/2017", r: t("DD/MM/YY", "DD/MM/YY"), p: 35 },
     ja: { s: "2017/08/21", r: t("YYYY/MM/DD · คั่นด้วย / ครึ่งความกว้าง", "YYYY/MM/DD · half-width slashes"), p: "53, 62" },
     ko: { s: "2017. 8. 21.", r: t("มีจุดหลังทุกส่วนรวมท้ายสุด", "A period after every part, including the last"), p: 30 },
     "zh-hans": { s: ["2017/08/21", "2017-08-21"], r: t("คั่นด้วย / หรือ -", "Separated by / or -"), p: 32 },
@@ -98,7 +97,7 @@ const ITEMS = [
     ja: { s: ["2017/08/01", "2017年8月1日"], r: t("แบบสั้นใช้ · แบบยาวไม่ใช้", "Short formats: yes · long formats: no"), p: 62 },
     ko: { s: "2017. 8. 1.", r: t("ไม่ใช้ทั้งวันและเดือน", "No, for either"), p: 30 },
     "zh-hans": { s: "2017/08/1", r: t("วัน: ไม่ใช้ · เดือน: ใช้", "Day: no · month: yes"), p: 32 },
-    "zh-hant": { r: t("วัน: ไม่ใช้ · เดือน: ใช้", "Day: no · month: yes"), w: t("ตัวอย่างในตารางเป็นรูปแบบอังกฤษ (08/1/2017)", "The table's examples are in English format (08/1/2017)"), p: 35 } } },
+    "zh-hant": { s: "08/1/2017", r: t("วัน: ไม่ใช้ · เดือน: ใช้", "Day: no · month: yes"), p: 35 } } },
   { cat: "date", th: "ชื่อวันแบบย่อ", en: "Abbreviated weekdays", v: {
     de: { s: "Mo.", r: t("2 ตัวอักษร + จุด", "Two letters + period"), p: 37 },
     fr: { s: ["lun.", "mar.", "mer.", "jeu.", "ven.", "sam.", "dim."], p: 35 },
@@ -125,7 +124,7 @@ const ITEMS = [
     fr: { s: ["Du lundi au jeudi", "Lundi à jeudi"], x: ["Lundi—Jeudi"], r: t("ไม่ใช้ dash", "No dash"), p: 28 },
     ja: { s: ["月曜日から木曜日", "月曜日～木曜日"], r: t("ใช้ ～ เต็มความกว้าง หรือ から", "Full-width ～ or から"), p: 46 },
     ko: { s: "월요일–목요일", r: t("en dash ไม่เว้นวรรค", "En dash, no spaces"), p: 23 },
-    "zh-hans": { s: "周一 – 周五", r: t("en dash มีเว้นวรรค", "En dash with spaces"), w: t("ต้นฉบับในตัวอย่างคือ Monday–Thursday แต่คำแปลเขียน 周五 (วันศุกร์)", "The example's English is Monday–Thursday, but the translation says 周五 (Friday)"), p: 24 },
+    "zh-hans": { s: "周一 – 周五", r: t("en dash มีเว้นวรรค", "En dash with spaces"), p: 24 },
     "zh-hant": { s: "週一至週四", r: t("ตัด dash ใช้ 至", "Drop the dash and use 至"), p: 27 } } },
   { cat: "date", th: "ปีรัชศกญี่ปุ่น", en: "Japanese era years", v: {
     de: null, fr: null,
@@ -149,9 +148,9 @@ const ITEMS = [
     "zh-hant": { s: "3:07pm", r: NO, p: 35 } } },
   { cat: "time", th: ":00 กับชั่วโมงเต็ม", en: ":00 on whole hours", v: {
     de: { s: ["14:00 Uhr", "14 Uhr"], r: t("ไม่บังคับ", "Optional"), p: 37 },
-    fr: { s: "2h", r: NO, w: t("ตัวอย่างในตารางไม่มีช่องว่าง ต่างจาก 15 h 07", "The table's example has no space, unlike 15 h 07"), p: 36 },
+    fr: { s: "2h", r: NO, p: 36 },
     ja: { s: ["14:00", "午後 2:00"], r: YES, p: 63 },
-    ko: { r: YES, s: "오후 03:00", w: t("ตัวอย่างในตารางแปล 2pm เป็น 오후 03:00", "The table renders 2pm as 오후 03:00"), p: 30 },
+    ko: { s: "오후 03:00", r: YES, p: 30 },
     "zh-hans": null,
     "zh-hant": { s: "2:00pm", r: YES, p: 35 } } },
   { cat: "time", th: "ระบบ 12 ชม. (AM/PM)", en: "12-hour clock (AM/PM)", v: {
@@ -180,7 +179,7 @@ const ITEMS = [
   // ---------- Numbers ----------
   { cat: "number", th: "ตัวคั่นหลักพันกับเลข 4 หลัก", en: "Separator in 4-digit numbers", v: {
     de: { s: "1.000", r: YES, p: 38 },
-    fr: { s: [`1${NB}000 personnes`, "2004"], r: t("ปีไม่ต้องคั่น (2004)", "Years are not separated (2004)"), w: t("ตารางตอบ No (เว้นแต่ เช่น งบการเงิน) แต่ตัวอย่างในช่องเดียวกันมีตัวคั่น", "The table answers No (except e.g. financial statements) yet its examples are separated"), p: "36–37" },
+    fr: { s: [`1${NB}000 personnes`, `4${NB}000${NB}€`, "2004"], r: t("ไม่ใช้ แต่ไม่ได้ใช้กฎนี้ทุกกรณี เช่น งบการเงิน · ปีไม่คั่น (2004)", "No, but the rule isn't applied everywhere, e.g. financial statements · years are never separated (2004)"), p: "36–37" },
     ja: { s: "1,000", r: YES, p: 66 },
     ko: { s: "1,000", r: YES, p: 31 },
     "zh-hans": { s: "1,000", r: YES, p: 33 },
@@ -190,7 +189,7 @@ const ITEMS = [
     fr: { s: "-5", r: t("hyphen ไม่เว้นวรรค", "Hyphen, no space"), p: "29, 37" },
     ja: { s: "-45 度", x: ["マイナス 45 度"], r: t("hyphen ครึ่งความกว้าง ไม่เว้นวรรคก่อนตัวเลข", "Half-width hyphen, no space before the number"), p: "45, 66" },
     ko: { s: "-5", r: t("hyphen ไม่เว้นวรรค", "Hyphen, no space"), p: "23, 31" },
-    "zh-hans": { s: "-5", r: t("ตารางตัวเลขให้ใช้ hyphen", "The numbers table says hyphen"), w: t("ตาราง dash หน้า 24 ให้ใช้ en dash (–5) ขัดกับตารางตัวเลข", "The dash table on page 24 says en dash (–5), contradicting the numbers table"), p: "24, 33" },
+    "zh-hans": { s: ["-5", "–5"], r: t("ตารางตัวเลข (หน้า 33): hyphen -5 · ตาราง dash (หน้า 24): en dash –5", "Numbers table (page 33): hyphen -5 · dash table (page 24): en dash –5"), p: "24, 33" },
     "zh-hant": { s: "-5", x: ["負 5"], r: t("ตามต้นฉบับ", "As in the source"), p: "28, 36" } } },
   { cat: "number", th: "เปอร์เซ็นต์", en: "Percent", v: {
     de: { s: `5${NB}%`, r: t("% หลังตัวเลข คั่นด้วย NBSP", "% after the number, with an NBSP"), p: 38 },
@@ -253,7 +252,7 @@ const ITEMS = [
     ja: { s: ["79.99 US ドル", "79.99 ドル"], x: ["8,887 円"], r: t("USD79.99 ห้ามแปลงเป็นเยน", "USD79.99; don't convert to yen"), p: 71 },
     ko: { s: "123달러", r: t("เขียนสัญลักษณ์เป็นคำ 달러", "Write the symbol as the word 달러"), p: 33 },
     "zh-hans": { s: "$ 123", r: t("สัญลักษณ์หรือรหัส ISO อยู่หน้าตัวเลขเสมอ เว้นวรรค 1 ช่อง", "Symbol or ISO code always before the number, with a space"), p: 35 },
-    "zh-hant": { s: "美金 123 元", w: t("กฎให้ใช้รหัส ISO หน้าตัวเลขแล้วเว้นวรรค แต่ตัวอย่างในตารางเขียนเป็นคำ", "The rule says ISO code before the number with a space, but the example uses words"), p: 38 } } },
+    "zh-hant": { s: "美金 123 元", r: t("ใช้รหัส ISO อยู่หน้าตัวเลข เว้นวรรค", "ISO code before the number, with a space"), p: 38 } } },
   { cat: "currency", th: "ยูโร (EUR123.4)", en: "Euros (EUR123.4)", v: {
     de: { s: `123,40${NB}EUR`, r: t("ทศนิยม 2 หลักเสมอ · ,00 แทนด้วย en dash ได้", "Always two decimals · ,00 may become an en dash"), p: "27, 40" },
     fr: { s: [`123,40${NB}EUR`, `123,40${NB}€`], p: 39 },
@@ -570,7 +569,7 @@ const ITEMS = [
     ja: null,
     ko: { s: ["편집", "인쇄", "취소"], x: ["편집하기", "인쇄하기", "취소하기"], r: t("คำนาม ไม่มีวรรคตอน", "Nouns, no punctuation"), p: "17–18" },
     "zh-hans": { s: "隐藏数据预览", x: ["将数据预览隐藏"], r: t("ตามโครงสร้างต้นฉบับ: กริยาเป็นกริยา นามเป็นนาม", "Follow the source: verb for verb, noun for noun"), p: "19–20" },
-    "zh-hant": { s: ["編輯", "列印", "取消"], x: ["編輯了", "將列印", "取消了"], r: t("กริยารูปปัจจุบัน ไม่มี 了 / 將 / 過", "Present-tense verbs, without 了 / 將 / 過"), w: t("ตารางให้ชื่อเมนูใช้กริยา แต่ข้อความใต้ตารางให้ใช้คำนามหรือ gerund", "The table says menu names use verbs, but the text below it says nouns or gerunds"), p: 21 } } },
+    "zh-hant": { s: ["編輯", "列印", "取消"], x: ["編輯了", "將列印", "取消了"], r: t("กริยารูปปัจจุบัน ไม่มี 了 / 將 / 過", "Present-tense verbs, without 了 / 將 / 過"), p: 21 } } },
   { cat: "ui", th: "ข้อความยืนยัน", en: "Confirmation messages", v: {
     de: { s: "Möchten Sie diese Datei löschen?", x: ["Soll diese Datei gelöscht werden?"], r: t("พูดกับผู้ใช้โดยตรง", "Address the user directly"), p: 22 },
     fr: { r: t("เลี่ยงประโยคซับซ้อน ใช้วรรคตอนแบบฝรั่งเศส", "Avoid complicated sentences; use French punctuation"), p: 22 },
@@ -685,7 +684,7 @@ const CHECKS = {
     { ...t("UI ไม่ใช้ : (错误 - 无法打开文件) และข้อความ error ใช้ 无法 ไม่ใช่ 不能", "No colon in UI (错误 - 无法打开文件), and errors use 无法, not 不能"), p: "19, 23" },
     { ...t("หน่วยความยาวและน้ำหนักใช้ชื่อจีน (千米, 千克) แต่ kB / MB / GB คงไว้", "Length and weight units use Chinese names (千米, 千克); kB / MB / GB stay"), p: 34 },
     { ...t("ใช้ 您 / 你们 ไม่ใช้ 你", "Use 您 / 你们, not 你"), p: 9 },
-    { ...t("ตัวเลขติดลบ: ตารางตัวเลขให้ใช้ -5 แต่ตาราง dash ให้ใช้ –5 ควรถาม IPM", "Negative numbers: the numbers table says -5 but the dash table says –5; ask the IPM"), p: "24, 33" }
+    { ...t("ช่วงตัวเลขใช้ en dash เว้นวรรค: 0 – 23 · 2 kg – 3 kg", "Number ranges take a spaced en dash: 0 – 23 · 2 kg – 3 kg"), p: "23–24" }
   ],
   "zh-hant": [
     { ...t("คำพูดและชื่อ UI ใช้ 「 」 · คำพูดซ้อนใช้ 『 』", "Quotes and UI names in 「 」 · nested 『 』"), p: "30–31" },

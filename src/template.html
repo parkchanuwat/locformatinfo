@@ -22,7 +22,7 @@
   --specimen: #f7f9fa;
   --mark-nb: #f4cf63;
   --bad: #b4382f; --bad-soft: #fbeceb;
-  --warn: #8a5a00; --warn-soft: #fdf3dc;
+ 
   --shadow: 0 1px 2px rgba(21,33,45,.06), 0 4px 16px rgba(21,33,45,.05);
   --f-display: "Anuphan", "IBM Plex Sans Thai", system-ui, sans-serif;
   --f-body: "IBM Plex Sans Thai", "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -34,7 +34,7 @@
   :root:not([data-theme="light"]) {
     --bg: #0e151b; --surface: #151f28; --ink: #e4ebf1; --muted: #93a1ae; --line: #253240;
     --accent: #5cc0c6; --accent-ink: #082024; --accent-soft: #16343a; --specimen: #1a2631;
-    --mark-nb: rgba(244,207,99,.45); --bad: #f08a80; --bad-soft: #3a2020; --warn: #f0c66e; --warn-soft: #3a3020;
+    --mark-nb: rgba(244,207,99,.45); --bad: #f08a80; --bad-soft: #3a2020;
     --shadow: 0 1px 2px rgba(0,0,0,.3); color-scheme: dark;
   }
 }
@@ -143,8 +143,6 @@ table.cmp { border-collapse: separate; border-spacing: 0; width: 100%; min-width
 .xv { font: 13px/1.45 var(--f-sample); padding: 1px 6px; border-radius: 5px; background: var(--bad-soft); color: var(--bad); text-decoration: line-through; text-decoration-thickness: 1px; overflow-wrap: anywhere; white-space: pre-line; }
 .rule { display: block; font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
 .rule.lead { margin-top: 0; color: var(--ink); font-size: 13.5px; }
-.warn { display: block; font-size: 12.5px; line-height: 1.5; margin-top: 6px; padding: 5px 8px; border-radius: 6px; background: var(--warn-soft); color: var(--warn); }
-.warn::before { content: "⚠ "; }
 .na { display: inline-block; font-size: 13px; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 3px 8px; }
 .none { color: var(--line); font-size: 18px; line-height: 1; }
 .pg { display: inline-block; margin-top: 6px; font: 500 10.5px/1 var(--f-mono); letter-spacing: .02em; padding: 3px 6px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); cursor: help; white-space: nowrap; }
@@ -279,7 +277,7 @@ const UI = {
     none: "guide เล่มนี้ไม่ได้ระบุ", page: "หน้า", wrong: "ผิด",
     copied: "คัดลอกแล้ว:", special: " (มี NBSP)", copyFail: "คัดลอกไม่สำเร็จ ลองเลือกข้อความแล้วกด Ctrl+C", copy: "คัดลอก",
     srcHead: "แหล่งข้อมูล", srcCols: ["ภาษา", "เอกสาร", "เวอร์ชัน", "วันที่", "ไฟล์"],
-    footNote: "ทุกค่าในหน้านี้สรุปจาก PDF ในตารางด้านล่างเท่านั้น ตัวอย่างคัดลอกตามที่ guide เขียน (… คือส่วนที่ละไว้ และ → คือการแทนที่ตามตารางใน guide) ส่วนกฎเป็นการสรุปความ ช่องที่มีเครื่องหมาย — คือ guide เล่มนั้นไม่ได้พูดถึง ช่องที่มี ⚠ คือ guide เขียนขัดกันเอง ให้ถาม IPM ก่อนรายงานเป็นบั๊ก PDF ไม่ได้ใส่ NBSP ไว้ในตัวอักษรจริง หน้านี้จึงใส่ NBSP ตามที่กฎของแต่ละภาษากำหนด ถ้าโปรดักต์มี style guide หรือคำสั่งจาก IPM ที่ต่างออกไป ให้ยึดตามนั้นก่อน",
+    footNote: "ทุกค่าในหน้านี้สรุปจาก PDF ในตารางด้านล่างเท่านั้น ตัวอย่างคัดลอกตามที่ guide เขียน (… คือส่วนที่ละไว้ และ → คือการแทนที่ตามตารางใน guide) ส่วนกฎเป็นการสรุปความ ช่องที่มีเครื่องหมาย — คือ guide เล่มนั้นไม่ได้พูดถึง บางจุด guide เขียนไม่ตรงกันเองระหว่างกฎกับตัวอย่างหรือระหว่างตาราง หน้านี้แสดงตามที่ PDF เขียนทั้งหมด PDF ไม่ได้ใส่ NBSP ไว้ในตัวอักษรจริง หน้านี้จึงใส่ NBSP ตามที่กฎของแต่ละภาษากำหนด ถ้าโปรดักต์มี style guide หรือคำสั่งจาก IPM ที่ต่างออกไป ให้ยึดตามนั้นก่อน",
     removed: "หัวข้อจากเว็บเวอร์ชันก่อนที่ไม่มีใน PDF ถูกเอาออกแล้ว ได้แก่ ค่าที่สร้างจาก CLDR (ชื่อเขตเวลา เวลาแบบสัมพัทธ์ วันแรกของสัปดาห์ การนับสัปดาห์ สัญกรณ์วิทยาศาสตร์ ชื่อภาษา) ตารางการเรียงลำดับแบบ collation อักขระพิเศษ DE/FR และหน้าชุดทดสอบอักขระ"
   },
   en: {
@@ -292,7 +290,7 @@ const UI = {
     none: "Not covered by this guide", page: "page", wrong: "Wrong",
     copied: "Copied:", special: " (includes NBSP)", copyFail: "Couldn't copy. Select the text and press Ctrl+C.", copy: "Copy",
     srcHead: "Sources", srcCols: ["Language", "Document", "Version", "Date", "File"],
-    footNote: "Everything on this page is summarized from the PDFs listed below and nothing else. Samples are copied as the guides write them (… marks omitted text, → shows a substitution from the guide's table); rules are paraphrased. A — means the guide doesn't cover the topic. A ⚠ means the guide contradicts itself; ask the IPM before logging a bug. The PDFs don't encode no-break spaces as characters, so this page inserts NBSP wherever a language's rules call for one. If a product has its own style guide or IPM instructions that differ, follow those first.",
+    footNote: "Everything on this page is summarized from the PDFs listed below and nothing else. Samples are copied as the guides write them (… marks omitted text, → shows a substitution from the guide's table); rules are paraphrased. A — means the guide doesn't cover the topic. Where a guide's rule and example, or two of its tables, disagree, this page shows what the PDF says as written. The PDFs don't encode no-break spaces as characters, so this page inserts NBSP wherever a language's rules call for one. If a product has its own style guide or IPM instructions that differ, follow those first.",
     removed: "Topics from the previous version that the PDFs don't cover have been removed: CLDR-generated values (time zone names, relative time, first day of week, week numbering, scientific notation, language names), the collation sorting tables, the DE/FR special-letter panels and the character test data page."
   }
 };
@@ -350,7 +348,6 @@ function ruleHTML(cell, lead) {
   const parts = [];
   if (cell.na) parts.push(`<span class="na">${esc(L(cell.na))}</span>`);
   if (cell.r) parts.push(`<span class="rule${lead && !cell.na ? " lead" : ""}">${fmt(L(cell.r))}</span>`);
-  if (cell.w) parts.push(`<span class="warn">${fmt(L(cell.w))}</span>`);
   return parts.join("");
 }
 const noneHTML = () => `<span class="none" title="${esc(u("none"))}" aria-label="${esc(u("none"))}">—</span>`;
@@ -366,7 +363,7 @@ function cellCompare(item, loc) {
 let view = "compare", query = "";
 function cellText(c) {
   if (!c) return "";
-  return [...arr(c.s), ...arr(c.x), c.r && c.r.th, c.r && c.r.en, c.w && c.w.th, c.w && c.w.en, c.na && c.na.th, c.na && c.na.en].filter(Boolean).join(" ").replace(/ /g, " ");
+  return [...arr(c.s), ...arr(c.x), c.r && c.r.th, c.r && c.r.en, c.na && c.na.th, c.na && c.na.en].filter(Boolean).join(" ").replace(/ /g, " ");
 }
 function matches(item, locs) {
   if (!query) return true;
