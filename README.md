@@ -2,7 +2,7 @@
 
 เว็บอ้างอิงรูปแบบวันที่ เวลา ตัวเลข สกุลเงิน หน่วยวัด เครื่องหมายวรรคตอน การเขียน ข้อความ UI คีย์บอร์ด ที่อยู่ และเบอร์โทร สำหรับงาน Localization QA
 
-ภาษาที่มี: German (de-DE), French (fr-FR / fr-CA), Japanese (ja-JP), Korean (ko-KR), Chinese Simplified (zh-CN), Chinese Traditional (zh-TW)
+ภาษาที่มี: German (de-DE), French (fr-FR / fr-CA), Japanese (ja-JP), Korean (ko-KR), Chinese Simplified (zh-CN), Chinese Traditional (zh-TW), Thai (th-TH)
 
 ## แหล่งข้อมูล
 
@@ -16,6 +16,7 @@
 | ko-KR | `Adobe_Style_Guide_ko-KR_v.1.7.pdf` | 1.7 | October 2022 |
 | zh-CN | `Adobe_Style_Guide_zh-CN_v.1.7.pdf` | 1.7 | October 2022 |
 | zh-TW | `Adobe_Style_Guide_zh-TW_v.1.9.pdf` | 1.9 | October 2022 |
+| th-TH | `Adobe_Style_Guide_th-TH_v.1.1.pdf` | 1.1 | July 2021 |
 
 ตัว PDF ไม่ได้อยู่ใน repo นี้
 
@@ -31,7 +32,7 @@
 
 เปิด `index.html` ใน browser ได้เลย ไฟล์นี้มีทุกอย่างอยู่ในตัว (ฟอนต์โหลดจาก Google Fonts)
 
-- **ตารางเทียบทุกภาษา** และ **ดูทีละภาษา** สลับได้จากแท็บด้านบน (ลิงก์ตรงได้ด้วย `#compare`, `#de`, `#fr`, `#ja`, `#ko`, `#zh-hans`, `#zh-hant`)
+- **ตารางเทียบทุกภาษา** และ **ดูทีละภาษา** สลับได้จากแท็บด้านบน (ลิงก์ตรงได้ด้วย `#compare`, `#de`, `#fr`, `#ja`, `#ko`, `#zh-hans`, `#zh-hant`, `#th`)
 - หน้าของแต่ละภาษามีเช็คลิสต์จุดที่ต้องตรวจ พร้อมเลขหน้าอ้างอิง
 - คลิกตัวอย่างเพื่อคัดลอกพร้อมอักขระจริง รวมถึง NBSP
 - สวิตช์ "แสดง NBSP" ใช้ไฮไลต์ช่องว่างไม่ตัดบรรทัด
